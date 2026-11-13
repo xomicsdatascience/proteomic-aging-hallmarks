@@ -1,0 +1,174 @@
+drug,n_rep,batch,n_DE_q05,n_DE_q10,n_DE_q20,n_up_q05,n_dn_q05,ProductName,Category,PathWay,Target
+6-Mercaptopurine,6,"Red1,Red2,Red3,Red4,Red5,Red6",3285,3858,4623,1451,1834,6-Mercaptopurine,Stress_Autophagy,Autophagy; Cell Cycle/DNA Damage; Metabolic Enzyme/Protease,Autophagy; Endogenous Metabolite; Nucleoside Antimetabolite/Analog
+ATP (dimagnesium),6,"Red1,Red2,Red3,Red4,Red5,Red6",1613,2153,2939,469,1144,ATP (dimagnesium),Metabolism_Detox,Metabolic Enzyme/Protease,Endogenous Metabolite
+Abemaciclib (methanesulfonate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4824,5384,5962,1503,3321,Abemaciclib (methanesulfonate),Unannotated,Cell Cycle/DNA Damage,CDK
+Acetophenazine (dimaleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",2692,3290,4001,959,1733,Acetophenazine (dimaleate),GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Adiphenine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1372,1972,2898,550,822,Adiphenine (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Alcaftadine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1383,2018,2884,426,957,Alcaftadine,GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Alizapride (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1496,2114,3051,372,1124,Alizapride (hydrochloride),GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Almonertinib (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6508,6783,7078,895,5613,Almonertinib (hydrochloride),Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Almotriptan (malate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1030,1517,2309,368,662,Almotriptan (malate),GPCR,GPCR/G Protein; Neuronal Signaling,5-HT Receptor
+Ambroxol,6,RedMix,202,680,2198,92,110,,Unannotated,,
+Amcinonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",290,450,761,202,88,Amcinonide,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Amiodarone (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",3107,3701,4474,1079,2028,Amiodarone (hydrochloride),Kinase_Inhibitors,Autophagy; Membrane Transporter/Ion Channel,Autophagy; Potassium Channel
+Amisulpride,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2987,3573,4337,1643,1344,Amisulpride,GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Amodiaquine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",4026,4564,5228,1706,2320,Amodiaquine (dihydrochloride),Epigenetic_Regulators,Anti-infection; Epigenetics,Histone Methyltransferase; Parasite
+Anamorelin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2359,2970,3755,1129,1230,Anamorelin,GPCR,GPCR/G Protein,GHSR
+Andrographolide,6,"Red1,Red2,Red3,Red4,Red5,Red6",2340,2940,3742,970,1370,Andrographolide,Stress_Autophagy,Anti-infection; Autophagy; NF-ÎºB,Autophagy; Influenza Virus; NF-ÎºB; Parasite; SARS-CoV
+Aniracetam,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2184,2796,3640,959,1225,Aniracetam,Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR; nAChR
+Antazoline (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",2146,2785,3604,748,1398,Antazoline (hydrochloride),GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Antipyrine,6,"Red1,Red2,Red3,Red4,Red5,Red6",878,1425,2229,254,624,Antipyrine,Metabolism_Detox,Others,Others
+Asciminib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2983,3563,4294,1437,1546,Asciminib,Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,Bcr-Abl
+Atazanavir (sulfate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1658,2250,3081,546,1112,Atazanavir (sulfate),Metabolism_Detox,Anti-infection; Membrane Transporter/Ion Channel; Metabolic Enzyme/Protease,Cytochrome P450; Endogenous Metabolite; HIV; HIV Protease; P-glycoprotein; SARS-CoV
+Atorvastatin (hemicalcium salt),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2085,2619,3453,980,1105,Atorvastatin (hemicalcium salt),Stress_Autophagy,Apoptosis; Autophagy; Metabolic Enzyme/Protease,Autophagy; Ferroptosis; HMG-CoA Reductase (HMGCR)
+Azatadine (dimaleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1219,1824,2613,398,821,Azatadine (dimaleate),GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Azelastine (hydrochloride),6,RedMix,532,813,1379,346,186,,Unannotated,,
+Baicalein,6,"Red1,Red2,Red3,Red4,Red5,Red6",3716,4301,4980,1661,2055,Baicalein,Metabolism_Detox,Anti-infection; Apoptosis; Metabolic Enzyme/Protease,Ferroptosis; Influenza Virus; Xanthine Oxidase
+Balsalazide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",911,1449,2359,446,465,Balsalazide,Nuclear_Receptors,Immunology/Inflammation; JAK/STAT Signaling; Stem Cell/Wnt,Interleukin Related; STAT
+Belzutifan,6,"Red1,Red2,Red3,Red4,Red5,Red6",1027,1630,2416,236,791,Belzutifan,Nuclear_Receptors,Metabolic Enzyme/Protease,HIF/HIF Prolyl-Hydroxylase
+Benzamil (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",2316,2898,3677,1010,1306,Benzamil (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel,Na+/Ca2+ Exchanger; Sodium Channel
+Benztropine (mesylate),6,"Red1,Red2,Red3,Red4,Red5,Red6",2904,3463,4200,1172,1732,Benztropine (mesylate),GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Dopamine Receptor; Histamine Receptor; mAChR
+Bepotastine,6,"Red1,Red2,Red3,Red4,Red5,Red6",185,437,953,83,102,Bepotastine,Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Betahistine,6,"Red1,Red2,Red3,Red4,Red5,Red6",981,1523,2396,294,687,Betahistine,Epigenetic_Regulators,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Betamethasone dipropionate,6,"Red1,Red2,Red3,Red4,Red5,Red6",316,424,619,189,127,Betamethasone dipropionate,Epigenetic_Regulators,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Betamethasone disodium phosphate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2612,3129,3973,1139,1473,Betamethasone disodium phosphate,Epigenetic_Regulators,Others,Others
+Betamethasone valerate,6,"Red1,Red2,Red3,Red4,Red5,Red6",2379,2988,3802,843,1536,Betamethasone valerate,Epigenetic_Regulators,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Betazole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1,3,3,1,0,Betazole,Epigenetic_Regulators,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Bicyclol,6,"Red1,Red2,Red3,Red4,Red5,Red6",1247,1770,2658,292,955,Bicyclol,Stress_Autophagy,Anti-infection; Autophagy,Autophagy; HBV
+Binimetinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",4543,5122,5673,1734,2809,Binimetinib,Kinase_Inhibitors,Autophagy; MAPK/ERK Pathway,Autophagy; MEK
+Bromhexine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",112,195,387,92,20,Bromhexine (hydrochloride),Stress_Autophagy,Anti-infection; Autophagy,Autophagy; HIV; SARS-CoV
+Budesonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1889,2442,3247,585,1304,Budesonide,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Butylphthalide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2536,3126,3851,1163,1373,Butylphthalide,Epigenetic_Regulators,Others,Others
+Cabazitaxel,6,RedMix,2067,2890,3863,890,1177,,Unannotated,,
+Camphor,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2736,3391,4189,1477,1259,Camphor,Nuclear_Receptors,Anti-infection; Membrane Transporter/Ion Channel; Neuronal Signaling,Influenza Virus; TRP Channel
+Carbenoxolone (disodium),6,"Red1,Red2,Red3,Red4,Red5,Red6",131,292,745,47,84,Carbenoxolone (disodium),Nuclear_Receptors,Anti-infection; Cytoskeleton; Metabolic Enzyme/Protease,11Î²-HSD; Gap Junction Protein; Orthopoxvirus
+Caroverine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",818,1116,1698,606,212,Caroverine (hydrochloride),Nuclear_Receptors,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR
+Cetirizine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1023,1494,2265,313,710,Cetirizine (dihydrochloride),Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Chloroprocaine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1421,2028,2966,580,841,Chloroprocaine (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel,Na+/K+ ATPase
+Chloropyramine hydrochloride,6,"Red1,Red2,Red3,Red4,Red5,Red6",1686,2191,2990,622,1064,Chloropyramine hydrochloride,Kinase_Inhibitors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling; Protein Tyrosine Kinase/RTK,FAK; Histamine Receptor; VEGFR
+Chlorpheniramine (maleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",359,804,1627,160,199,Chlorpheniramine (maleate),Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Chlorpropamide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4341,4883,5470,1784,2557,Chlorpropamide,Unannotated,Membrane Transporter/Ion Channel,Na+/K+ ATPase
+Ciclesonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",2492,3105,3914,954,1538,Ciclesonide,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Clobetasone butyrate,6,"Red1,Red2,Red3,Red4,Red5,Red6",404,597,1000,289,115,Clobetasone butyrate,Epigenetic_Regulators,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Clomiphene (citrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",5534,6026,6480,1065,4469,Clomiphene (citrate),Epigenetic_Regulators,Vitamin D Related/Nuclear Receptor,Estrogen Receptor/ERR
+Cobicistat,6,RedMix,422,647,1216,273,149,,Unannotated,,
+Cromolyn (sodium),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1495,2128,2947,642,853,Cromolyn (sodium),Kinase_Inhibitors,Membrane Transporter/Ion Channel; Neuronal Signaling; PI3K/Akt/mTOR; Stem Cell/Wnt,Calcium Channel; GSK-3
+Cyclothiazide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",12,40,77,11,1,Cyclothiazide,Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR
+Cytidine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1384,2008,2876,334,1050,Cytidine,Metabolism_Detox,Cell Cycle/DNA Damage; Metabolic Enzyme/Protease,Endogenous Metabolite; Nucleoside Antimetabolite/Analog
+DFO,24,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6,Red1,Red2,Red3,Red4,Red5,Red6",5274,5654,6141,2183,3091,,Positive_Control,,
+Danthron,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1969,2586,3425,1012,957,Danthron,Unannotated,Anti-infection; Autophagy; Epigenetics; PI3K/Akt/mTOR,AMPK; Autophagy; Bacterial; Virus Protease
+Daprodustat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1493,2140,3012,736,757,Daprodustat,Nuclear_Receptors,Metabolic Enzyme/Protease,HIF/HIF Prolyl-Hydroxylase
+Deflazacort,6,"Red1,Red2,Red3,Red4,Red5,Red6",1262,1857,2716,539,723,Deflazacort,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Delavirdine (mesylate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",244,344,550,193,51,Delavirdine (mesylate),Nuclear_Receptors,Anti-infection,HIV; Reverse Transcriptase
+Desloratadine,6,"Red1,Red2,Red3,Red4,Red5,Red6",3514,4061,4749,1368,2146,Desloratadine,GPCR,GPCR/G Protein; Immunology/Inflammation; Metabolic Enzyme/Protease; Neuronal Signaling,Endogenous Metabolite; Histamine Receptor
+Dexpramipexole (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",6,16,65,6,0,Dexpramipexole (dihydrochloride),GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Diacerein,6,"Red1,Red2,Red3,Red4,Red5,Red6",1145,1619,2507,327,818,Diacerein,Epigenetic_Regulators,Immunology/Inflammation,Interleukin Related
+Digitoxin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3998,4662,5386,626,3372,Digitoxin,Unannotated,Membrane Transporter/Ion Channel,Na+/K+ ATPase
+Dimenhydrinate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1717,2300,3050,553,1164,Dimenhydrinate,GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Dimethyl fumarate,6,"Red1,Red2,Red3,Red4,Red5,Red6",191,443,987,83,108,Dimethyl fumarate,Kinase_Inhibitors,Anti-infection; Autophagy; Immunology/Inflammation; Metabolic Enzyme/Protease; NF-ÎºB,Autophagy; Endogenous Metabolite; HIV; Keap1-Nrf2; Reactive Oxygen Species
+Diphenhydramine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2559,3161,3958,1285,1274,Diphenhydramine (hydrochloride),GPCR,Anti-infection; GPCR/G Protein; Immunology/Inflammation; Metabolic Enzyme/Protease; Neuronal Signaling,Bacterial; Endogenous Metabolite; Histamine Receptor
+Diphenylpyraline (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1158,1732,2540,598,560,Diphenylpyraline (hydrochloride),Unannotated,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Efavirenz,6,RedMix,219,364,784,73,146,,Unannotated,,
+Eicosapentaenoic Acid,5,"Blue1,Blue2,Blue4,Blue5,Blue6",2322,2952,3731,1036,1286,Eicosapentaenoic Acid,Epigenetic_Regulators,Epigenetics; Metabolic Enzyme/Protease,Endogenous Metabolite; Histone Demethylase
+Emedastine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1323,1850,2676,512,811,Emedastine,GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Enclomiphene (citrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3729,4275,4957,1721,2008,Enclomiphene (citrate),Epigenetic_Regulators,Vitamin D Related/Nuclear Receptor,Estrogen Receptor/ERR
+Epinastine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1998,2565,3435,653,1345,Epinastine (hydrochloride),GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Eptifibatide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2319,2928,3766,1117,1202,Eptifibatide,Nuclear_Receptors,Cytoskeleton,Integrin
+Erlotinib (Hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",3951,4503,5197,1861,2090,Erlotinib (Hydrochloride),Kinase_Inhibitors,Autophagy; JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,Autophagy; EGFR
+Etravirine,6,"Red1,Red2,Red3,Red4,Red5,Red6",4694,5222,5792,2170,2524,Etravirine,Nuclear_Receptors,Anti-infection,HIV; Reverse Transcriptase
+Ferulic acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1,2,9,0,1,Ferulic acid,Kinase_Inhibitors,Metabolic Enzyme/Protease; Protein Tyrosine Kinase/RTK,Endogenous Metabolite; FGFR
+Fexofenadine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3095,3638,4320,1760,1335,Fexofenadine (hydrochloride),Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Flumatinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",4505,5017,5647,1962,2543,Flumatinib,Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,Bcr-Abl; c-Kit; PDGFR
+Fluphenazine decanoate,6,"Red1,Red2,Red3,Red4,Red5,Red6",7,15,30,4,3,Fluphenazine decanoate,GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Flupirtine (Maleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",156,510,1127,54,102,Flupirtine (Maleate),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR; Potassium Channel
+Fluticasone furoate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1312,2043,2920,542,770,Fluticasone furoate,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Gliquidone,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3062,3674,4351,1458,1604,Gliquidone,Epigenetic_Regulators,Others,Others
+Haloperidol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3499,4025,4689,1629,1870,Haloperidol,GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Hydrocortisone cypionate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1325,1861,2613,612,713,Hydrocortisone cypionate,Metabolism_Detox,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Icotinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",2163,2712,3494,957,1206,Icotinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Idelalisib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2712,3275,4059,1355,1357,Idelalisib,Kinase_Inhibitors,Autophagy; PI3K/Akt/mTOR,Autophagy; PI3K
+Ifenprodil (tartrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2169,2836,3591,1180,989,Ifenprodil (tartrate),Nuclear_Receptors,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR; Potassium Channel
+Imiquimod (maleate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",723,1284,2211,544,179,Imiquimod (maleate),Stress_Autophagy,Anti-infection; Autophagy; Immunology/Inflammation,Autophagy; HSV; SARS-CoV; Toll-like Receptor (TLR)
+Ketotifen (fumarate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1909,2623,3411,887,1022,Ketotifen (fumarate),GPCR,Anti-infection; GPCR/G Protein; Immunology/Inflammation; Metabolic Enzyme/Protease; Neuronal Signaling,Endogenous Metabolite; Histamine Receptor; Influenza Virus; SARS-CoV
+L-5-Hydroxytryptophan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2345,2932,3736,1080,1265,L-5-Hydroxytryptophan,GPCR,Metabolic Enzyme/Protease,Endogenous Metabolite
+L-Tryptophan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2146,2836,3674,1030,1116,L-Tryptophan,GPCR,Metabolic Enzyme/Protease,Endogenous Metabolite
+Lapatinib (ditosylate),6,"Red1,Red2,Red3,Red4,Red5,Red6",3467,4050,4810,1623,1844,Lapatinib (ditosylate),Kinase_Inhibitors,Apoptosis; Autophagy; JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,Autophagy; EGFR; Ferroptosis
+Latrepirdine (dihydrochloride),6,RedMix,33,72,138,13,20,,Unannotated,,
+Lazertinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1848,2416,3279,904,944,Lazertinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Levocetirizine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",408,784,1510,82,326,Levocetirizine (dihydrochloride),Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Liarozole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2750,3341,4066,1190,1560,Liarozole,Metabolism_Detox,Metabolic Enzyme/Protease; Vitamin D Related/Nuclear Receptor,Cytochrome P450; RAR/RXR
+Linaclotide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1828,2411,3272,542,1286,Linaclotide,GPCR,GPCR/G Protein,Guanylate Cyclase
+Lipoic acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2737,3370,4198,1324,1413,Lipoic acid,Metabolism_Detox,Immunology/Inflammation; Metabolic Enzyme/Protease; NF-ÎºB,Endogenous Metabolite; Mitochondrial Metabolism; Reactive Oxygen Species
+Liranaftate,6,RedMix,1060,1840,2960,360,700,,Unannotated,,
+Lobeline (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1760,2356,3084,879,881,Lobeline (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Lonafarnib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3792,4352,5025,1664,2128,Lonafarnib,Stress_Autophagy,Autophagy; GPCR/G Protein; Metabolic Enzyme/Protease,Autophagy; Farnesyl Transferase; Ras
+Loratadine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3238,3871,4602,1490,1748,Loratadine,GPCR,Anti-infection; GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Flavivirus; Histamine Receptor
+Masoprocol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2506,3094,3882,1182,1324,Masoprocol,Epigenetic_Regulators,Metabolic Enzyme/Protease,Lipoxygenase
+Mebhydrolin,6,"Red1,Red2,Red3,Red4,Red5,Red6",1421,1911,2610,529,892,Mebhydrolin,GPCR,GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Histamine Receptor
+Mecamylamine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3020,3602,4256,1540,1480,Mecamylamine (hydrochloride),Nuclear_Receptors,GPCR/G Protein; Immunology/Inflammation; Membrane Transporter/Ion Channel; Neuronal Signaling,Histamine Receptor; nAChR
+Meclofenoxate (hydrochloride),5,"Blue1,Blue2,Blue3,Blue4,Blue6",2893,3461,4244,1593,1300,Meclofenoxate (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR; nAChR
+Mefloquine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",5610,6079,6588,712,4898,Mefloquine (hydrochloride),Kinase_Inhibitors,Anti-infection; Autophagy; Membrane Transporter/Ion Channel; Protein Tyrosine Kinase/RTK,Autophagy; Parasite; Potassium Channel; ROS Kinase; SARS-CoV
+Mephenesin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",139,555,1466,109,30,Mephenesin,Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR
+Methylene blue (trihydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",3775,4364,5104,1491,2284,Methylene blue (trihydrate),Metabolism_Detox,Anti-infection; GPCR/G Protein; Immunology/Inflammation; Neuronal Signaling,Guanylate Cyclase; Monoamine Oxidase; NO Synthase; Parasite
+Methylthiouracil,6,"Red1,Red2,Red3,Red4,Red5,Red6",1235,1796,2587,338,897,Methylthiouracil,Kinase_Inhibitors,Apoptosis; Immunology/Inflammation; MAPK/ERK Pathway; NF-ÎºB; Stem Cell/Wnt,ERK; Interleukin Related; NF-ÎºB; TNF Receptor
+Mifepristone,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3374,3948,4620,1744,1630,Mifepristone,Stress_Autophagy,Autophagy; Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Autophagy; Glucocorticoid Receptor; NO Synthase; Progesterone Receptor
+Mobocertinib (succinate),6,"Red1,Red2,Red3,Red4,Red5,Red6",4968,5647,6250,889,4079,Mobocertinib (succinate),Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Mometasone,5,"Blue2,Blue3,Blue4,Blue5,Blue6",2600,3199,3987,1039,1561,Mometasone,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Monomethyl fumarate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2297,2907,3697,1143,1154,Monomethyl fumarate,GPCR,GPCR/G Protein; Metabolic Enzyme/Protease,Drug Metabolite; GPR109A
+Moxonidine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1257,1909,2814,678,579,Moxonidine,Nuclear_Receptors,Neuronal Signaling,Imidazoline Receptor
+Nateglinide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1693,2367,3206,795,898,Nateglinide,Epigenetic_Regulators,Membrane Transporter/Ion Channel; Metabolic Enzyme/Protease,Dipeptidyl Peptidase; Potassium Channel
+Neratinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3482,4061,4820,1700,1782,Neratinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Nicotinamide,6,"Red1,Red2,Red3,Red4,Red5,Red6",586,1068,1883,168,418,Nicotinamide,Epigenetic_Regulators,Anti-infection; Cell Cycle/DNA Damage; Epigenetics; Metabolic Enzyme/Protease,Endogenous Metabolite; HBV; Sirtuin
+Nitazoxanide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1543,2084,3005,559,984,Nitazoxanide,Stress_Autophagy,Anti-infection; Autophagy,Autophagy; Influenza Virus; Parasite
+Nitrendipine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2426,3000,3777,1199,1227,Nitrendipine,Unannotated,Autophagy; Membrane Transporter/Ion Channel; Neuronal Signaling,Autophagy; Calcium Channel
+Nordihydroguaiaretic acid,6,"Red1,Red2,Red3,Red4,Red5,Red6",2507,3095,3843,1202,1305,Nordihydroguaiaretic acid,Kinase_Inhibitors,Apoptosis; Autophagy; Metabolic Enzyme/Protease,Autophagy; Ferroptosis; Lipoxygenase
+Olmutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4762,5325,5922,1851,2911,Olmutinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Olverembatinib (dimesylate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6756,6955,7213,977,5779,Olverembatinib (dimesylate),Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,Bcr-Abl
+Orelabrutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2356,3007,3751,1146,1210,Orelabrutinib,Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,Btk
+Osimertinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6613,6865,7115,948,5665,Osimertinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Oteseconazole,6,RedMix,427,686,1257,273,154,,Unannotated,,
+Oxybutynin (chloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1197,1710,2544,385,812,Oxybutynin (chloride),Transporters_Ion,GPCR/G Protein; Membrane Transporter/Ion Channel; Neuronal Signaling,mAChR; Potassium Channel
+Pamapimod,6,"Red1,Red2,Red3,Red4,Red5,Red6",1664,2276,3158,653,1011,Pamapimod,Kinase_Inhibitors,Autophagy; MAPK/ERK Pathway,Autophagy; p38 MAPK
+Paritaprevir,6,RedMix,141,223,466,83,58,,Unannotated,,
+Peretinoin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",88,122,220,69,19,Peretinoin,Kinase_Inhibitors,Anti-infection; Autophagy; Immunology/Inflammation; Metabolic Enzyme/Protease; Vitamin D Related/Nuclear Receptor,Autophagy; HCV; RAR/RXR; SphK
+Pergolide (mesylate),6,RedMix,1851,2502,3436,562,1289,Pergolide (mesylate),GPCR,GPCR/G Protein; Neuronal Signaling,Dopamine Receptor
+Pindolol,6,"Red1,Red2,Red3,Red4,Red5,Red6",76,157,332,34,42,Pindolol,Epigenetic_Regulators,GPCR/G Protein; Neuronal Signaling,5-HT Receptor; Adrenergic Receptor
+Pipecuronium (bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",198,502,1173,55,143,Pipecuronium (bromide),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Pirlindole,6,"Red1,Red2,Red3,Red4,Red5,Red6",1768,2397,3241,636,1132,Pirlindole,Metabolism_Detox,Anti-infection; Neuronal Signaling,Enterovirus; Monoamine Oxidase
+Pranlukast (hemihydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1128,1664,2516,408,720,Pranlukast (hemihydrate),GPCR,GPCR/G Protein; Metabolic Enzyme/Protease,Endogenous Metabolite; Leukotriene Receptor
+Prednisolone Tebutate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1274,1751,2492,542,732,Prednisolone Tebutate,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Prednisone acetate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2418,3067,3897,1389,1029,Prednisone acetate,Other,Immunology/Inflammation; Vitamin D Related/Nuclear Receptor,Glucocorticoid Receptor
+Prilocaine,6,"Red1,Red2,Red3,Red4,Red5,Red6",497,890,1546,144,353,Prilocaine,Transporters_Ion,Membrane Transporter/Ion Channel,Na+/K+ ATPase
+Procyclidine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1897,2484,3336,611,1286,Procyclidine (hydrochloride),Nuclear_Receptors,GPCR/G Protein; Membrane Transporter/Ion Channel; Neuronal Signaling,iGluR; mAChR
+Prucalopride,6,"Red1,Red2,Red3,Red4,Red5,Red6",430,825,1579,206,224,Prucalopride,Kinase_Inhibitors,GPCR/G Protein; Neuronal Signaling,5-HT Receptor
+Remdesivir,6,RedMix,3264,3856,4664,1269,1995,,Unannotated,,
+Rilpivirine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4028,4614,5267,2021,2007,Rilpivirine,Nuclear_Receptors,Anti-infection,HIV; Reverse Transcriptase
+Rocuronium (Bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",2,3,16,2,0,Rocuronium (Bromide),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Saquinavir (mesylate),6,RedMix,665,1014,1710,354,311,,Unannotated,,
+Savolitinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1395,2038,2980,645,750,Savolitinib,Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,c-Met/HGFR
+Simotinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1316,1884,2790,674,642,Simotinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Simvastatin acid (ammonium),6,"Red1,Red2,Red3,Red4,Red5,Red6",1021,1509,2352,554,467,Simvastatin acid (ammonium),Nuclear_Receptors,Immunology/Inflammation; Metabolic Enzyme/Protease; NF-ÎºB,HMG-CoA Reductase (HMGCR); Reactive Oxygen Species
+Stiripentol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3113,3672,4366,1798,1315,Stiripentol,Metabolism_Detox,Metabolic Enzyme/Protease,Cytochrome P450
+Teclozan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2233,2909,3717,1129,1104,Teclozan,Metabolism_Detox,Anti-infection,Parasite
+Tenapanor (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3199,3786,4515,1563,1636,Tenapanor (hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel,Na+/H+ Exchanger (NHE)
+Tinoridine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1842,2548,3423,1026,816,Tinoridine (hydrochloride),Metabolism_Detox,Metabolic Enzyme/Protease,Glutathione Peroxidase
+Tirofiban (hydrochloride monohydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1278,1871,2675,394,884,Tirofiban (hydrochloride monohydrate),Nuclear_Receptors,Cytoskeleton,Integrin
+Tolbutamide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2193,2838,3575,1002,1191,Tolbutamide,Kinase_Inhibitors,Autophagy; Membrane Transporter/Ion Channel,Autophagy; Potassium Channel
+Topiroxostat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2745,3386,4158,1409,1336,Topiroxostat,Metabolism_Detox,Metabolic Enzyme/Protease,Cytochrome P450; Xanthine Oxidase
+Tranylcypromine (hemisulfate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1468,2002,2887,271,1197,Tranylcypromine (hemisulfate),Epigenetic_Regulators,Epigenetics; Neuronal Signaling,Histone Demethylase; Monoamine Oxidase
+Tricaprilin,6,"Red1,Red2,Red3,Red4,Red5,Red6",4,7,7,4,0,Tricaprilin,Unannotated,Metabolic Enzyme/Protease,Endogenous Metabolite
+Triclabendazole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2421,3025,3832,1120,1301,Triclabendazole,Transporters_Ion,Anti-infection; Cell Cycle/DNA Damage; Cytoskeleton,Microtubule/Tubulin; Parasite
+Trimethobenzamide (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1078,1750,2762,553,525,Trimethobenzamide (hydrochloride),GPCR,Anti-infection; GPCR/G Protein; Neuronal Signaling,Dopamine Receptor; Influenza Virus
+Tripelennamine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1413,1948,2770,335,1078,Tripelennamine (hydrochloride),GPCR,GPCR/G Protein; Immunology/Inflammation; Metabolic Enzyme/Protease; Neuronal Signaling,Endogenous Metabolite; Histamine Receptor
+Tucatinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1433,1888,2676,813,620,Tucatinib,Kinase_Inhibitors,JAK/STAT Signaling; Protein Tyrosine Kinase/RTK,EGFR
+Tucidinostat,6,"Red1,Red2,Red3,Red4,Red5,Red6",5087,5568,6051,2091,2996,Tucidinostat,Epigenetic_Regulators,Cell Cycle/DNA Damage; Epigenetics,HDAC
+Umbralisib,6,"Red1,Red2,Red3,Red4,Red5,Red6",2640,3189,3936,1155,1485,Umbralisib,Kinase_Inhibitors,Cell Cycle/DNA Damage; PI3K/Akt/mTOR; Stem Cell/Wnt,Casein Kinase; PI3K
+Vadadustat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2767,3407,4164,1354,1413,Vadadustat,Nuclear_Receptors,Metabolic Enzyme/Protease,HIF/HIF Prolyl-Hydroxylase
+Vardenafil,6,"Red1,Red2,Red3,Red4,Red5,Red6",1381,1926,2659,432,949,Vardenafil,Epigenetic_Regulators,Metabolic Enzyme/Protease,Endogenous Metabolite; Phosphodiesterase (PDE)
+Varenicline (Hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1757,2400,3223,724,1033,Varenicline (Hydrochloride),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Vasopressin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2948,3559,4276,1418,1530,Vasopressin,GPCR,Metabolic Enzyme/Protease,Endogenous Metabolite
+Vecuronium (bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",34,84,174,31,3,Vecuronium (bromide),Transporters_Ion,Membrane Transporter/Ion Channel; Neuronal Signaling,nAChR
+Vemurafenib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3375,3963,4676,1396,1979,Vemurafenib,Kinase_Inhibitors,Autophagy; MAPK/ERK Pathway,Autophagy; Raf
+Zanubrutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1868,2459,3276,886,982,Zanubrutinib,Kinase_Inhibitors,Protein Tyrosine Kinase/RTK,Btk
+Î±-Lipoic Acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2338,2950,3718,1185,1153,Î±-Lipoic Acid,Metabolism_Detox,Anti-infection; Apoptosis; Metabolic Enzyme/Protease; NF-ÎºB,Apoptosis; Endogenous Metabolite; HIV; Mitochondrial Metabolism; NF-ÎºB
+Î³-Oryzanol,6,"Red1,Red2,Red3,Red4,Red5,Red6",1221,1782,2615,268,953,Î³-Oryzanol,Epigenetic_Regulators,Epigenetics,DNA Methyltransferase

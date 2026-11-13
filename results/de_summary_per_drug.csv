@@ -1,0 +1,174 @@
+drug,n_rep,batch,n_DE_q05,n_DE_q10,n_DE_q20,n_up_q05,n_dn_q05
+6-Mercaptopurine,6,"Red1,Red2,Red3,Red4,Red5,Red6",3285,3858,4623,1451,1834
+ATP (dimagnesium),6,"Red1,Red2,Red3,Red4,Red5,Red6",1613,2153,2939,469,1144
+Abemaciclib (methanesulfonate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4824,5384,5962,1503,3321
+Acetophenazine (dimaleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",2692,3290,4001,959,1733
+Adiphenine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1372,1972,2898,550,822
+Alcaftadine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1383,2018,2884,426,957
+Alizapride (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1496,2114,3051,372,1124
+Almonertinib (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6508,6783,7078,895,5613
+Almotriptan (malate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1030,1517,2309,368,662
+Ambroxol,6,RedMix,202,680,2198,92,110
+Amcinonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",290,450,761,202,88
+Amiodarone (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",3107,3701,4474,1079,2028
+Amisulpride,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2987,3573,4337,1643,1344
+Amodiaquine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",4026,4564,5228,1706,2320
+Anamorelin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2359,2970,3755,1129,1230
+Andrographolide,6,"Red1,Red2,Red3,Red4,Red5,Red6",2340,2940,3742,970,1370
+Aniracetam,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2184,2796,3640,959,1225
+Antazoline (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",2146,2785,3604,748,1398
+Antipyrine,6,"Red1,Red2,Red3,Red4,Red5,Red6",878,1425,2229,254,624
+Asciminib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2983,3563,4294,1437,1546
+Atazanavir (sulfate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1658,2250,3081,546,1112
+Atorvastatin (hemicalcium salt),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2085,2619,3453,980,1105
+Azatadine (dimaleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1219,1824,2613,398,821
+Azelastine (hydrochloride),6,RedMix,532,813,1379,346,186
+Baicalein,6,"Red1,Red2,Red3,Red4,Red5,Red6",3716,4301,4980,1661,2055
+Balsalazide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",911,1449,2359,446,465
+Belzutifan,6,"Red1,Red2,Red3,Red4,Red5,Red6",1027,1630,2416,236,791
+Benzamil (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",2316,2898,3677,1010,1306
+Benztropine (mesylate),6,"Red1,Red2,Red3,Red4,Red5,Red6",2904,3463,4200,1172,1732
+Bepotastine,6,"Red1,Red2,Red3,Red4,Red5,Red6",185,437,953,83,102
+Betahistine,6,"Red1,Red2,Red3,Red4,Red5,Red6",981,1523,2396,294,687
+Betamethasone dipropionate,6,"Red1,Red2,Red3,Red4,Red5,Red6",316,424,619,189,127
+Betamethasone disodium phosphate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2612,3129,3973,1139,1473
+Betamethasone valerate,6,"Red1,Red2,Red3,Red4,Red5,Red6",2379,2988,3802,843,1536
+Betazole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1,3,3,1,0
+Bicyclol,6,"Red1,Red2,Red3,Red4,Red5,Red6",1247,1770,2658,292,955
+Binimetinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",4543,5122,5673,1734,2809
+Bromhexine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",112,195,387,92,20
+Budesonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1889,2442,3247,585,1304
+Butylphthalide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2536,3126,3851,1163,1373
+Cabazitaxel,6,RedMix,2067,2890,3863,890,1177
+Camphor,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2736,3391,4189,1477,1259
+Carbenoxolone (disodium),6,"Red1,Red2,Red3,Red4,Red5,Red6",131,292,745,47,84
+Caroverine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",818,1116,1698,606,212
+Cetirizine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1023,1494,2265,313,710
+Chloroprocaine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1421,2028,2966,580,841
+Chloropyramine hydrochloride,6,"Red1,Red2,Red3,Red4,Red5,Red6",1686,2191,2990,622,1064
+Chlorpheniramine (maleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",359,804,1627,160,199
+Chlorpropamide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4341,4883,5470,1784,2557
+Ciclesonide,6,"Red1,Red2,Red3,Red4,Red5,Red6",2492,3105,3914,954,1538
+Clobetasone butyrate,6,"Red1,Red2,Red3,Red4,Red5,Red6",404,597,1000,289,115
+Clomiphene (citrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",5534,6026,6480,1065,4469
+Cobicistat,6,RedMix,422,647,1216,273,149
+Cromolyn (sodium),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1495,2128,2947,642,853
+Cyclothiazide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",12,40,77,11,1
+Cytidine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1384,2008,2876,334,1050
+DFO,24,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6,Red1,Red2,Red3,Red4,Red5,Red6",5274,5654,6141,2183,3091
+Danthron,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1969,2586,3425,1012,957
+Daprodustat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1493,2140,3012,736,757
+Deflazacort,6,"Red1,Red2,Red3,Red4,Red5,Red6",1262,1857,2716,539,723
+Delavirdine (mesylate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",244,344,550,193,51
+Desloratadine,6,"Red1,Red2,Red3,Red4,Red5,Red6",3514,4061,4749,1368,2146
+Dexpramipexole (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",6,16,65,6,0
+Diacerein,6,"Red1,Red2,Red3,Red4,Red5,Red6",1145,1619,2507,327,818
+Digitoxin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3998,4662,5386,626,3372
+Dimenhydrinate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1717,2300,3050,553,1164
+Dimethyl fumarate,6,"Red1,Red2,Red3,Red4,Red5,Red6",191,443,987,83,108
+Diphenhydramine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2559,3161,3958,1285,1274
+Diphenylpyraline (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1158,1732,2540,598,560
+Efavirenz,6,RedMix,219,364,784,73,146
+Eicosapentaenoic Acid,5,"Blue1,Blue2,Blue4,Blue5,Blue6",2322,2952,3731,1036,1286
+Emedastine,6,"Red1,Red2,Red3,Red4,Red5,Red6",1323,1850,2676,512,811
+Enclomiphene (citrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3729,4275,4957,1721,2008
+Epinastine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1998,2565,3435,653,1345
+Eptifibatide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2319,2928,3766,1117,1202
+Erlotinib (Hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",3951,4503,5197,1861,2090
+Etravirine,6,"Red1,Red2,Red3,Red4,Red5,Red6",4694,5222,5792,2170,2524
+Ferulic acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1,2,9,0,1
+Fexofenadine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3095,3638,4320,1760,1335
+Flumatinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",4505,5017,5647,1962,2543
+Fluphenazine decanoate,6,"Red1,Red2,Red3,Red4,Red5,Red6",7,15,30,4,3
+Flupirtine (Maleate),6,"Red1,Red2,Red3,Red4,Red5,Red6",156,510,1127,54,102
+Fluticasone furoate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1312,2043,2920,542,770
+Gliquidone,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3062,3674,4351,1458,1604
+Haloperidol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3499,4025,4689,1629,1870
+Hydrocortisone cypionate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1325,1861,2613,612,713
+Icotinib,6,"Red1,Red2,Red3,Red4,Red5,Red6",2163,2712,3494,957,1206
+Idelalisib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2712,3275,4059,1355,1357
+Ifenprodil (tartrate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2169,2836,3591,1180,989
+Imiquimod (maleate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",723,1284,2211,544,179
+Ketotifen (fumarate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1909,2623,3411,887,1022
+L-5-Hydroxytryptophan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2345,2932,3736,1080,1265
+L-Tryptophan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2146,2836,3674,1030,1116
+Lapatinib (ditosylate),6,"Red1,Red2,Red3,Red4,Red5,Red6",3467,4050,4810,1623,1844
+Latrepirdine (dihydrochloride),6,RedMix,33,72,138,13,20
+Lazertinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1848,2416,3279,904,944
+Levocetirizine (dihydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",408,784,1510,82,326
+Liarozole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2750,3341,4066,1190,1560
+Linaclotide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1828,2411,3272,542,1286
+Lipoic acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2737,3370,4198,1324,1413
+Liranaftate,6,RedMix,1060,1840,2960,360,700
+Lobeline (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1760,2356,3084,879,881
+Lonafarnib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3792,4352,5025,1664,2128
+Loratadine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3238,3871,4602,1490,1748
+Masoprocol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2506,3094,3882,1182,1324
+Mebhydrolin,6,"Red1,Red2,Red3,Red4,Red5,Red6",1421,1911,2610,529,892
+Mecamylamine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3020,3602,4256,1540,1480
+Meclofenoxate (hydrochloride),5,"Blue1,Blue2,Blue3,Blue4,Blue6",2893,3461,4244,1593,1300
+Mefloquine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",5610,6079,6588,712,4898
+Mephenesin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",139,555,1466,109,30
+Methylene blue (trihydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",3775,4364,5104,1491,2284
+Methylthiouracil,6,"Red1,Red2,Red3,Red4,Red5,Red6",1235,1796,2587,338,897
+Mifepristone,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3374,3948,4620,1744,1630
+Mobocertinib (succinate),6,"Red1,Red2,Red3,Red4,Red5,Red6",4968,5647,6250,889,4079
+Mometasone,5,"Blue2,Blue3,Blue4,Blue5,Blue6",2600,3199,3987,1039,1561
+Monomethyl fumarate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2297,2907,3697,1143,1154
+Moxonidine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1257,1909,2814,678,579
+Nateglinide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1693,2367,3206,795,898
+Neratinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3482,4061,4820,1700,1782
+Nicotinamide,6,"Red1,Red2,Red3,Red4,Red5,Red6",586,1068,1883,168,418
+Nitazoxanide,6,"Red1,Red2,Red3,Red4,Red5,Red6",1543,2084,3005,559,984
+Nitrendipine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2426,3000,3777,1199,1227
+Nordihydroguaiaretic acid,6,"Red1,Red2,Red3,Red4,Red5,Red6",2507,3095,3843,1202,1305
+Olmutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4762,5325,5922,1851,2911
+Olverembatinib (dimesylate),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6756,6955,7213,977,5779
+Orelabrutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2356,3007,3751,1146,1210
+Osimertinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",6613,6865,7115,948,5665
+Oteseconazole,6,RedMix,427,686,1257,273,154
+Oxybutynin (chloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1197,1710,2544,385,812
+Pamapimod,6,"Red1,Red2,Red3,Red4,Red5,Red6",1664,2276,3158,653,1011
+Paritaprevir,6,RedMix,141,223,466,83,58
+Peretinoin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",88,122,220,69,19
+Pergolide (mesylate),6,RedMix,1851,2502,3436,562,1289
+Pindolol,6,"Red1,Red2,Red3,Red4,Red5,Red6",76,157,332,34,42
+Pipecuronium (bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",198,502,1173,55,143
+Pirlindole,6,"Red1,Red2,Red3,Red4,Red5,Red6",1768,2397,3241,636,1132
+Pranlukast (hemihydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1128,1664,2516,408,720
+Prednisolone Tebutate,6,"Red1,Red2,Red3,Red4,Red5,Red6",1274,1751,2492,542,732
+Prednisone acetate,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2418,3067,3897,1389,1029
+Prilocaine,6,"Red1,Red2,Red3,Red4,Red5,Red6",497,890,1546,144,353
+Procyclidine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1897,2484,3336,611,1286
+Prucalopride,6,"Red1,Red2,Red3,Red4,Red5,Red6",430,825,1579,206,224
+Remdesivir,6,RedMix,3264,3856,4664,1269,1995
+Rilpivirine,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",4028,4614,5267,2021,2007
+Rocuronium (Bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",2,3,16,2,0
+Saquinavir (mesylate),6,RedMix,665,1014,1710,354,311
+Savolitinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1395,2038,2980,645,750
+Simotinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1316,1884,2790,674,642
+Simvastatin acid (ammonium),6,"Red1,Red2,Red3,Red4,Red5,Red6",1021,1509,2352,554,467
+Stiripentol,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3113,3672,4366,1798,1315
+Teclozan,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2233,2909,3717,1129,1104
+Tenapanor (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3199,3786,4515,1563,1636
+Tinoridine (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1842,2548,3423,1026,816
+Tirofiban (hydrochloride monohydrate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1278,1871,2675,394,884
+Tolbutamide,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2193,2838,3575,1002,1191
+Topiroxostat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2745,3386,4158,1409,1336
+Tranylcypromine (hemisulfate),6,"Red1,Red2,Red3,Red4,Red5,Red6",1468,2002,2887,271,1197
+Tricaprilin,6,"Red1,Red2,Red3,Red4,Red5,Red6",4,7,7,4,0
+Triclabendazole,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2421,3025,3832,1120,1301
+Trimethobenzamide (hydrochloride),6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1078,1750,2762,553,525
+Tripelennamine (hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1413,1948,2770,335,1078
+Tucatinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1433,1888,2676,813,620
+Tucidinostat,6,"Red1,Red2,Red3,Red4,Red5,Red6",5087,5568,6051,2091,2996
+Umbralisib,6,"Red1,Red2,Red3,Red4,Red5,Red6",2640,3189,3936,1155,1485
+Vadadustat,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2767,3407,4164,1354,1413
+Vardenafil,6,"Red1,Red2,Red3,Red4,Red5,Red6",1381,1926,2659,432,949
+Varenicline (Hydrochloride),6,"Red1,Red2,Red3,Red4,Red5,Red6",1757,2400,3223,724,1033
+Vasopressin,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2948,3559,4276,1418,1530
+Vecuronium (bromide),6,"Red1,Red2,Red3,Red4,Red5,Red6",34,84,174,31,3
+Vemurafenib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",3375,3963,4676,1396,1979
+Zanubrutinib,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",1868,2459,3276,886,982
+Î±-Lipoic Acid,6,"Blue1,Blue2,Blue3,Blue4,Blue5,Blue6",2338,2950,3718,1185,1153
+Î³-Oryzanol,6,"Red1,Red2,Red3,Red4,Red5,Red6",1221,1782,2615,268,953

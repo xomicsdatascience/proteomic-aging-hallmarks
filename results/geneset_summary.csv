@@ -1,0 +1,15 @@
+GeneSet,Total_Genes,Proteomics_Overlap
+1. Genomic Instability (DNA Repair),150,127
+2. Telomere Attrition (Telomere Ext.),51,45
+3. Epigenetic Alterations (Chromatin Org.),238,173
+4. Loss of Proteostasis (UPR),113,97
+5. Disabled Macroautophagy,143,110
+6. Nutrient-Sensing (mTORC1),200,164
+7. Mitochondrial Dysfunction (OXPHOS),200,180
+8. Cellular Senescence,167,100
+9. Stem Cell Exhaustion (Maint.),40,35
+10. Intercellular Comm. (Cell-Cell),157,64
+11. Chronic Inflammation,200,52
+12. Dysbiosis (TLR Cascades),174,99
+DEMAGALHAES_AGING_UP,54,26
+DEMAGALHAES_AGING_DN,16,8
