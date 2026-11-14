@@ -57,6 +57,76 @@ for target in ["PROG_OXPHOS", "PROG_INFLAMMATORY", "PROG_MTORC1_SIGNALING", "PRO
     resid = y - X_cov @ beta
     spec[f"{target}_resid_z"] = (resid - resid.mean()) / resid.std(ddof=1)
 
+# 4. 14-Pathway Composite Geroprotective Score (CGS) taking into account desired direction for reduced aging
+from statsmodels.stats.multitest import multipletests
+
+signs_14 = {
+    "PROG_OXPHOS": +1,
+    "PRIOR_DEMAGALHAES_DN": +1,
+    "PROG_MACROAUTOPHAGY": +1,
+    "PROG_PROTEOSTASIS_UPR": +1,
+    "PROG_PROTEASOME": +1,
+    "PROG_DNA_REPAIR": +1,
+    "PROG_TELOMERE_MAINT": +1,
+    "PROG_CHROMATIN_ORG": +1,
+    "PROG_INFLAMMATORY": -1,
+    "PROG_INNATE_TLR": -1,
+    "PROG_SENESCENCE_CORE": -1,
+    "PROG_MTORC1_SIGNALING": -1,
+    "PRIOR_DEMAGALHAES_UP": -1,
+    "PROG_CELL_CELL_COMM": -1,
+}
+aging_cols = list(signs_14.keys())
+s_vec = np.array([signs_14[c] for c in aging_cols], dtype=float)
+
+ret_prots_set = set(prot_df["feature_id"].unique())
+Sigma_0 = np.eye(len(aging_cols))
+for i_k, k1 in enumerate(aging_cols):
+    g1 = gmt[k1] & ret_prots_set
+    for j_k, k2 in enumerate(aging_cols):
+        if i_k != j_k:
+            g2 = gmt[k2] & ret_prots_set
+            Sigma_0[i_k, j_k] = len(g1 & g2) / np.sqrt(len(g1) * len(g2))
+se_null = np.sqrt(s_vec @ Sigma_0 @ s_vec)
+
+piv_cam_ordered = piv_cam.loc[spec["compound_id"]]
+z_unadj = (piv_cam_ordered[aging_cols].values @ s_vec) / se_null
+p_unadj = 2.0 * stats.norm.sf(np.abs(z_unadj))
+_, q_unadj, _, _ = multipletests(p_unadj, method="fdr_bh")
+
+X_prolif = np.column_stack([
+    np.ones(len(piv_cam_ordered)),
+    piv_cam_ordered["NUIS_E2F_PROLIF"].values,
+    piv_cam_ordered["NUIS_G2M_PROLIF"].values,
+])
+T_adj = pd.DataFrame(index=piv_cam_ordered.index, columns=aging_cols, dtype=float)
+for c in aging_cols:
+    y = piv_cam_ordered[c].values
+    b, *_ = np.linalg.lstsq(X_prolif, y, rcond=None)
+    T_adj[c] = y - X_prolif @ b
+
+z_adj = (T_adj.values @ s_vec) / se_null
+p_adj = 2.0 * stats.norm.sf(np.abs(z_adj))
+_, q_adj, _, _ = multipletests(p_adj, method="fdr_bh")
+
+z_comb = (z_unadj + z_adj) / np.sqrt(2.0)
+p_comb = 2.0 * stats.norm.sf(np.abs(z_comb))
+_, q_comb, _, _ = multipletests(p_comb, method="fdr_bh")
+
+piv_nes = prog_df.pivot(index="compound_id", columns="program_id", values="nes_gsea").loc[spec["compound_id"]]
+Z_nes = (piv_nes[aging_cols] - piv_nes[aging_cols].mean()) / piv_nes[aging_cols].std(ddof=1)
+cgs_nes = (Z_nes.values @ s_vec) / np.sqrt(s_vec @ Z_nes.corr().values @ s_vec)
+
+spec["CGS_unadj"] = np.round(z_unadj, 4)
+spec["q_BH_CGS_unadj"] = np.round(q_unadj, 5)
+spec["n_beneficial_unadj"] = ((piv_cam_ordered[aging_cols].values * s_vec) > 0).sum(axis=1)
+spec["CGS_adj"] = np.round(z_adj, 4)
+spec["q_BH_CGS_adj"] = np.round(q_adj, 5)
+spec["n_beneficial_adj"] = ((T_adj.values * s_vec) > 0).sum(axis=1)
+spec["CGS_combined"] = np.round(z_comb, 4)
+spec["q_BH_CGS_combined"] = np.round(q_comb, 5)
+spec["CGS_NES_screen"] = np.round(cgs_nes, 4)
+
 spec.to_csv("reanalysis/A06/candidate_specificity.tsv", sep="\t", index=False)
 
 r_ox_e2f, p_ox_e2f = stats.pearsonr(spec["PROG_OXPHOS"], spec["NUIS_E2F_PROLIF"])

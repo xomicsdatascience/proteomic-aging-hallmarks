@@ -34,7 +34,7 @@ ev = spec_df.merge(sig_cam_counts, on="compound_id").merge(sig_gsea_counts, on="
 ev = ev.merge(comp_df[["compound_id", "Category", "Target", "PathWay"]], on="compound_id", how="left")
 ev = ev.merge(bench_df[["compound_id", "demagalhaes_opposition_score", "ox_sen_camera_t", "ox_sen_q_BH"]], on="compound_id", how="left")
 ev["passes_specificity_oxphos_or_inflam"] = (ev["PROG_OXPHOS_resid_z"].abs() >= 1.5) | (ev["PROG_INFLAMMATORY_resid_z"].abs() >= 1.5)
-ev = ev.sort_values(["n_sig_camera_q05", "PROG_OXPHOS_resid_z"], ascending=[False, False])
+ev = ev.sort_values(["CGS_combined", "CGS_adj", "n_sig_camera_q05"], ascending=[False, False, False])
 ev.to_csv("reanalysis/A07/candidate_evidence.tsv", sep="\t", index=False)
 
 # 3. Complete prespecified respiratory-complex and inflammatory module effects for key panel

@@ -248,7 +248,14 @@ for c_i, comp in enumerate(comp_cols):
         # Pooled variance of t-stats
         s_pool2 = ((m_in - 1) * t_in.var(ddof=1) + (m_out - 1) * t_out.var(ddof=1)) / (n_tot - 2)
         _, rho_bar, vif = vif_map[pid]
-        se_cam = np.sqrt(s_pool2 * (vif / m_in + 1.0 / m_out))
+        se_cam_emp = np.sqrt(s_pool2 * (vif / m_in + 1.0 / m_out))
+        t_cam_emp = delta / se_cam_emp if se_cam_emp > 0 else 0.0
+        p_cam_emp = 2.0 * stats.t.sf(np.abs(t_cam_emp), df=n_tot - 2)
+
+        # Standard regularized limma::camera (Wu & Smyth 2012, inter.gene.cor = 0.01)
+        rho_std = 0.01
+        vif_std = 1.0 + rho_std * (m_in - 1.0)
+        se_cam = np.sqrt(s_pool2 * (vif_std / m_in + 1.0 / m_out))
         t_cam = delta / se_cam if se_cam > 0 else 0.0
         p_cam = 2.0 * stats.t.sf(np.abs(t_cam), df=n_tot - 2)
 
@@ -261,6 +268,11 @@ for c_i, comp in enumerate(comp_cols):
             "n_genes_measured": m_in,
             "rho_inter_protein": round(rho_bar, 4),
             "vif": round(vif, 3),
+            "vif_emp": round(vif, 3),
+            "camera_t_emp": round(t_cam_emp, 4),
+            "p_camera_emp": p_cam_emp,
+            "rho_camera_std": rho_std,
+            "vif_camera_std": round(vif_std, 3),
             "camera_t": round(t_cam, 4),
             "p_camera": p_cam,
             "direction": "up" if t_cam > 0 else "down",

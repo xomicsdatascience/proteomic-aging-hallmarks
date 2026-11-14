@@ -7,6 +7,8 @@ import pandas as pd
 import anndata as ad
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy import stats
+from statsmodels.stats.multitest import multipletests
 
 os.makedirs("reanalysis/A08/figures", exist_ok=True)
 os.makedirs("reanalysis/A08/source_tables", exist_ok=True)
@@ -14,13 +16,13 @@ os.makedirs("reanalysis/A08/source_tables", exist_ok=True)
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
     "font.size": 10,
-    "axes.titlesize": 12,
+    "axes.titlesize": 11.5,
     "axes.titleweight": "bold",
-    "axes.labelsize": 11,
+    "axes.labelsize": 10.5,
     "axes.labelweight": "bold",
-    "xtick.labelsize": 9.5,
-    "ytick.labelsize": 9.5,
-    "legend.fontsize": 9.5,
+    "xtick.labelsize": 9.0,
+    "ytick.labelsize": 9.0,
+    "legend.fontsize": 8.5,
     "figure.dpi": 300,
     "savefig.dpi": 300,
 })
@@ -30,7 +32,30 @@ def save_fig(fig, name):
     fig.savefig(f"reanalysis/A08/figures/{name}.svg", bbox_inches="tight")
     plt.close(fig)
 
-# Load core A01-A07 tables (160 library compounds + DFO across 12 plates)
+# Also update A04 null_calibration and candidate_stability with vif_camera_std
+prog_df = pd.read_csv("reanalysis/A02/program_effects.tsv", sep="\t")
+null_cal = pd.read_csv("reanalysis/A04/null_calibration.tsv", sep="\t")
+prim = prog_df[prog_df["program_family"] == "primary_aging"].copy()
+m_map = prim.groupby("program_id")["n_genes_measured"].first().to_dict()
+vif_emp_map = prim.groupby("program_id")["vif_emp"].first().to_dict()
+vif_std_map = prim.groupby("program_id")["vif_camera_std"].first().to_dict()
+
+for idx, r in null_cal.iterrows():
+    pid = r["program_id"]
+    m_in = m_map[pid]
+    m_out = 7871 - m_in
+    ve = vif_emp_map[pid]
+    vs = vif_std_map[pid]
+    t_un = r["null_camera_t"] * np.sqrt((ve / m_in + 1.0 / m_out) / (1.0 / m_in + 1.0 / m_out))
+    t_std = t_un * np.sqrt((1.0 / m_in + 1.0 / m_out) / (vs / m_in + 1.0 / m_out))
+    p_std = 2.0 * stats.t.sf(abs(t_std), df=7869)
+    null_cal.loc[idx, "null_camera_t_emp"] = r["null_camera_t"]
+    null_cal.loc[idx, "null_camera_t"] = round(float(t_std), 4)
+    null_cal.loc[idx, "null_p_camera"] = float(p_std)
+_, null_cal["null_q_BH"], _, _ = multipletests(null_cal["null_p_camera"], method="fdr_bh")
+null_cal.to_csv("reanalysis/A04/null_calibration.tsv", sep="\t", index=False)
+
+# Load core A01-A07 tables
 sm = pd.read_csv("reanalysis/A01/sample_manifest.tsv", sep="\t")
 sm_12 = sm[sm["plate"] != "RedMix"].copy()
 sa = pd.read_csv("reanalysis/A01/sample_accounting.tsv", sep="\t")
@@ -38,10 +63,8 @@ sa_12 = sa[sa["plate"] != "RedMix"].copy()
 qc = pd.read_csv("reanalysis/A04/qc_metrics.tsv", sep="\t")
 qc_12 = qc[qc["plate"] != "RedMix"].copy()
 rep = pd.read_csv("reanalysis/A04/replication_metrics.tsv", sep="\t")
-null_cal = pd.read_csv("reanalysis/A04/null_calibration.tsv", sep="\t")
 pman = pd.read_csv("reanalysis/A03/program_manifest.tsv", sep="\t")
 pov = pd.read_csv("reanalysis/A03/program_overlap.tsv", sep="\t")
-prog_df = pd.read_csv("reanalysis/A02/program_effects.tsv", sep="\t")
 spec_df = pd.read_csv("reanalysis/A06/candidate_specificity.tsv", sep="\t")
 bench_df = pd.read_csv("reanalysis/A05/drug_reference_comparisons.tsv", sep="\t")
 sens_df = pd.read_csv("reanalysis/A04/sensitivity_effects.tsv", sep="\t")
@@ -50,30 +73,42 @@ comp_sens = pd.read_csv("reanalysis/A06/composition_sensitivity.tsv", sep="\t")
 aging_ids = [
     "PROG_DNA_REPAIR", "PROG_TELOMERE_MAINT", "PROG_CHROMATIN_ORG",
     "PROG_PROTEOSTASIS_UPR", "PROG_PROTEASOME", "PROG_MACROAUTOPHAGY",
-    "PROG_MTORC1_SIGNALING", "PROG_OXPHOS", "PROG_SENESCENCE_CORE",
+    "PROG_OXPHOS", "PRIOR_DEMAGALHAES_DN",
+    "PROG_MTORC1_SIGNALING", "PROG_SENESCENCE_CORE",
     "PROG_CELL_CELL_COMM", "PROG_INFLAMMATORY", "PROG_INNATE_TLR",
-    "PRIOR_DEMAGALHAES_UP", "PRIOR_DEMAGALHAES_DN",
+    "PRIOR_DEMAGALHAES_UP",
 ]
+
+signs_14 = {
+    "PROG_DNA_REPAIR": +1, "PROG_TELOMERE_MAINT": +1, "PROG_CHROMATIN_ORG": +1,
+    "PROG_PROTEOSTASIS_UPR": +1, "PROG_PROTEASOME": +1, "PROG_MACROAUTOPHAGY": +1,
+    "PROG_OXPHOS": +1, "PRIOR_DEMAGALHAES_DN": +1,
+    "PROG_MTORC1_SIGNALING": -1, "PROG_SENESCENCE_CORE": -1,
+    "PROG_CELL_CELL_COMM": -1, "PROG_INFLAMMATORY": -1, "PROG_INNATE_TLR": -1,
+    "PRIOR_DEMAGALHAES_UP": -1,
+}
+dir_labels = {k: f"{k} ({'Up [+1]' if v > 0 else 'Down [-1]'})" for k, v in signs_14.items()}
 
 # ==============================================================================
 # MAIN FIGURE 1: Number of proteins per hallmark/program vs all genes in set
 # ==============================================================================
 pman_14 = pman[pman["program_id"].isin(aging_ids)].set_index("program_id").loc[aging_ids].reset_index()
-fig, axes = plt.subplots(1, 2, figsize=(15, 6.2), gridspec_kw={"width_ratios": [1.15, 1.0]})
+fig, axes = plt.subplots(1, 2, figsize=(15.5, 6.4), gridspec_kw={"width_ratios": [1.18, 1.0]})
 
 y_pos = np.arange(len(pman_14))
 axes[0].hlines(y=y_pos, xmin=pman_14["measured_retained_7871"], xmax=pman_14["total_genes"], color="#bdbdbd", linewidth=2.5)
-axes[0].scatter(pman_14["total_genes"], y_pos, color="#7f7f7f", s=90, label="Total Genes in Set", zorder=3)
-axes[0].scatter(pman_14["measured_retained_7871"], y_pos, color="#1f77b4", s=90, label="Measured Proteins (7,871 retained)", zorder=4)
+axes[0].scatter(pman_14["total_genes"], y_pos, color="#7f7f7f", s=90, label="Total Annotated Genes in Set", zorder=3)
+colors_dir = ["#1f77b4" if signs_14[pid] > 0 else "#d62728" for pid in pman_14["program_id"]]
+axes[0].scatter(pman_14["measured_retained_7871"], y_pos, color=colors_dir, s=95, label="Measured Proteins (Blue: Up [+1], Red: Down [-1])", zorder=4)
 for i, row in pman_14.iterrows():
     axes[0].text(row["total_genes"] + 5, i, f"{int(row['measured_retained_7871'])}/{int(row['total_genes'])} ({row['coverage_pct_retained']:.0f}%)", va="center", fontsize=8.5)
 axes[0].set_yticks(y_pos)
-axes[0].set_yticklabels(pman_14["program_id"])
+axes[0].set_yticklabels([dir_labels[pid] for pid in pman_14["program_id"]], fontsize=8.8)
 axes[0].invert_yaxis()
-axes[0].set_xlim(0, 390)
+axes[0].set_xlim(0, 400)
 axes[0].set_xlabel("Gene / Protein Count")
-axes[0].set_title("A. Measured Proteins vs. Total Annotated Genes per Program")
-axes[0].legend(loc="lower right", frameon=True)
+axes[0].set_title("A. Measured Proteins vs. Annotated Genes & Target Direction")
+axes[0].legend(loc="lower right", frameon=True, fontsize=8.2)
 
 pov_14 = pd.DataFrame(0.0, index=aging_ids, columns=aging_ids)
 np.fill_diagonal(pov_14.values, 1.0)
@@ -81,85 +116,210 @@ for _, r in pov.iterrows():
     if r["program_1"] in aging_ids and r["program_2"] in aging_ids:
         pov_14.loc[r["program_1"], r["program_2"]] = r["jaccard"]
         pov_14.loc[r["program_2"], r["program_1"]] = r["jaccard"]
-sns.heatmap(pov_14, cmap="Blues", vmin=0, vmax=0.35, annot=True, fmt=".2f", annot_kws={"size": 7.5},
+sns.heatmap(pov_14, cmap="Blues", vmin=0, vmax=0.35, annot=True, fmt=".2f", annot_kws={"size": 7.2},
             ax=axes[1], cbar_kws={"label": "Jaccard Overlap"})
 axes[1].set_title("B. Pairwise Protein Membership Overlap (Jaccard)")
-axes[1].set_xticklabels(axes[1].get_xticklabels(), rotation=45, ha="right", fontsize=8.5)
-axes[1].set_yticklabels(axes[1].get_yticklabels(), fontsize=8.5)
+axes[1].set_xticklabels(axes[1].get_xticklabels(), rotation=45, ha="right", fontsize=8.2)
+axes[1].set_yticklabels(axes[1].get_yticklabels(), fontsize=8.2)
 
 plt.tight_layout()
 save_fig(fig, "fig1_program_coverage")
 pman_14.to_csv("reanalysis/A08/source_tables/fig1_program_coverage.tsv", sep="\t", index=False)
 
 # ==============================================================================
-# MAIN FIGURE 2: Subset heatmap of highlighted compounds across 14 programs
+# MAIN FIGURE 2: Highlighted compounds across 14 programs + Composite Score
 # ==============================================================================
-prim = prog_df[prog_df["program_family"] == "primary_aging"].copy()
 piv_t = prim.pivot(index="compound_id", columns="program_id", values="camera_t")[aging_ids]
 piv_nes = prim.pivot(index="compound_id", columns="program_id", values="nes_gsea")[aging_ids]
 piv_q = prim.pivot(index="compound_id", columns="program_id", values="q_BH_global_camera")[aging_ids]
-piv_q_gsea = prim.pivot(index="compound_id", columns="program_id", values="q_BH_global_gsea")[aging_ids]
 
 highlight_drugs = [
-    "Binimetinib", "Baicalein", "Nordihydroguaiaretic acid", "Lonafarnib",
-    "Nicotinamide", "Simvastatin acid (ammonium)", "Atorvastatin (hemicalcium salt)",
-    "Eicosapentaenoic Acid", "Dimethyl fumarate", "Tucidinostat",
-    "Methylene blue (trihydrate)", "Mobocertinib (succinate)", "Erlotinib (Hydrochloride)",
-    "Asciminib", "Flumatinib", "Lapatinib (ditosylate)", "Triclabendazole",
-    "Mifepristone", "6-Mercaptopurine", "DFO",
+    # Top multi-pathway geroprotective candidates (by CGS_combined)
+    "Binimetinib",
+    "Cyclothiazide",
+    "Zanubrutinib",
+    "Baicalein",
+    "Almonertinib (hydrochloride)",
+    "Ferulic acid",
+    "α-Lipoic Acid",
+    "Digitoxin",
+    "Osimertinib",
+    "Orelabrutinib",
+    # Canonical longevity / metabolic / epigenetic comparators
+    "Atorvastatin (hemicalcium salt)",
+    "Eicosapentaenoic Acid",
+    "Simvastatin acid (ammonium)",
+    "Methylene blue (trihydrate)",
+    "Lonafarnib",
+    "Nordihydroguaiaretic acid",
+    "Dimethyl fumarate",
+    # Negative / pro-aging / stress comparators
+    "Erlotinib (Hydrochloride)",
+    "Asciminib",
+    "Lapatinib (ditosylate)",
+    "Icotinib",
+    "Desloratadine",
+    "Amiodarone (hydrochloride)",
+    "DFO",
 ]
 highlight_drugs = [d for d in highlight_drugs if d in piv_t.index]
+# Sort by CGS_combined descending
+spec_idx = spec_df.set_index("compound_id")
+highlight_drugs = sorted(highlight_drugs, key=lambda d: spec_idx.loc[d, "CGS_combined"], reverse=True)
+
 sub_t = piv_t.loc[highlight_drugs]
 sub_q = piv_q.loc[highlight_drugs]
-annot_sub = sub_q.map(lambda q: "**" if q < 0.01 else ("*" if q < 0.05 else ""))
+annot_sub = sub_q.map(lambda q: "**" if q < 0.01 else ("*" if q < 0.05 else ("+" if q < 0.20 else "")))
 
-fig, ax = plt.subplots(figsize=(13.5, 8.2))
-sns.heatmap(sub_t, cmap="RdBu_r", center=0, vmin=-6, vmax=6, annot=annot_sub, fmt="", annot_kws={"size": 10},
-            linewidths=0.4, linecolor="white", ax=ax, cbar_kws={"label": "Correlation-Aware CAMERA t-statistic"})
-ax.set_title("Highlighted Compounds Across 14 Aging-Associated Programs (* Global BH q < 0.05, ** q < 0.01)")
-ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right", fontsize=9.5)
-ax.set_yticklabels(ax.get_yticklabels(), fontsize=9.5)
-ax.set_xlabel("")
-ax.set_ylabel("Compound")
+from matplotlib.lines import Line2D
+
+fig, axes = plt.subplots(1, 2, figsize=(17.0, 9.6), gridspec_kw={"width_ratios": [2.25, 1.0]}, sharey=False)
+
+sns.heatmap(sub_t, cmap="RdBu_r", center=0, vmin=-6.5, vmax=6.5, annot=annot_sub, fmt="", annot_kws={"size": 9.0, "weight": "bold"},
+            linewidths=0.4, linecolor="white", ax=axes[0], cbar_kws={"label": "Correlation-Aware CAMERA t-statistic", "pad": 0.02})
+axes[0].axvline(8.0, color="black", linestyle="-", linewidth=1.8)
+axes[0].set_title("A. Compound Responses Across 14 Programs (** q<0.01, * q<0.05, + q<0.20)")
+axes[0].set_xticklabels([dir_labels[c] for c in aging_ids], rotation=40, ha="right", fontsize=8.5)
+axes[0].set_yticklabels(axes[0].get_yticklabels(), fontsize=9.0, rotation=0)
+axes[0].set_xlabel("")
+axes[0].set_ylabel("Compound (Ordered by Composite Geroprotective Score)")
+
+# Panel B: Aligned Cleveland dot/lollipop plot of Composite Geroprotective Scores (CGS)
+y_cgs = np.arange(len(highlight_drugs)) + 0.5
+sub_spec = spec_idx.loc[highlight_drugs]
+
+axes[1].axvline(0, color="black", linestyle="-", linewidth=1.0)
+# Symmetric tiered BH FDR threshold lines on both positive and negative sides
+axes[1].axvline(2.38, color="#555555", linestyle="--", linewidth=0.95, alpha=0.75)
+axes[1].axvline(-2.38, color="#555555", linestyle="--", linewidth=0.95, alpha=0.75)
+axes[1].axvline(2.85, color="#222222", linestyle=":", linewidth=1.15, alpha=0.85)
+axes[1].axvline(-2.85, color="#222222", linestyle=":", linewidth=1.15, alpha=0.85)
+
+axes[1].hlines(y=y_cgs, xmin=np.minimum(0, np.minimum(sub_spec["CGS_unadj"], sub_spec["CGS_combined"])),
+               xmax=np.maximum(0, np.maximum(sub_spec["CGS_adj"], sub_spec["CGS_combined"])),
+               color="#cccccc", linewidth=2.0, zorder=2)
+axes[1].scatter(sub_spec["CGS_unadj"], y_cgs, color="#1f77b4", marker="o", s=50, alpha=0.88, zorder=3)
+axes[1].scatter(sub_spec["CGS_adj"], y_cgs, color="#ff7f0e", marker="^", s=54, alpha=0.88, zorder=4)
+c_comb = ["#2ca02c" if v >= 0 else "#d62728" for v in sub_spec["CGS_combined"]]
+axes[1].scatter(sub_spec["CGS_combined"], y_cgs, color=c_comb, marker="D", s=66, edgecolors="k", linewidths=0.7, zorder=5)
+
+for idx_y, (d_name, r_s) in enumerate(sub_spec.iterrows()):
+    val = r_s["CGS_combined"]
+    q_c = r_s["q_BH_CGS_combined"]
+    sig_str = "**" if q_c < 0.01 else ("*" if q_c < 0.05 else ("+" if q_c < 0.10 else ("~" if q_c < 0.20 else "")))
+    n_b = int(max(r_s["n_beneficial_unadj"], r_s["n_beneficial_adj"]))
+    if val >= 0:
+        rightmost = max(0.0, float(r_s["CGS_unadj"]), float(r_s["CGS_adj"]), float(val))
+        axes[1].text(rightmost + 0.22, idx_y + 0.5, f"{val:+.2f}{sig_str} ({n_b}/14)", va="center", ha="left", fontsize=7.8, fontweight="bold")
+    else:
+        leftmost = min(0.0, float(r_s["CGS_unadj"]), float(r_s["CGS_adj"]), float(val))
+        axes[1].text(leftmost - 0.22, idx_y + 0.5, f"{val:+.2f}{sig_str} ({n_b}/14)", va="center", ha="right", fontsize=7.8, fontweight="bold")
+
+axes[1].set_ylim(len(highlight_drugs), 0)
+axes[1].set_yticks(y_cgs)
+axes[1].set_yticklabels([])
+axes[1].set_xlim(-9.3, 6.6)
+axes[1].set_xlabel("14-Pathway Composite Geroprotective Score (Stouffer Z)")
+axes[1].set_title("B. Composite Geroprotective Score (CGS)")
+axes[1].grid(axis="x", linestyle="--", alpha=0.35)
+
+legend_handles_2b = [
+    Line2D([0], [0], color="#555555", linestyle="--", linewidth=0.95, label="BH q < 0.10 (+/-2.38)"),
+    Line2D([0], [0], color="#222222", linestyle=":", linewidth=1.15, label="BH q < 0.05 (+/-2.85)"),
+    Line2D([0], [0], marker="o", linestyle="None", markerfacecolor="#1f77b4", markeredgecolor="#1f77b4", markersize=7.0, label="CGS Unadjusted"),
+    Line2D([0], [0], marker="^", linestyle="None", markerfacecolor="#ff7f0e", markeredgecolor="#ff7f0e", markersize=7.5, label="CGS Prolif-Adjusted"),
+    Line2D([0], [0], marker="D", linestyle="None", markerfacecolor="none", markeredgecolor="black", markeredgewidth=1.1, markersize=7.5, label="CGS Combined (Consensus)"),
+]
+axes[1].legend(handles=legend_handles_2b, loc="lower right", frameon=True, fontsize=7.8)
+
 plt.tight_layout()
 save_fig(fig, "fig2_highlighted_heatmap")
 
 # Main Supplemental Table S1 (all 160 library compounds + DFO)
-supp_t1 = prim.sort_values(["compound_id", "program_id"]).copy()
+supp_t1 = prim.merge(
+    spec_df[["compound_id", "CGS_unadj", "q_BH_CGS_unadj", "CGS_adj", "q_BH_CGS_adj", "CGS_combined", "q_BH_CGS_combined", "n_beneficial_unadj", "n_beneficial_adj"]],
+    on="compound_id", how="left"
+).sort_values(["CGS_combined", "compound_id", "program_id"], ascending=[False, True, True]).copy()
 supp_t1.to_csv("reanalysis/A08/source_tables/Supplementary_Table_S1_all_compounds.tsv", sep="\t", index=False)
 
 # ==============================================================================
-# MAIN FIGURE 3: Boxplot + stripplot of drug response distributions in NES
+# MAIN FIGURE 3: NES Distributions, Composite Score Landscape & Specificity
 # ==============================================================================
 prim["sig_gsea_q05"] = prim["q_BH_global_gsea"] < 0.05
-fig, axes = plt.subplots(1, 2, figsize=(15.5, 6.2), gridspec_kw={"width_ratios": [1.3, 1.0]})
+fig, axes = plt.subplots(1, 3, figsize=(19.0, 6.0), gridspec_kw={"width_ratios": [1.35, 1.0, 1.0]})
 
 sns.boxplot(data=prim, x="program_id", y="nes_gsea", order=aging_ids, color="#f0f0f0", fliersize=0, ax=axes[0])
 sns.stripplot(data=prim[~prim["sig_gsea_q05"]], x="program_id", y="nes_gsea", order=aging_ids, color="#999999", alpha=0.35, size=2.5, ax=axes[0])
 sns.stripplot(data=prim[prim["sig_gsea_q05"]], x="program_id", y="nes_gsea", order=aging_ids, color="#d62728", alpha=0.75, size=3.5, ax=axes[0])
 axes[0].axhline(0, color="black", linestyle="--", linewidth=0.9)
+axes[0].axvline(7.5, color="black", linestyle=":", linewidth=1.2)
 axes[0].set_xticks(range(len(aging_ids)))
-axes[0].set_xticklabels(aging_ids, rotation=45, ha="right", fontsize=8.5)
-axes[0].set_title("A. Distribution of GSEA NES Across 160 Compounds (+ DFO)")
+axes[0].set_xticklabels([dir_labels[c] for c in aging_ids], rotation=45, ha="right", fontsize=7.8)
+axes[0].set_title("A. GSEA NES Distributions Across 161 Contrasts")
 axes[0].set_ylabel("Normalized Enrichment Score (NES)")
 axes[0].set_xlabel("")
 
-sc_p = axes[1].scatter(spec_df["NUIS_E2F_PROLIF"], spec_df["PROG_INFLAMMATORY"], c=spec_df["PROG_OXPHOS"],
-                       cmap="RdBu_r", vmin=-6, vmax=6, s=48, alpha=0.85, edgecolors="k", linewidths=0.4)
-plt.colorbar(sc_p, ax=axes[1], label="PROG_OXPHOS (CAMERA t)")
-offsets_3b = {"Binimetinib": (-12, 8), "Baicalein": (8, -10), "DFO": (6, 4), "Erlotinib (Hydrochloride)": (6, 4)}
-for d_lbl in ["Binimetinib", "Baicalein", "DFO", "Erlotinib (Hydrochloride)"]:
-    r_d = spec_df[spec_df["compound_id"] == d_lbl].iloc[0]
-    axes[1].annotate(d_lbl, (r_d["NUIS_E2F_PROLIF"], r_d["PROG_INFLAMMATORY"]), xytext=offsets_3b[d_lbl], textcoords="offset points", fontsize=8.5, fontweight="bold")
+# Panel B: CGS_unadj vs CGS_adj across all 161 compounds
+sc_b = axes[1].scatter(spec_df["CGS_unadj"], spec_df["CGS_adj"], c=spec_df["CGS_combined"],
+                       cmap="RdYlGn", vmin=-5.0, vmax=4.0, s=46, alpha=0.88, edgecolors="k", linewidths=0.4)
+plt.colorbar(sc_b, ax=axes[1], label="Combined CGS (Stouffer Z)")
 axes[1].axhline(0, color="gray", linestyle="--", linewidth=0.8)
 axes[1].axvline(0, color="gray", linestyle="--", linewidth=0.8)
-axes[1].set_xlabel("Proliferation Proxy (NUIS_E2F_PROLIF CAMERA t)")
-axes[1].set_ylabel("Intracellular Inflammation (PROG_INFLAMMATORY CAMERA t)")
-axes[1].set_title("B. Specificity vs. Proliferation & OXPHOS Axes")
+x_grid = np.linspace(-6.5, 4.0, 100)
+axes[1].plot(x_grid, 2.38 * np.sqrt(2) - x_grid, color="#006d2c", linestyle="--", linewidth=0.9, alpha=0.7, label="Combined BH q < 0.10")
+axes[1].plot(x_grid, -2.85 * np.sqrt(2) - x_grid, color="#a50f15", linestyle="--", linewidth=0.9, alpha=0.7, label="Pro-Aging BH q < 0.05")
+axes[1].set_xlim(-6.5, 4.5)
+axes[1].set_ylim(-3.9, 4.3)
+
+offsets_3b = {
+    "Binimetinib": (-60, 12),
+    "Cyclothiazide": (-72, 15),
+    "Zanubrutinib": (-75, -18),
+    "Baicalein": (-62, 10),
+    "Almonertinib (hydrochloride)": (-82, 10),
+    "Ferulic acid": (-68, -28),
+    "DFO": (10, -4),
+    "Amiodarone (hydrochloride)": (12, -14),
+    "Erlotinib (Hydrochloride)": (-58, 14),
+}
+for d_lbl, xy_off in offsets_3b.items():
+    if d_lbl in spec_idx.index:
+        r_d = spec_idx.loc[d_lbl]
+        short_lbl = d_lbl.split(" (")[0]
+        axes[1].annotate(short_lbl, (r_d["CGS_unadj"], r_d["CGS_adj"]), xytext=xy_off, textcoords="offset points",
+                         fontsize=7.6, fontweight="bold", arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6))
+axes[1].set_xlabel("Unadjusted 14-Pathway CGS (vs. DMSO)")
+axes[1].set_ylabel("Proliferation-Adjusted 14-Pathway CGS")
+axes[1].set_title("B. Multi-Pathway Composite Geroprotective Score")
+axes[1].legend(loc="upper left", frameon=True, fontsize=7.6)
+
+# Panel C: Specificity vs Proliferation & OXPHOS Axes
+sc_c = axes[2].scatter(spec_df["NUIS_E2F_PROLIF"], spec_df["PROG_INFLAMMATORY"], c=spec_df["PROG_OXPHOS"],
+                       cmap="RdBu_r", vmin=-6.5, vmax=6.5, s=46, alpha=0.85, edgecolors="k", linewidths=0.4)
+plt.colorbar(sc_c, ax=axes[2], label="PROG_OXPHOS (CAMERA t)")
+offsets_3c = {
+    "Binimetinib": (-18, 10),
+    "Baicalein": (8, -6),
+    "Zanubrutinib": (-68, -14),
+    "DFO": (8, 5),
+    "Erlotinib (Hydrochloride)": (8, 5),
+}
+for d_lbl, xy_off in offsets_3c.items():
+    if d_lbl in spec_idx.index:
+        r_d = spec_idx.loc[d_lbl]
+        short_lbl = d_lbl.split(" (")[0]
+        axes[2].annotate(short_lbl, (r_d["NUIS_E2F_PROLIF"], r_d["PROG_INFLAMMATORY"]), xytext=xy_off, textcoords="offset points", fontsize=8.0, fontweight="bold")
+axes[2].axhline(0, color="gray", linestyle="--", linewidth=0.8)
+axes[2].axvline(0, color="gray", linestyle="--", linewidth=0.8)
+axes[2].set_xlim(-13.2, 3.2)
+axes[2].set_xlabel("Proliferation Proxy (NUIS_E2F_PROLIF CAMERA t)")
+axes[2].set_ylabel("Intracellular Inflammation (PROG_INFLAMMATORY CAMERA t)")
+axes[2].set_title("C. Specificity vs. Proliferation & OXPHOS Axes")
 
 plt.tight_layout()
 save_fig(fig, "fig3_nes_distributions")
 piv_nes.to_csv("reanalysis/A08/source_tables/fig3_nes_all_compounds.tsv", sep="\t")
+piv_t.to_csv("reanalysis/A08/source_tables/fig3_camera_t_all_161.tsv", sep="\t")
 
 # ==============================================================================
 # MAIN FIGURE 4: Kinase inhibitor panel (Zero-centered & unit-variance scaled)
@@ -176,9 +336,10 @@ X_norm = X_log - meds + np.nanmedian(meds)
 kinase_drugs = [
     "DMSO",
     "Binimetinib",
+    "Zanubrutinib",
+    "Almonertinib (hydrochloride)",
     "Erlotinib (Hydrochloride)",
     "Mobocertinib (succinate)",
-    "Asciminib",
     "Lapatinib (ditosylate)",
 ]
 ox_sentinels = [g for g in ["NDUFS1", "IDH2", "ACO2", "SDHA", "COX4I1", "ATP5F1A"] if g in ret_prots]
@@ -187,22 +348,22 @@ inf_sentinels = [g for g in ["ICAM1", "LDLR", "NFKB1", "RELA", "STAT3", "ATP2B1"
 pal_k = {
     "DMSO": "#7f7f7f",
     "Binimetinib": "#2ca02c",
+    "Zanubrutinib": "#17becf",
+    "Almonertinib (hydrochloride)": "#9467bd",
     "Erlotinib (Hydrochloride)": "#d62728",
     "Mobocertinib (succinate)": "#1f77b4",
-    "Asciminib": "#9467bd",
     "Lapatinib (ditosylate)": "#ff7f0e",
 }
 
 m_k = sm["compound_id"].isin(kinase_drugs).values & (~sm["excluded"].values) & (sm["plate"].values != "RedMix")
-fig, axes = plt.subplots(2, 1, figsize=(14.5, 10.5))
+fig, axes = plt.subplots(2, 1, figsize=(15.0, 10.6))
 
 for ax, plist, title in [
-    (axes[0], ox_sentinels, "A. Kinase Inhibitor Panel: Respiratory / OXPHOS Sentinels (Z-Scored Abundance)"),
-    (axes[1], inf_sentinels, "B. Kinase Inhibitor Panel: Inflammatory Sentinels (Z-Scored Abundance)"),
+    (axes[0], ox_sentinels, "A. Kinase Inhibitor Panel: Respiratory / OXPHOS Sentinels (Zero-Centered, Unit-Variance Z-Score)"),
+    (axes[1], inf_sentinels, "B. Kinase Inhibitor Panel: Inflammatory Sentinels (Zero-Centered, Unit-Variance Z-Score)"),
 ]:
     p_idx = [ret_prots.index(g) for g in plist]
     sub_mat = X_norm[np.ix_(m_k, p_idx)]
-    # Zero-center and unit-variance scale per protein across the plotted samples
     mu = np.nanmean(sub_mat, axis=0, keepdims=True)
     sd = np.nanstd(sub_mat, axis=0, ddof=1, keepdims=True)
     sub_z = (sub_mat - mu) / sd
@@ -210,11 +371,11 @@ for ax, plist, title in [
     df_w["Drug"] = sm.loc[m_k, "compound_id"].values
     df_l = df_w.melt(id_vars="Drug", var_name="Protein", value_name="Scaled Abundance (Z-score)")
     df_l["Drug"] = pd.Categorical(df_l["Drug"], categories=kinase_drugs, ordered=True)
-    sns.violinplot(data=df_l, x="Protein", y="Scaled Abundance (Z-score)", hue="Drug", palette=pal_k, inner=None, cut=0, alpha=0.32, ax=ax)
-    sns.stripplot(data=df_l, x="Protein", y="Scaled Abundance (Z-score)", hue="Drug", palette=pal_k, dodge=True, size=4.0, alpha=0.9, jitter=0.1, ax=ax)
+    sns.violinplot(data=df_l, x="Protein", y="Scaled Abundance (Z-score)", hue="Drug", palette=pal_k, inner="box", cut=0, alpha=0.30, ax=ax)
+    sns.stripplot(data=df_l, x="Protein", y="Scaled Abundance (Z-score)", hue="Drug", palette=pal_k, dodge=True, size=4.2, alpha=0.9, jitter=0.1, ax=ax)
     ax.axhline(0, color="black", linestyle="--", linewidth=0.8)
     h, l = ax.get_legend_handles_labels()
-    ax.legend(h[:len(kinase_drugs)], l[:len(kinase_drugs)], title="Treatment (n=6 plates; DMSO n=23)", loc="lower right", frameon=True, ncol=3, fontsize=8.5)
+    ax.legend(h[:len(kinase_drugs)], l[:len(kinase_drugs)], title="Treatment (n=5-6 plates; DMSO n=23)", loc="lower right", frameon=True, ncol=4, fontsize=8.2)
     ax.set_title(title)
     ax.set_ylabel("Scaled Abundance (Z-score)")
 
@@ -259,6 +420,7 @@ axes[1, 1].axvline(0, color="black", linestyle="--", linewidth=1)
 axes[1, 1].scatter(null_s["null_camera_t"], y_n, color="#7f7f7f", s=85)
 axes[1, 1].set_yticks(y_n)
 axes[1, 1].set_yticklabels(null_s["program_id"], fontsize=8.5)
+axes[1, 1].set_xlim(-1.0, 1.0)
 axes[1, 1].set_xlabel("Null CAMERA t-statistic (DMSO Split A vs. Split B)")
 axes[1, 1].set_title("D. Null Calibration Across 14 Aging Programs (0 BH Hits)")
 
@@ -266,15 +428,18 @@ plt.tight_layout()
 save_fig(fig, "figS1_qc_and_null_calibration")
 
 # ==============================================================================
-# SUPPLEMENTARY FIGURE S2: Full 160-Compound (+ DFO) Atlas Heatmap
+# SUPPLEMENTARY FIGURE S2: Full 160-Compound (+ DFO) Atlas Heatmap (Ordered by CGS)
 # ==============================================================================
+order_all = spec_df.sort_values("CGS_combined", ascending=False)["compound_id"].tolist()
+piv_t_ord = piv_t.loc[order_all]
+piv_q_ord = piv_q.loc[order_all]
 fig_s2 = plt.figure(figsize=(15, 28))
 ax_s2 = fig_s2.add_subplot(111)
-annot_s2 = piv_q.map(lambda q: "*" if q < 0.05 else "")
-sns.heatmap(piv_t, cmap="RdBu_r", center=0, vmin=-6, vmax=6, annot=annot_s2, fmt="", annot_kws={"size": 6.5},
+annot_s2 = piv_q_ord.map(lambda q: "*" if q < 0.05 else "")
+sns.heatmap(piv_t_ord, cmap="RdBu_r", center=0, vmin=-6.5, vmax=6.5, annot=annot_s2, fmt="", annot_kws={"size": 6.5},
             linewidths=0.2, linecolor="#eeeeee", ax=ax_s2, cbar_kws={"label": "CAMERA t-statistic"})
-ax_s2.set_title("Supplementary Figure S2: Complete 160 Compound (+ DFO) x 14 Program Atlas (* Global BH q < 0.05)")
-ax_s2.set_xticklabels(ax_s2.get_xticklabels(), rotation=40, ha="right", fontsize=9.5)
+ax_s2.set_title("Supplementary Figure S2: Complete 160 Compound (+ DFO) x 14 Program Atlas Ordered by CGS (* Global BH q < 0.05)")
+ax_s2.set_xticklabels([dir_labels[c] for c in aging_ids], rotation=40, ha="right", fontsize=9.0)
 ax_s2.set_yticklabels(ax_s2.get_yticklabels(), fontsize=7)
 save_fig(fig_s2, "figS2_full_160_compound_atlas")
 
