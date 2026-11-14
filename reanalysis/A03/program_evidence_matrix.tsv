@@ -1,0 +1,15 @@
+program_id	program_name	directness	unmeasured_state_in_HepG2_lysate	required_functional_assay
+PROG_DNA_REPAIR	DNA Repair Machinery	indirect_abundance	Yes - DNA repair enzyme abundance (indirect proxy; does not measure DNA damage burden)	gamma-H2AX foci / comet assay
+PROG_TELOMERE_MAINT	Telomere Maintenance & Extension	indirect_abundance	Yes - Telomere replication/maintenance machinery (does not measure telomere length)	TRF / qPCR telomere length & TRAP telomerase activity
+PROG_CHROMATIN_ORG	Chromatin Organization	indirect_abundance	Yes - Chromatin-modifying and remodeling enzymes (does not measure epigenetic state/methylation)	ATAC-seq / histone PTM MS / DNA methylation clock
+PROG_PROTEOSTASIS_UPR	Unfolded Protein Response (UPR)	pathway_abundance	Yes - ER/proteostatic stress-response proteins (elevation can reflect stress induction or adaptive capacity)	Proteasome activity / protein aggregation dye / XBP1 splicing
+PROG_PROTEASOME	Proteasome Degradation	machinery_abundance	Yes - Ubiquitin-proteasome machinery abundance (complementary proteostasis module)	AMC-peptide proteasome cleavage assay
+PROG_MACROAUTOPHAGY	Macroautophagy Machinery	machinery_abundance	Yes - Core autophagy machinery abundance (does not measure autophagic flux)	LC3-II turnover +/- bafilomycin A1 flux assay
+PROG_MTORC1_SIGNALING	mTORC1 Nutrient-Sensing Program	downstream_program	Yes - mTORC1-regulated metabolic/anabolic targets (transcriptional/proteomic output)	p-S6K / p-4EBP1 Western blot or phosphoproteomics
+PROG_OXPHOS	Mitochondrial Oxidative Phosphorylation	complex_abundance	Yes - Respiratory chain & TCA enzyme relative abundance (requires normalization & respirometry for capacity)	Seahorse OCR respirometry normalized to cell number & mtDNA
+PROG_SENESCENCE_CORE	Cellular Senescence Program	indirect_abundance	Yes - Senescence-associated cell-cycle & chromatin regulators (does not establish irreversible arrest)	SA-beta-gal + EdU arrest + p16/p21 + SASP secretome
+PROG_CELL_CELL_COMM	Cell-Cell Communication	proxy_only	Yes - Intracellular junction/signaling proteins (cannot assess systemic intercellular communication)	Co-culture / conditioned-media secretome profiling
+PROG_INFLAMMATORY	Intracellular Inflammatory Response	intracellular_proxy	Yes - Cell-autonomous inflammatory proteins in lysate (secreted SASP/cytokines largely unmeasured)	Conditioned-media multiplex ELISA / secretome DIA
+PROG_INNATE_TLR	Host Innate TLR Sensing	innate_proxy_only	Yes - Host innate immune/TLR signaling (explicitly NOT a dysbiosis measurement; dysbiosis unmeasurable in HepG2)	In vivo microbiome sequencing (16S/metagenomics) — unmeasurable in HepG2
+PRIOR_DEMAGALHAES_UP	de Magalhaes Aging Up (RNA Prior)	rna_derived_prior	Yes - Transcript-derived meta-analysis of genes overexpressed with age (prior, not proteomic clock)	Chronological/biological age proteomic validation
+PRIOR_DEMAGALHAES_DN	de Magalhaes Aging Down (RNA Prior)	rna_derived_prior	Yes - Transcript-derived meta-analysis of genes underexpressed with age (prior, not proteomic clock)	Chronological/biological age proteomic validation

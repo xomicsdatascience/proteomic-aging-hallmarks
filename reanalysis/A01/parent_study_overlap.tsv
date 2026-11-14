@@ -1,0 +1,9 @@
+item	status	notes
+HepG2 perturbation proteomics dataset (1,232 samples, 13 plates)	reused_data	Jiang et al. 2026 bioRxiv (DOI 10.64898/2026.05.04.722718); local raw (1).h5ad has 8,630 features vs 8,703 reported
+Drug metadata table (drug_details (1).xlsx)	reused_data	173 rows; 161 match h5ad compounds, 12 Excel-only, 11 RedMix h5ad compounds unannotated
+Robotic sample prep & DIA-MS acquisition	reused_methods	From Jiang et al. 2026
+Sample provenance, contrast estimability & RedMix audit (A01)	new_analysis	Identifies 161 directly estimable contrasts vs 12 RedMix reference-anchored contrasts
+Batch-aware observed-data linear model + sensitivity suite (A02, A04)	new_analysis	Replaces blind ComBat + imputation with plate-blocked limma-style model & global BH FDR
+Evidence-graded aging-associated protein program atlas (A03)	new_analysis	Explicitly grades directness, removes hallmark overclaiming, audits leading-edge overlap
+External cellular aging & senescence proteomic benchmarking (A05)	new_analysis	Tests agreement/opposition against independent aging/senescence signatures
+Shared stress, proliferation & relative-composition specificity (A06)	new_analysis	Separates compound-specific signals from shared cytostatic/stress responses

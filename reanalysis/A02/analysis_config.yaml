@@ -1,0 +1,8 @@
+primary_model: plate_blocked_observed_OLS_empirical_Bayes
+normalization: sample_median_log2_relative_composition
+missingness_handling: observed_data_only_no_imputation
+d0_prior: 2.88933007910852
+s0_2_prior: 0.02040816026159191
+gsea_permutations: 2000
+gsea_nonzero_floor: 0.0004997501249375312
+primary_bh_family_size: 2254
