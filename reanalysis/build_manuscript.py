@@ -5,6 +5,7 @@ import json
 import numpy as np
 import pandas as pd
 from analysis_common import ROOT, PRIMARY_IDS, PROGRAM_NAMES, HIGHLIGHTS, read_table, write_table, json_write, short_drug
+from prioritization import ASSAY_DIRECTIONS
 
 
 def number(v,digits=3):
@@ -17,6 +18,12 @@ def main():
     diagnostic=json.loads((ROOT/'reanalysis/A04/diagnostic_summary.json').read_text())
     inputs=json.loads((ROOT/'reanalysis/A01/input_summary.json').read_text())
     p=read_table('reanalysis/A02/program_effects.tsv');primary=p[p.program_id.isin(PRIMARY_IDS)]
+    indices=read_table('reanalysis/A06/exploratory_prioritization.tsv').set_index('compound_id')
+    eligible=indices[indices.four_axis_eligible_rank.notna()].sort_values('four_axis_eligible_rank')
+    four=read_table('reanalysis/A08/source_tables/Supplementary_Table_S2_four_axis_candidates.tsv')
+    four_primary=primary[primary.program_id.isin(ASSAY_DIRECTIONS)]
+    all_four_q=int(four_primary.assign(hit=(four_primary.plate_competitive_log2fc*four_primary.program_id.map(ASSAY_DIRECTIONS)).gt(0)&four_primary.q_BH_global_plate.lt(.05)).groupby('compound_id').hit.all().drop(index='DFO',errors='ignore').sum())
+    top=eligible.head(5);first=top.index[0]
     man=read_table('reanalysis/A03/program_manifest.tsv').set_index('program_id')
     plate=read_table('reanalysis/A02/plate_program_observations.tsv')
     proteins=read_table('reanalysis/A07/candidate_protein_effects.tsv')
@@ -40,6 +47,28 @@ def main():
     sensitivity_text=('The mitochondrial-positive and inflammatory-negative directions were retained when the first listed vehicle well, second listed vehicle well, or their mean was used on the same paired-control plates.' if robust else 'Some directions were sensitive to which vehicle well was used; the reference-specific results are reported without selecting the most favorable control.')
     direct=pair[pair.compound_id.eq('Binimetinib_vs_Erlotinib (Hydrochloride)')&pair.program_id.eq('PROG_INFLAMMATORY')].iloc[0]
     direct_text=(f"On {int(direct.n_effective_plates)} shared plates, the direct binimetinib-versus-erlotinib inflammatory-program contrast was {direct.plate_competitive_log2fc:+.3f} log2 units (95% CI {direct.plate_ci95_low:+.3f} to {direct.plate_ci95_high:+.3f}; q = {number(direct.q_BH_global_plate)} within the separate comparator family)." if direct.n_effective_plates>=3 else 'The displayed kinase inhibitors do not all share assay plates. Direct additive-model comparisons are supplied separately; a plate-paired estimate is reported only when at least three shared plates are available.')
+    index_results=(f"The exploratory 14-program combined response index ranked binimetinib first ({indices.loc['Binimetinib','combined_response_index']:+.3f}) and baicalein second ({indices.loc['Baicalein','combined_response_index']:+.3f}) among the 160 library entries (Figure 2B; Supplementary Table S3). They followed only {int(indices.loc['Binimetinib','combined_response_index_n_requested_directions'])} and {int(indices.loc['Baicalein','combined_response_index_n_requested_directions'])} of the 14 target signs, respectively. Their large changes on some axes outweighed opposing changes on others. This ranking therefore does not mean coordinated improvement of all programs. The raw index and E2F/G2M residual are displayed separately, with no index-level significance or rank-certainty claim. Different target signs, scales, weights or program redundancy can change this ordering.")
+    top_text=', '.join(f"{short_drug(drug)} ({row.four_axis_index:.3f})" for drug,row in top.iterrows())
+    first_effects=four[four.compound_id.eq(first)].set_index('program_id')
+    first_text='; '.join(f"{PROGRAM_NAMES[pid]} {first_effects.loc[pid,'plate_competitive_log2fc']:+.3f} log2 units, q = {number(first_effects.loc[pid,'q_BH_global_plate'],6)}" for pid in ASSAY_DIRECTIONS)
+    positions=', '.join(f"{short_drug(drug)} at {row.assay_group} {row.well}" for drug,row in top.head(3).iterrows())
+    vignette=f"""### A four-axis profile for cellular follow-up
+
+Restricting the target to higher OXPHOS, macroautophagy machinery and ubiquitination/proteasome responses with lower senescence-associated machinery produced a different shortlist (Supplementary Figure S5; Supplementary Table S2). Of 160 library entries, {len(eligible)} had primary point estimates in all four requested directions. Among those entries, the equal-weight four-axis index ranked {top_text}. These are descriptive candidates for the specified abundance profile, not validated functional responses. The unrestricted mean and the sign-filtered rank are both exported, because a strong response on one axis can otherwise conceal an opposite response on another.
+
+For the leading entry, {short_drug(first)}, the component effects were {first_text}. The senescence estimate's unadjusted 95% interval excluded zero, but its global q value remained above 0.05. Across the screen, {all_four_q} library entries met q < 0.05 on all four axes in the requested directions. Thus the {len(eligible)}-compound sign filter is not evidence for a jointly significant four-axis response. The per-axis intervals, q values, effective plate counts, weakest signed components and complete rankings are provided rather than treating a rank as confidence in superiority.
+
+The first three filtered candidates also share a potentially consequential layout feature: {positions}. All occupy column 12 of the Blue plates. Compound and coordinate effects cannot be separated in this design, so repositioned randomized replication is needed before attributing this pattern to treatment. Binimetinib and baicalein did not pass the four-axis sign filter because their primary proteasome-associated responses were negative. Their mitochondrial/inflammatory profile addresses a different hypothesis from the four-axis assay profile.
+
+Cellular follow-up should test respiration, autophagic flux, proteasome activity and senescence phenotypes alongside cell counts and viability, using dose and time series with distributed vehicle wells. The present measurements concern relative protein abundance and do not establish improved function on any of these axes.
+"""
+    table_lines=['| Rank | Library entry | Four-axis index | Fixed position | OXPHOS effect; q | Autophagy effect; q | Proteasome effect; q | Senescence effect; q |',
+                 '|---:|---|---:|---|---|---|---|---|']
+    for drug,row in top.iterrows():
+        values=four[four.compound_id.eq(drug)].set_index('program_id')
+        cells=[f"{values.loc[pid,'plate_competitive_log2fc']:+.4f}; {number(values.loc[pid,'q_BH_global_plate'],6)}" for pid in ASSAY_DIRECTIONS]
+        table_lines.append('| '+ ' | '.join([str(int(row.four_axis_eligible_rank)),drug,f'{row.four_axis_index:.4f}',f'{row.assay_group} {row.well}']+cells)+' |')
+    (ROOT/'docs/FOUR_AXIS_VIGNETTE.md').write_text('# Four-axis cellular follow-up candidates\n\n'+vignette.split('\n',2)[2]+'\n'+ '\n'.join(table_lines)+'\n\nEffects are primary matched-plate competitive mean log2 fold changes. q values use the existing global 2,254-test primary family. The ranking has no p value or q value. [Shortlisted axis estimates and 95% intervals](../reanalysis/A08/source_tables/Supplementary_Table_S2_four_axis_candidates.tsv) and [index definitions](../reanalysis/A06/prioritization_definitions.tsv) accompany [Supplementary Figure S5](../reanalysis/A08/figures/figS5_four_axis_candidates.png).\n')
     abstract=f"""Deep perturbation proteomics can compare coordinated protein responses across cellular programs related to aging, but abundance changes do not directly establish pathway function or rejuvenation. We reanalyzed a published HepG2 screen of 160 library compounds and a deferoxamine assay control, retaining {inputs['retained_features_50pct']:,} protein features. Fourteen selected programs showed {man.loc[PRIMARY_IDS,'coverage_pct_retained'].min():.0f}% to {man.loc[PRIMARY_IDS,'coverage_pct_retained'].max():.0f}% measured membership. Primary pathway tests used competitive mean log2 fold changes across matched plates, with proteins treated as correlated measurements within each plate. Across {ntests:,} compound-program hypotheses, {n_sig:,} pairs met global Benjamini-Hochberg q < 0.05 under this model. Binimetinib combined increased relative mitochondrial protein abundance with a negative inflammatory-annotation response, whereas comparator kinase inhibitors showed differing combinations. Baicalein showed a related response. These examples also altered proliferation-associated proteins and produced mixed changes in RNA-derived aging priors. Vehicle-well differences limit calibration claims, and fixed treatment coordinates confound compound and position effects. This analysis provides a reproducible resource for comparing protein-program responses and selecting functional follow-up experiments. It does not establish reduced biological age, organismal geroprotection, or clinical benefit."""
     text=f"""# Proteomic profiling distinguishes drug responses across aging associated cellular programs
 
@@ -71,7 +100,7 @@ After excluding the unlabeled well, features with more than 50% zero values acro
 
 The committed gene-set file defines 14 primary programs: 12 mechanistic protein annotations and two RNA-derived mammalian aging priors from de Magalhaes and colleagues (2009). Their sources are MSigDB Hallmark and Reactome libraries, with membership, retrieval provenance, and checksums supplied. Three additional modules describe E2F proliferation, G2M checkpoint, and apoptosis-associated responses. The annotation panel was fixed for this reproducible reanalysis, rather than prospectively registered before the original exploratory work.
 
-The selected programs do not directly assay all organismal hallmarks. Telomere-maintenance proteins are not telomere length, chromatin-remodeling proteins are not an epigenetic age, whole-cell inflammatory proteins are not secreted SASP, and host Toll-like receptor proteins are not microbiome dysbiosis. No universal beneficial direction is assigned to all programs, and no composite geroprotection score is computed.
+The selected programs do not directly assay all organismal hallmarks. Telomere-maintenance proteins are not telomere length, chromatin-remodeling proteins are not an epigenetic age, whole-cell inflammatory proteins are not secreted SASP, and host Toll-like receptor proteins are not microbiome dysbiosis. No universal beneficial direction is inferred from these annotations. Target signs used for exploratory prioritization are explicit hypotheses, not evidence of geroprotection.
 
 ### Protein models and observation eligibility
 
@@ -90,6 +119,14 @@ A Python implementation of the non-rank CAMERA-PR competitive formula was applie
 Pre-ranked GSEA used 2,000 gene-set permutations and seed 42 to provide normalized enrichment scores (NES) and leading-edge membership (Subramanian et al., 2005). NES is descriptive here. Native permutation p values and GSEA FDR values are not used as confirmatory significance estimates. The stricter missingness analysis re-estimated variance moderation within its feature universe. Within-plate vehicle splits, exhaustive paired vehicle sign assignments, and first-versus-second vehicle reference analyses were diagnostic checks. Bootstrap intervals from 1,000 plate resamples describe program mean fold-change stability, rather than a refitted geroprotection rank.
 
 Across-drug residualization on E2F response and mean absolute protein t statistic was a descriptive sensitivity analysis. Those post-treatment molecular responses are not measured baseline confounders. Residuals do not establish causal independence from growth. Comparisons of mitochondrial and cytosolic ribosomal protein changes investigate one relative-composition explanation and cannot establish absolute organelle abundance.
+
+### Exploratory combined response and four-axis indices
+
+The 14-program combined response index retains the earlier analysis's target-sign hypotheses while replacing its inferential score. Positive targets are OXPHOS, aging-down RNA prior, macroautophagy machinery, unfolded protein response, ubiquitination/proteasome, DNA repair, telomere maintenance and chromatin organization. Negative targets are inflammatory response, host innate TLR sensing, senescence-associated machinery, mTORC1 response, aging-up RNA prior and cell-cell communication. These are exploratory choices, not universal beneficial directions. For each program, the primary competitive mean log2 fold change was divided by its sample SD across the 160 library entries, multiplied by the target sign, and averaged with equal weight across all 14 components. No screen mean was subtracted, so zero retains the treatment-versus-vehicle competitive-effect anchor. Scaling equalizes observed program variation and is not a null-variance estimate. Related or overlapping programs can still give the same biology repeated influence.
+
+The four-axis index uses the same procedure, with equal weights only for positive OXPHOS, macroautophagy and proteasome responses and negative senescence-associated machinery responses. A requested-profile ranking additionally requires all four primary point estimates to have those signs. This sign filter does not require or imply joint significance. Missing components leave an index unavailable. DFO is displayed as an assay control but excluded from SD estimation, regression fits and ranks. Directions, weights, scales and every component estimate are exported.
+
+For each index, an intercept-plus-E2F/G2M linear regression fitted across library entries supplies a separate post-treatment-proxy residual and rank. The raw index and residual are never combined. Neither index is assigned a normal-theory p value, BH q value, significance boundary or null covariance from gene-set overlap. The indices rank observed abundance profiles within this screen; they do not measure biological age, geroprotection, causal independence from growth or certainty in rank ordering.
 
 ## Results
 
@@ -111,7 +148,11 @@ The response was mixed across the remaining programs. Binimetinib reduced severa
 
 ![Figure 2](figures/fig2_highlighted_heatmap.png)
 
-**Figure 2. Selected drug responses across the 14 programs.** Heatmap cells show primary matched-plate competitive t statistics. Asterisks denote BH q < 0.05 (*) or q < 0.01 (**) across all {ntests:,} primary tests. Color is clipped at +/-10 for readability; full untruncated statistics and intervals are in Supplementary Table S1. Displayed compounds are retrospective examples in the stated order. Neither response direction is universally labeled beneficial.
+**Figure 2. Selected program responses and the exploratory combined response index.** (A) Heatmap cells show primary matched-plate competitive t statistics. Asterisks denote BH q < 0.05 (*) or q < 0.01 (**) across all {ntests:,} primary tests. Color is clipped at +/-10 for readability; full statistics and intervals are in Supplementary Table S1. (B) Black circles show the equal-weight mean of 14 signed, SD-scaled primary effects. Open blue diamonds show the separate E2F/G2M regression residual. These are descriptive values without score-level p or q values. Grey segments connect the two summaries and are not confidence intervals. DFO is excluded from scaling, regression fitting and ranks. Displayed compounds are retrospective examples in the stated order; target directions are hypotheses, not universal benefits.
+
+{index_results}
+
+{vignette}
 
 ### Screen-wide distributions and sensitivity to growth and preprocessing
 
@@ -125,7 +166,7 @@ The vehicle-control experiment revealed {diagnostic['vehicle_split_significant_p
 
 ![Figure 3](figures/fig3_nes_distributions.png)
 
-**Figure 3. Screen-wide distributions of normalized enrichment scores.** Boxplots show the median and interquartile range of descriptive NES values for each program, with whiskers extending to 1.5 times the interquartile range. Grey points show compound/control contrasts with available scores. Binimetinib is green and baicalein orange. The distributions include 160 library entries and DFO where estimable. No GSEA permutation-significance thresholds or anti-aging directions are assigned.
+**Figure 3. Screen-wide distributions of normalized enrichment scores.** Boxplots show the median and interquartile range of descriptive NES values for each program, with whiskers extending to 1.5 times the interquartile range. Purple diamonds identify primary matched-plate effects with global BH q < 0.05; other or untested effects are grey circles. Binimetinib is green and baicalein orange, retaining diamond versus circle shape for the same q-value distinction. Point positions show descriptive GSEA NES, while shape and significance color refer to the primary competitive-mean test. These are different summaries and significance is not a test of the plotted NES. The distributions include 160 library entries and DFO where estimable. No GSEA permutation-significance thresholds or anti-aging directions are assigned.
 
 ### Protein observations across the kinase inhibitor panel
 
@@ -179,7 +220,13 @@ The deposited intensity matrix, metadata, frozen gene sets, rebuilt source table
 
 **Supplementary Figure S4. Fixed-coordinate response context.** Competitive mean log2 fold changes for oxidative phosphorylation and inflammatory response plotted at each library entry's well coordinate in the Blue and Red assay groups. Colors are clipped at +/-0.5 and blank positions contain no displayed library entry. Bini marks binimetinib (Red H3) and Baic marks baicalein (Red H2). All library entries retain a fixed position across replicate plates, so this display cannot separate drug and coordinate effects.
 
+**Supplementary Figure S5. Component effects for the four-axis shortlist.** The five highest four-axis indices among library entries with all four primary point estimates in the requested directions, shown in that rank order. Signs orient all four panels so positive values follow the requested profile, including reversal of the senescence effect and interval. Points show primary competitive mean log2 fold changes; segments show unadjusted 95% t intervals across effective plates. Purple diamonds denote global BH q < 0.05 within the existing {ntests:,}-test family; grey circles denote other or unavailable primary results. An interval excluding zero need not meet the global q threshold. No library entry met q < 0.05 on all four axes in the requested directions. The top three entries occupy Blue column 12, so fixed-position confounding remains a direct concern. The ranking has no composite significance test and does not establish improved pathway function.
+
 **Supplementary Table S1.** All {ntests:,} primary compound-program comparisons, including effective plate counts, competitive mean fold changes, intervals, primary q values, secondary correlation sensitivity, descriptive NES, and eligible feature counts. Direct kinase contrasts, complete model protein estimates, every displayed observation, plate-level observations, vehicle-reference comparisons, and missingness sensitivity are supplied as separate source tables.
+
+**Supplementary Table S2.** The 20 primary axis effects for the five displayed four-axis candidates, including 95% intervals, existing primary global q values, effective plate counts, target signs, index values, sign-filtered ranks, weakest signed components and fixed well positions. Full-screen primary effects remain in Supplementary Table S1, and complete exploratory rankings and E2F/G2M sensitivity are in Supplementary Table S3. The {len(eligible)} sign-eligible library entries are not a set of jointly significant hits.
+
+**Supplementary Table S3.** Descriptive 14-program and four-axis indices for all library entries and DFO, with separate growth-proxy residuals. DFO has no library rank. Exact directions, equal weights and SD scales are supplied in the A06 definition table; underlying primary component effects are in Supplementary Table S1. No index-level p or q values are computed.
 """
     if '\u2014' in text:raise ValueError('Em dash found')
     if '$' in text:raise ValueError('Unrendered math marker found')
@@ -191,11 +238,14 @@ The deposited intensity matrix, metadata, frozen gene sets, rebuilt source table
             {'claim':'Vehicle split significant proteins','value':diagnostic['vehicle_split_significant_proteins'],'source':'A04/diagnostic_summary.json'},
             {'claim':'Vehicle split significant plate programs','value':diagnostic['vehicle_split_significant_programs'],'source':'A04/null_calibration.tsv'},
             {'claim':'Binimetinib directions stable across paired vehicle references','value':str(robust),'source':'A04/vehicle_reference_sensitivity.tsv'}]
+    ledger.extend([{'claim':'Four-axis point-estimate sign-eligible library entries','value':len(eligible),'source':'A06/exploratory_prioritization.tsv:four_axis_eligible_rank'},
+                   {'claim':'Library entries with four requested-direction global q<0.05 effects','value':all_four_q,'source':'A02/program_effects.tsv; A06/prioritization_definitions.tsv'},
+                   {'claim':'First four-axis sign-filtered candidate','value':first,'source':'A06/exploratory_prioritization.tsv:four_axis_eligible_rank'}])
     for drug in ['Binimetinib','Baicalein']:
         for pid in ['PROG_OXPHOS','PROG_INFLAMMATORY']:
             r=key.loc[(drug,pid)];ledger.append({'claim':drug+' '+pid+' competitive mean log2FC','value':r.plate_competitive_log2fc,'source':'A02/program_effects.tsv'})
     write_table(pd.DataFrame(ledger),ROOT/'reanalysis/A08/claim_result_ledger.tsv')
-    (ROOT/'reanalysis/A08/results_summary.md').write_text('# Current results\n\n'+f'Primary plate-level analysis: {n_sig}/{ntests} pairs at q < 0.05 across {n_drugs} contrasts.\n\n'+'\n'.join('- '+c for c in clauses)+'\n\n'+sensitivity_text+'\n\nNo composite score, age reduction, clinical survival, or independent aging validation is claimed.\n')
+    (ROOT/'reanalysis/A08/results_summary.md').write_text('# Current results\n\n'+f'Primary plate-level analysis: {n_sig}/{ntests} pairs at q < 0.05 across {n_drugs} contrasts.\n\n'+'\n'.join('- '+c for c in clauses)+'\n\n'+sensitivity_text+'\n\n'+index_results+'\n\n'+vignette+'\nNo index-level significance, age reduction, clinical survival, or independent aging validation is claimed.\n')
     provenance={'input_summary':inputs,'analysis_config':config,'abstract_words':len(abstract.split()),'source_sha256':{str(f.relative_to(ROOT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted((ROOT/'reanalysis').glob('*.py'))},'claim_ledger':'reanalysis/A08/claim_result_ledger.tsv'}
     json_write(provenance,ROOT/'reanalysis/A08/build_provenance.json')
     print(f'Manuscript generated: {len(text.split())} words; abstract {len(abstract.split())} words',flush=True)

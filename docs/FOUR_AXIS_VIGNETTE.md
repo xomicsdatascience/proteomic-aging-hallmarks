@@ -1,0 +1,19 @@
+# Four-axis cellular follow-up candidates
+
+Restricting the target to higher OXPHOS, macroautophagy machinery and ubiquitination/proteasome responses with lower senescence-associated machinery produced a different shortlist (Supplementary Figure S5; Supplementary Table S2). Of 160 library entries, 68 had primary point estimates in all four requested directions. Among those entries, the equal-weight four-axis index ranked Meclofenoxate (1.270), Topiroxostat (1.096), Fexofenadine (1.090), Haloperidol (1.086), Asciminib (1.048). These are descriptive candidates for the specified abundance profile, not validated functional responses. The unrestricted mean and the sign-filtered rank are both exported, because a strong response on one axis can otherwise conceal an opposite response on another.
+
+For the leading entry, Meclofenoxate, the component effects were Oxidative phosphorylation +0.092 log2 units, q = 0.0213002; Macroautophagy machinery +0.077 log2 units, q = 0.00898605; Ubiquitination / proteasome +0.054 log2 units, q = 0.00828143; Senescence-associated machinery -0.041 log2 units, q = 0.0500405. The senescence estimate's unadjusted 95% interval excluded zero, but its global q value remained above 0.05. Across the screen, 0 library entries met q < 0.05 on all four axes in the requested directions. Thus the 68-compound sign filter is not evidence for a jointly significant four-axis response. The per-axis intervals, q values, effective plate counts, weakest signed components and complete rankings are provided rather than treating a rank as confidence in superiority.
+
+The first three filtered candidates also share a potentially consequential layout feature: Meclofenoxate at Blue F12, Topiroxostat at Blue G12, Fexofenadine at Blue B12. All occupy column 12 of the Blue plates. Compound and coordinate effects cannot be separated in this design, so repositioned randomized replication is needed before attributing this pattern to treatment. Binimetinib and baicalein did not pass the four-axis sign filter because their primary proteasome-associated responses were negative. Their mitochondrial/inflammatory profile addresses a different hypothesis from the four-axis assay profile.
+
+Cellular follow-up should test respiration, autophagic flux, proteasome activity and senescence phenotypes alongside cell counts and viability, using dose and time series with distributed vehicle wells. The present measurements concern relative protein abundance and do not establish improved function on any of these axes.
+
+| Rank | Library entry | Four-axis index | Fixed position | OXPHOS effect; q | Autophagy effect; q | Proteasome effect; q | Senescence effect; q |
+|---:|---|---:|---|---|---|---|---|
+| 1 | Meclofenoxate (hydrochloride) | 1.2702 | Blue F12 | +0.0918; 0.0213002 | +0.0774; 0.00898605 | +0.0544; 0.00828143 | -0.0406; 0.0500405 |
+| 2 | Topiroxostat | 1.0958 | Blue G12 | +0.0780; 0.0316792 | +0.0809; 0.0147512 | +0.0369; 0.0417278 | -0.0156; 0.57373 |
+| 3 | Fexofenadine (hydrochloride) | 1.0900 | Blue B12 | +0.0742; 0.0161473 | +0.0723; 0.0192414 | +0.0481; 0.0475209 | -0.0226; 0.209936 |
+| 4 | Haloperidol | 1.0859 | Blue H11 | +0.0853; 0.0175484 | +0.0589; 0.0418171 | +0.0097; 0.629124 | -0.0850; 0.00927953 |
+| 5 | Asciminib | 1.0477 | Blue G7 | +0.0610; 0.0189524 | +0.0743; 0.00951404 | +0.0235; 0.195624 | -0.0386; 0.0763032 |
+
+Effects are primary matched-plate competitive mean log2 fold changes. q values use the existing global 2,254-test primary family. The ranking has no p value or q value. [Shortlisted axis estimates and 95% intervals](../reanalysis/A08/source_tables/Supplementary_Table_S2_four_axis_candidates.tsv) and [index definitions](../reanalysis/A06/prioritization_definitions.tsv) accompany [Supplementary Figure S5](../reanalysis/A08/figures/figS5_four_axis_candidates.png).

@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from docx import Document
 from analysis_common import ROOT, PRIMARY_IDS, KINASE_PANEL, SENTINELS, read_table, load_raw, primary_mask, bh, sha256
+from prioritization import indices, COMBINED_DIRECTIONS, ASSAY_DIRECTIONS
 
 
 def main():
@@ -41,6 +42,39 @@ def main():
     cols=['compound_id','program_id','plate_t','q_BH_global_plate','camera_t','q_BH_global_camera']
     a=primary[cols].sort_values(cols[:2]).reset_index(drop=True);b=source[cols].sort_values(cols[:2]).reset_index(drop=True)
     pd.testing.assert_frame_equal(a,b,check_dtype=False,rtol=1e-8)
+    # The indices are derived, descriptive outputs; primary significance is unchanged.
+    ranking=read_table('reanalysis/A06/exploratory_prioritization.tsv')
+    expected,definitions,components=indices(p)
+    pd.testing.assert_frame_equal(ranking[expected.columns],expected,check_dtype=False,rtol=1e-8,atol=1e-9)
+    pd.testing.assert_frame_equal(read_table('reanalysis/A06/prioritization_definitions.tsv'),definitions,check_dtype=False,rtol=1e-8)
+    assert set(COMBINED_DIRECTIONS)==set(PRIMARY_IDS) and len(ASSAY_DIRECTIONS)==4
+    assert not any(c.startswith(('p_','q_','CGS')) for c in ranking.columns)
+    assert ranking.loc[ranking.compound_id.eq('DFO')].filter(regex='_rank$').isna().all(axis=None)
+    assert ranking.loc[ranking.four_axis_eligible_rank.notna(),'all_four_requested_directions'].all()
+    pd.testing.assert_frame_equal(read_table('reanalysis/A08/source_tables/Supplementary_Table_S3_exploratory_indices.tsv'),ranking,check_dtype=False)
+    four=read_table('reanalysis/A08/source_tables/Supplementary_Table_S2_four_axis_candidates.tsv')
+    selected_ids=set(ranking[ranking.four_axis_eligible_rank.le(5)].compound_id)
+    assert set(four.compound_id)==selected_ids and len(four)==20
+    assert four.groupby('compound_id').size().eq(4).all()
+    selected_cols=['compound_id','program_id','plate_competitive_log2fc','plate_ci95_low','plate_ci95_high','q_BH_global_plate','n_effective_plates']
+    a=primary[primary.program_id.isin(ASSAY_DIRECTIONS)&primary.compound_id.isin(selected_ids)][selected_cols].sort_values(cols[:2]).reset_index(drop=True)
+    b=four[selected_cols].sort_values(cols[:2]).reset_index(drop=True)
+    pd.testing.assert_frame_equal(a,b,check_dtype=False,rtol=1e-8)
+    assert np.array_equal(four.target_direction,four.program_id.map(ASSAY_DIRECTIONS))
+    np.testing.assert_allclose(four.signed_effect,four.plate_competitive_log2fc*four.target_direction,rtol=1e-8)
+    all_four=components[components.four_axis_component]
+    all_four_q=int(all_four.assign(hit=all_four.signed_scaled_effect.gt(0)&all_four.q_BH_global_plate.lt(.05)).groupby('compound_id').hit.all().drop(index='DFO').sum())
+    fig3=read_table('reanalysis/A08/source_tables/fig3_nes_all_compounds.tsv')
+    a=primary[['compound_id','program_id','nes_gsea','q_BH_global_plate']].sort_values(cols[:2]).reset_index(drop=True)
+    b=fig3[a.columns].sort_values(cols[:2]).reset_index(drop=True)
+    pd.testing.assert_frame_equal(a,b,check_dtype=False,rtol=1e-8)
+    hit=fig3.q_BH_global_plate.lt(.05)
+    assert np.array_equal(fig3.primary_q_lt_005,hit)
+    assert np.array_equal(fig3.point_marker,np.where(hit,'D','o'))
+    for drug,color in [('Binimetinib','#009E73'),('Baicalein','#D55E00')]:
+        assert fig3.loc[fig3.compound_id.eq(drug),'point_color'].eq(color).all()
+    others=~fig3.compound_id.isin(['Binimetinib','Baicalein'])
+    assert np.array_equal(fig3.loc[others,'point_color'],np.where(hit[others],'#CC79A7','#999999'))
     plotted=read_table('reanalysis/A08/source_tables/fig4_scaled_protein_observations.tsv')
     assert not plotted.duplicated(['sample_id','feature_id']).any()
     assert set(plotted.compound_id)==set(['DMSO']+KINASE_PANEL)
@@ -59,9 +93,14 @@ def main():
     assert '\\frac' not in text and '$' not in text and '\u2014' not in text
     assert 'q < 0.01 (**)' in text
     assert len(doc.inline_shapes)==4
-    for name in ['fig1_program_coverage','fig2_highlighted_heatmap','fig3_nes_distributions','fig4_kinase_inhibitor_panel','figS1_qc_and_null_calibration','figS2_full_160_compound_atlas','figS3_benchmarks_and_sensitivity','figS4_layout_context']:
+    supplement=Document(ROOT/'reanalysis/A08/Aging_Proteomics_Supplementary_Figures.docx')
+    assert len(supplement.inline_shapes)==7
+    vignette=Document(ROOT/'reanalysis/A08/Aging_Proteomics_Supplementary_Figure_S5.docx')
+    assert len(vignette.inline_shapes)==1
+    assert any('Supplementary Figure S5.' in para.text for para in vignette.paragraphs)
+    for name in ['fig1_program_coverage','fig2_highlighted_heatmap','fig3_nes_distributions','fig4_kinase_inhibitor_panel','figS1_qc_and_null_calibration','figS2_full_160_compound_atlas','figS3_benchmarks_and_sensitivity','figS4_layout_context','figS5_four_axis_candidates']:
         for extension in ['png','svg']:assert (ROOT/'reanalysis/A08/figures'/(name+'.'+extension)).exists()
-    summary={'status':'passed','primary_samples':config['n_primary_samples'],'retained_features':config['n_features'],'primary_program_tests':len(primary),'protein_rows':len(protein),'protein_partitions':int(manifest.file_name.nunique()),'synchronized_word_exports':len(documents),'primary_plate_pairs_q05':int((primary.q_BH_global_plate<.05).sum()),'note':'Structural and numerical checks; Word layout is reviewed separately.'}
+    summary={'status':'passed','primary_samples':config['n_primary_samples'],'retained_features':config['n_features'],'primary_program_tests':len(primary),'protein_rows':len(protein),'protein_partitions':int(manifest.file_name.nunique()),'synchronized_word_exports':len(documents),'primary_plate_pairs_q05':int((primary.q_BH_global_plate<.05).sum()),'four_axis_sign_eligible_library_entries':int(ranking.four_axis_eligible_rank.notna().sum()),'four_axis_all_global_q05_library_entries':all_four_q,'published_four_axis_candidate_effects':len(four),'figure3_primary_q_styles_checked':len(fig3),'note':'Structural and numerical checks; Word layout is reviewed separately.'}
     (ROOT/'reanalysis/A08/validation_summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(summary,flush=True)
 

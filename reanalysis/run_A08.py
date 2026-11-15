@@ -10,8 +10,10 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.backends.backend_pdf import PdfPages
 import seaborn as sns
+from PIL import Image, PngImagePlugin
 from analysis_common import (ROOT, PROGRAM_NAMES, PRIMARY_IDS, HIGHLIGHTS, KINASE_PANEL, SENTINELS,
     read_table, write_table, normalized_data, short_drug)
+from prioritization import ASSAY_DIRECTIONS
 
 FIG=ROOT/'reanalysis/A08/figures';SOURCE=ROOT/'reanalysis/A08/source_tables'
 FIG.mkdir(parents=True,exist_ok=True);SOURCE.mkdir(exist_ok=True)
@@ -29,6 +31,12 @@ def inference_hashes():
 def save(fig,name):
     fig.savefig(FIG/(name+'.png'),dpi=300,bbox_inches='tight',metadata={'Software':'proteomic-aging-hallmarks'})
     fig.savefig(FIG/(name+'.svg'),bbox_inches='tight',metadata={'Date':None})
+    if name in ['fig2_highlighted_heatmap','fig3_nes_distributions']:
+        # Keep native 300-dpi dimensions; full-color vectors remain available.
+        with Image.open(FIG/(name+'.png')) as source:
+            indexed=source.convert('RGB').quantize(colors=256,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE)
+        metadata=PngImagePlugin.PngInfo();metadata.add_text('Software','proteomic-aging-hallmarks')
+        indexed.save(FIG/(name+'.png'),optimize=True,dpi=(300,300),pnginfo=metadata)
     plt.close(fig)
 
 
@@ -53,6 +61,7 @@ def main():
     sm=read_table('reanalysis/A01/sample_manifest.tsv')
     specific=read_table('reanalysis/A06/candidate_specificity.tsv')
     composition=read_table('reanalysis/A06/composition_sensitivity.tsv')
+    priorities=read_table('reanalysis/A06/exploratory_prioritization.tsv').set_index('compound_id')
     tp=primary.pivot(index='compound_id',columns='program_id',values='plate_t')[PRIMARY_IDS]
     qp=primary.pivot(index='compound_id',columns='program_id',values='q_BH_global_plate')[PRIMARY_IDS]
     # Main figure 1: coverage, with no assumed favorable directions.
@@ -67,28 +76,50 @@ def main():
     ax.set_xlabel('Number of genes or protein features');ax.legend(loc='lower right',frameon=False)
     fig.tight_layout();save(fig,'fig1_program_coverage')
     write_table(pman.reset_index(),SOURCE/'fig1_program_coverage.tsv')
-    # Main figure 2: retrospective examples, not ranked by an aging outcome score.
+    # Main figure 2: the combined index is exploratory and has no significance test.
     highlight=[d for d in HIGHLIGHTS if d in tp.index]
-    fig,ax=plt.subplots(figsize=(10.1,9.0));atlas(ax,tp.loc[highlight],qp.loc[highlight],f'{len(highlight)} illustrative drug responses',12)
+    fig,axes=plt.subplots(1,2,figsize=(12.0,9.0),gridspec_kw={'width_ratios':[4.7,1.5]})
+    atlas(axes[0],tp.loc[highlight],qp.loc[highlight],'A. Illustrative program responses',12)
+    scores=priorities.loc[highlight]
+    y=np.arange(len(scores))+.5
+    axes[1].hlines(y,scores.combined_response_index,scores.combined_response_index_growth_proxy_residual,color='#b8b8b8',lw=1)
+    axes[1].scatter(scores.combined_response_index,y,color='#222222',s=28,label='Raw index',zorder=3)
+    axes[1].scatter(scores.combined_response_index_growth_proxy_residual,y,facecolors='none',edgecolors='#0072B2',marker='D',s=28,label='E2F/G2M residual',zorder=3)
+    axes[1].set_ylim(len(scores),0);axes[1].set_yticks([]);axes[1].axvline(0,color='#777777',ls='--',lw=.8)
+    axes[1].set_title('B. 14-program index',pad=12)
+    axes[1].set_xlabel('Mean signed effect / SD\n(descriptive)',fontsize=11)
+    axes[1].legend(loc='upper center',bbox_to_anchor=(.5,-.10),frameon=False,fontsize=9.5)
     fig.tight_layout();save(fig,'fig2_highlighted_heatmap')
     write_table(primary[primary.compound_id.isin(highlight)],SOURCE/'fig2_highlighted_programs.tsv')
+    write_table(scores.reset_index(),SOURCE/'fig2_exploratory_indices.tsv')
     write_table(primary.sort_values(['compound_id','program_id']),SOURCE/'Supplementary_Table_S1_all_compounds.tsv')
     # Main figure 3: descriptive NES distributions, with two response examples identified.
     fig,ax=plt.subplots(figsize=(8.8,6.8));rng=np.random.default_rng(42)
     data=[primary.loc[primary.program_id.eq(k),'nes_gsea'].dropna().to_numpy() for k in PRIMARY_IDS]
     bp=ax.boxplot(data,positions=np.arange(len(PRIMARY_IDS)),vert=False,widths=.55,showfliers=False,patch_artist=True)
     for box in bp['boxes']:box.set(facecolor='#eeeeee',edgecolor='#777777')
+    fig3_sources=[]
     for i,k in enumerate(PRIMARY_IDS):
-        group=primary[primary.program_id.eq(k)]
-        ax.scatter(group.nes_gsea,i+rng.uniform(-.18,.18,len(group)),s=9,c='#777777',alpha=.30,zorder=2)
+        group=primary[primary.program_id.eq(k)].copy()
+        group['primary_q_lt_005']=group.q_BH_global_plate.lt(.05)
+        group['point_y']=i+rng.uniform(-.18,.18,len(group))
+        group['point_color']=np.where(group.primary_q_lt_005,'#CC79A7','#999999')
+        group['point_marker']=np.where(group.primary_q_lt_005,'D','o')
         for d,c in [('Binimetinib','#009E73'),('Baicalein','#D55E00')]:
-            val=group.loc[group.compound_id.eq(d),'nes_gsea'].iloc[0]
-            ax.scatter([val],[i],s=42,c=c,edgecolors='white',linewidths=.4,zorder=4)
+            group.loc[group.compound_id.eq(d),'point_color']=c
+        for color in ['#999999','#CC79A7','#009E73','#D55E00']:
+            for marker in ['o','D']:
+                shown=group[group.point_color.eq(color)&group.point_marker.eq(marker)]
+                candidate=color in ['#009E73','#D55E00']
+                ax.scatter(shown.nes_gsea,shown.point_y,s=46 if candidate else 13,c=color,marker=marker,
+                           alpha=1 if candidate else .65,edgecolors='white' if candidate else 'none',
+                           linewidths=.4,zorder=4 if candidate else 2)
+        fig3_sources.append(group)
     ax.axvline(0,color='black',lw=.8,ls='--');ax.set_yticks(range(len(PRIMARY_IDS)),labels(PRIMARY_IDS));ax.invert_yaxis()
     ax.set_xlabel('Normalized enrichment score (descriptive)')
-    ax.legend(handles=[Line2D([],[],marker='o',ls='',color=c,label=d) for d,c in [('Binimetinib','#009E73'),('Baicalein','#D55E00')]],loc='upper center',bbox_to_anchor=(.65,1.10),ncol=2,frameon=False,fontsize=10.5)
+    ax.legend(handles=[Line2D([],[],marker='D',ls='',color='#CC79A7',label='Plate-level q < 0.05'),Line2D([],[],marker='o',ls='',color='#999999',label='Other / unavailable')]+[Line2D([],[],marker='o',ls='',color=c,label=d) for d,c in [('Binimetinib','#009E73'),('Baicalein','#D55E00')]],loc='upper center',bbox_to_anchor=(.55,1.14),ncol=2,frameon=False,fontsize=10.5)
     fig.tight_layout();save(fig,'fig3_nes_distributions')
-    write_table(primary[['compound_id','program_id','nes_gsea','n_genes_measured','test_status']],SOURCE/'fig3_nes_all_compounds.tsv')
+    write_table(pd.concat(fig3_sources)[['compound_id','program_id','nes_gsea','q_BH_global_plate','n_genes_measured','plate_test_status','primary_q_lt_005','point_color','point_marker','point_y']],SOURCE/'fig3_nes_all_compounds.tsv')
     # Main figure 4: within-plate vehicle subtraction, then pooled unit-variance scaling.
     Y,obs,features=normalized_data();panel=['DMSO']+KINASE_PANEL
     m=sm.compound_id.isin(panel)&~sm.excluded&sm.plate.ne('RedMix');observations=[]
@@ -178,6 +209,38 @@ def main():
             if group=='Red':
                 for column,label in [(2,'Baic'),(3,'Bini')]:axes[i,j].text(column-.5,7.5,label,ha='center',va='center',fontsize=8,color='black',bbox={'facecolor':'white','alpha':.75,'pad':.5,'edgecolor':'none'})
     fig.tight_layout();save(fig,'figS4_layout_context')
+    # S5 shows each axis, including uncertainty, for the sign-filtered shortlist.
+    eligible=priorities[priorities.four_axis_eligible_rank.notna()].sort_values('four_axis_eligible_rank')
+    top=eligible.head(5);top_ids=list(top.index)
+    four=primary[primary.program_id.isin(ASSAY_DIRECTIONS)].merge(
+        priorities.reset_index(),on='compound_id',validate='many_to_one')
+    four['target_direction']=four.program_id.map(ASSAY_DIRECTIONS)
+    four['signed_effect']=four.plate_competitive_log2fc*four.target_direction
+    four['signed_ci95_low']=np.where(four.target_direction.eq(1),four.plate_ci95_low,-four.plate_ci95_high)
+    four['signed_ci95_high']=np.where(four.target_direction.eq(1),four.plate_ci95_high,-four.plate_ci95_low)
+    write_table(four.sort_values(['compound_id','program_id']),ROOT/'reanalysis/_cache/four_axis_all_compounds.tsv')
+    selected_columns=['compound_id','program_id','target_direction','plate_competitive_log2fc',
+                      'plate_ci95_low','plate_ci95_high','q_BH_global_plate','n_effective_plates',
+                      'four_axis_index','four_axis_eligible_rank','four_axis_weakest_signed_component',
+                      'well','assay_group','signed_effect','signed_ci95_low','signed_ci95_high']
+    write_table(four[four.compound_id.isin(top_ids)][selected_columns].sort_values(['four_axis_eligible_rank','program_id']),SOURCE/'Supplementary_Table_S2_four_axis_candidates.tsv')
+    write_table(priorities.reset_index(),SOURCE/'Supplementary_Table_S3_exploratory_indices.tsv')
+    fig,axes=plt.subplots(2,2,figsize=(10.8,7.2),sharex=True)
+    titles=['A. OXPHOS (+)','B. Macroautophagy machinery (+)',
+            'C. Ubiquitination / proteasome (+)','D. Senescence-associated machinery (-)']
+    for ax,(pid,direction),title in zip(axes.flat,ASSAY_DIRECTIONS.items(),titles):
+        shown=four[four.program_id.eq(pid)].set_index('compound_id').loc[top_ids]
+        y=np.arange(len(shown))
+        ax.errorbar(shown.signed_effect,y,xerr=np.vstack([shown.signed_effect-shown.signed_ci95_low,shown.signed_ci95_high-shown.signed_effect]),fmt='none',ecolor='#777777',capsize=3,lw=1.2,zorder=1)
+        for hit,marker in [(False,'o'),(True,'D')]:
+            m=shown.q_BH_global_plate.lt(.05).eq(hit)
+            ax.scatter(shown.loc[m,'signed_effect'],y[m],marker=marker,c='#CC79A7' if hit else '#777777',s=45,zorder=3)
+        ax.axvline(0,c='black',ls='--',lw=.8);ax.set_yticks(y,[short_drug(d) for d in top_ids],fontsize=10.5);ax.invert_yaxis()
+        ax.set_title(title,loc='left',fontsize=12)
+        ax.set_xlim(-.065,.15)
+    fig.supxlabel('Signed competitive mean log2FC (positive follows requested direction)',fontsize=12)
+    fig.legend(handles=[Line2D([],[],marker='D',ls='',c='#CC79A7',label='Primary global q < 0.05'),Line2D([],[],marker='o',ls='',c='#777777',label='Other / unavailable')],loc='upper center',ncol=2,frameon=False,fontsize=11)
+    fig.tight_layout(rect=(0,.035,1,.94));save(fig,'figS5_four_axis_candidates')
     after=inference_hashes()
     if before!=after: raise RuntimeError('Figure generation changed A01-A07 inference outputs')
     print('Figures regenerated; every A01-A07 file is unchanged.',flush=True)

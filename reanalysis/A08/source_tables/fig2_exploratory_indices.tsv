@@ -1,0 +1,22 @@
+compound_id	combined_response_index	combined_response_index_rank	combined_response_index_n_requested_directions	combined_response_index_complete	four_axis_index	four_axis_index_rank	four_axis_index_n_requested_directions	four_axis_index_complete	all_four_requested_directions	four_axis_eligible_rank	four_axis_weakest_signed_component	combined_response_index_growth_proxy_residual	combined_response_index_growth_proxy_residual_rank	four_axis_index_growth_proxy_residual	four_axis_index_growth_proxy_residual_rank	well	assay_group
+Binimetinib	0.140613163	1	6	True	0.767190497	53	3	True	False	NA	-1.2584915	0.451365743	1	-0.464982056	152	H3	Red
+Baicalein	0.117356806	2	7	True	0.499674349	107	3	True	False	NA	-0.544116657	0.321482047	2	-0.574039753	154	H2	Red
+Cyclothiazide	0.0630373771	5	7	True	-0.183710183	158	1	True	False	NA	-0.34366666	0.130219926	20	-0.633714849	155	C1	Blue
+Zanubrutinib	0.0413557727	7	8	True	0.482889182	110	3	True	False	NA	-0.313316325	0.0715795528	39	-0.0866016352	100	B6	Blue
+Orelabrutinib	-0.107241769	50	6	True	0.965881966	26	4	True	True	13	0.220219501	0.0507775633	46	0.380415884	14	B5	Blue
+Almonertinib (hydrochloride)	-0.298276526	129	6	True	2.78853956	1	3	True	False	NA	-4.31326713	0.137112465	18	1.29408075	2	E5	Blue
+Osimertinib	-0.699546078	154	6	True	2.11637679	4	3	True	False	NA	-5.01723416	-0.142050098	150	0.650011804	7	E6	Blue
+Erlotinib (Hydrochloride)	-0.516176699	144	6	True	0.94330504	28	3	True	False	NA	-0.805677157	0.141516987	17	-0.263173362	139	D6	Red
+Mobocertinib (succinate)	-0.807772947	157	6	True	2.27402487	3	3	True	False	NA	-3.42231515	-0.10664987	137	1.02346943	4	G8	Red
+Lapatinib (ditosylate)	-0.350918399	137	6	True	0.951223659	27	3	True	False	NA	-0.559482124	0.0479371029	47	-0.0459570866	92	E4	Red
+Icotinib	-0.466779278	141	6	True	0.867967994	41	4	True	True	21	0.151016691	-0.139917578	149	0.315187615	20	G9	Red
+Ferulic acid	0.021845834	11	7	True	-0.101166505	156	1	True	False	NA	-0.229784217	0.0858393969	30	-0.547232847	153	D1	Blue
+alpha-Lipoic Acid	-0.0183551012	17	8	True	0.423045859	118	4	True	True	62	0.272095737	0.108562449	27	-0.187085946	124	H8	Blue
+Lipoic acid	-0.0139494427	15	7	True	0.99612063	24	4	True	True	11	0.310549493	0.0844785566	31	0.37834926	15	D12	Blue
+Nordihydroguaiaretic acid	-0.255345545	120	6	True	-0.142714239	157	2	True	False	NA	-1.018092	-0.047473217	109	-0.898438552	157	C3	Red
+Lonafarnib	-0.538302323	146	5	True	-0.193909535	159	3	True	False	NA	-2.22176021	-0.0769701809	125	-1.22147601	159	F5	Blue
+Atorvastatin (hemicalcium salt)	-0.207931439	108	5	True	0.61022177	81	3	True	False	NA	-0.115981901	-0.0517458894	113	-0.0604734718	95	F4	Blue
+Simvastatin acid (ammonium)	-0.0435159845	22	7	True	0.640402941	75	3	True	False	NA	-0.749883384	0.201693862	7	-0.153397793	114	D12	Red
+Desloratadine	-0.600864596	152	4	True	0.877045675	37	2	True	False	NA	-0.594222456	-0.200752668	155	0.0752008773	58	E9	Red
+Amiodarone (hydrochloride)	-0.550281763	148	3	True	0.584880592	90	2	True	False	NA	-0.612053639	-0.216797774	156	-0.262437687	137	C5	Red
+DFO	-1.11190653	NA	3	True	-0.701561439	NA	1	True	False	NA	-1.88423014	-0.766645719	NA	-1.38837262	NA	NA	NA

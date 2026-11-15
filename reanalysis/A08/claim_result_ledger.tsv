@@ -6,6 +6,9 @@ Primary significant pairs q<0.05	751	A02/program_effects.tsv:q_BH_global_plate
 Vehicle split significant proteins	52	A04/diagnostic_summary.json
 Vehicle split significant plate programs	1	A04/null_calibration.tsv
 Binimetinib directions stable across paired vehicle references	True	A04/vehicle_reference_sensitivity.tsv
+Four-axis point-estimate sign-eligible library entries	68	A06/exploratory_prioritization.tsv:four_axis_eligible_rank
+Library entries with four requested-direction global q<0.05 effects	0	A02/program_effects.tsv; A06/prioritization_definitions.tsv
+First four-axis sign-filtered candidate	Meclofenoxate (hydrochloride)	A06/exploratory_prioritization.tsv:four_axis_eligible_rank
 Binimetinib PROG_OXPHOS competitive mean log2FC	0.294230244	A02/program_effects.tsv
 Binimetinib PROG_INFLAMMATORY competitive mean log2FC	-0.231367023	A02/program_effects.tsv
 Baicalein PROG_OXPHOS competitive mean log2FC	0.173287271	A02/program_effects.tsv

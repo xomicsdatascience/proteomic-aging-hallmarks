@@ -1,0 +1,15 @@
+program_id	target_direction	four_axis_direction	combined_weight	four_axis_weight	library_effect_sd	n_library_effects	effect_field	centering
+PRIOR_DEMAGALHAES_DN	1	NA	0.0714285714	0	0.211312089	160	plate_competitive_log2fc	none; zero is no competitive response
+PRIOR_DEMAGALHAES_UP	-1	NA	0.0714285714	0	0.1277042	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_CELL_CELL_COMM	-1	NA	0.0714285714	0	0.0406764167	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_CHROMATIN_ORG	1	NA	0.0714285714	0	0.0626884969	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_DNA_REPAIR	1	NA	0.0714285714	0	0.0607724577	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_INFLAMMATORY	-1	NA	0.0714285714	0	0.120032092	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_INNATE_TLR	-1	NA	0.0714285714	0	0.0442543346	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_MACROAUTOPHAGY	1	1	0.0714285714	0.25	0.0273836593	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_MTORC1_SIGNALING	-1	NA	0.0714285714	0	0.0547708397	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_OXPHOS	1	1	0.0714285714	0.25	0.151119157	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_PROTEASOME	1	1	0.0714285714	0.25	0.0572693572	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_PROTEOSTASIS_UPR	1	NA	0.0714285714	0	0.0690969239	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_SENESCENCE_CORE	-1	-1	0.0714285714	0.25	0.0582994209	160	plate_competitive_log2fc	none; zero is no competitive response
+PROG_TELOMERE_MAINT	1	NA	0.0714285714	0	0.118698528	160	plate_competitive_log2fc	none; zero is no competitive response

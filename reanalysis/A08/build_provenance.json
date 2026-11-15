@@ -39,15 +39,17 @@
   },
   "source_sha256": {
     "reanalysis/analysis_common.py": "2f7075c014f6b5c6335053fe7aa2619c3a6d4dc14e5e15436337e24657dcd988",
-    "reanalysis/build_manuscript.py": "72b47663d52a82454b996aeda6af5a6232ded2e243c30dee4a0f781225007d3f",
+    "reanalysis/build_manuscript.py": "d76859f4fcd6c63732fa831e52927c78c957a434dcd7fbec1f0df20316a08e22",
+    "reanalysis/prioritization.py": "3f623fcbc8345c19e247337a25b12d6adb43619afa80e41b9be9909b78e8fbd5",
     "reanalysis/run_A01_A03.py": "63cdf477e049195e79906add36867618855fe4b406bb22a412133302b5a0a0bb",
     "reanalysis/run_A02.py": "0ee983f73e13ee62ef0ab306d6c06de8a2417cdb9c9410d58b9921720a973034",
     "reanalysis/run_A04.py": "af1ef72c61311692dac69362e8255d2d4498c9991f37b600ad80ecc72dccc2a3",
     "reanalysis/run_A05.py": "c4407190e01631e29a43bcd63fc9301ebe9c83f5ffecdfe581329627ce2581bf",
-    "reanalysis/run_A06.py": "714b9e9ac504701e88ec9abe7d0171319c7689010c8ab44e9591eb9bb701e6c1",
+    "reanalysis/run_A06.py": "ac3de4a30a3f6262a6995b446cdb7704d5fb110a24d701a2dd19df62f00468d4",
     "reanalysis/run_A07.py": "ebae08e2b5d5be11fc2be065a42207da81a7a8e37b69ead401a4c942da91546e",
-    "reanalysis/run_A08.py": "33c16938608d421772a948728c7bd0ee291340c7a4da128f9ac6cf857cd952a9",
-    "reanalysis/run_all.py": "472be192c88d917e72e2f980d914675c022acf9dee59151e37ab2fd7ed7ad885",
-    "reanalysis/validate_outputs.py": "72106fffc60f698ce7f2ef3bbc9a57b1019f0c90f811fd4a036a03970a16bf2a"
+    "reanalysis/run_A08.py": "96ac5dc659a93a3b1152e3434304f1ee3a3d3b02769b771f56d6ceea1e3c455f",
+    "reanalysis/run_all.py": "143bc663f7f964d61746125f76fff64f5b0b3145acb0a6f9899a76ab2fed0f0e",
+    "reanalysis/run_prioritization.py": "30cbbbaded3f1056cda528504d2a4b174c4577b60822e328e0858f7e6b789e1b",
+    "reanalysis/validate_outputs.py": "f6ee6c07e98cd956c91efb1b001b3d0a5eaab31de2ddfcc468e524c59c208ebf"
   }
 }

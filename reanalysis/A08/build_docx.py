@@ -2,7 +2,10 @@
 import re
 import sys
 import shutil
+from io import BytesIO
+from zipfile import ZipFile, ZIP_DEFLATED
 from pathlib import Path
+from PIL import Image
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -12,6 +15,30 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from analysis_common import ROOT
 
 BASE=ROOT/'reanalysis/A08'
+
+
+def package_parts(data):
+    with ZipFile(BytesIO(data)) as package:
+        return {name:package.read(name) for name in package.namelist()}
+
+
+def save_document(doc,path,compact_images=False):
+    """Preserve unchanged packages; compact main images at native pixel size."""
+    buffer=BytesIO();doc.save(buffer);data=buffer.getvalue()
+    if compact_images:
+        output=BytesIO()
+        with ZipFile(BytesIO(data)) as source,ZipFile(output,'w',compression=ZIP_DEFLATED,compresslevel=9) as target:
+            for entry in source.infolist():
+                part=source.read(entry.filename)
+                if entry.filename.startswith('word/media/') and entry.filename.endswith('.png'):
+                    with Image.open(BytesIO(part)) as image:
+                        indexed=image.convert('RGB').quantize(colors=128,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE)
+                    image_bytes=BytesIO();indexed.save(image_bytes,format='PNG',optimize=True);part=image_bytes.getvalue()
+                target.writestr(entry,part,compress_type=ZIP_DEFLATED,compresslevel=9)
+        data=output.getvalue()
+    if path.exists() and package_parts(path.read_bytes())==package_parts(data):
+        return
+    path.write_bytes(data)
 
 
 def styled_document():
@@ -76,7 +103,7 @@ def main():
         if line.startswith('**Supplementary Figure'):
             key=re.match(r'\*\*Supplementary Figure (S\d+)',line).group(1);captions[key]=line
         i+=1
-    primary=BASE/'Aging_Proteomics_Manuscript_Revised.docx';doc.save(primary)
+    primary=BASE/'Aging_Proteomics_Manuscript_Revised.docx';save_document(doc,primary,compact_images=True)
     for target in [ROOT/'Aging_Hallmarks_Proteomics_Report.docx',ROOT/'results/Aging_Hallmarks_Proteomics_Report.docx',BASE/'Aging_Proteomics_Manuscript_Final.docx']:
         target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(primary,target)
     supplement=styled_document();supplement.add_paragraph('Supplementary figures',style='Title')
@@ -90,7 +117,10 @@ def main():
         else:formatted(supplement,'Continuation of the full alphabetical response atlas. Asterisks denote global BH q < 0.05 (*) and q < 0.01 (**); colors are clipped at +/-10.')
     supplement.add_page_break();add_image(supplement,BASE/'figures/figS3_benchmarks_and_sensitivity.png');formatted(supplement,captions['S3'])
     supplement.add_page_break();add_image(supplement,BASE/'figures/figS4_layout_context.png');formatted(supplement,captions['S4'])
-    supplement.save(BASE/'Aging_Proteomics_Supplementary_Figures.docx')
-    print('Canonical manuscript, synchronized Word copies, and paginated supplementary figures exported.',flush=True)
+    save_document(supplement,BASE/'Aging_Proteomics_Supplementary_Figures.docx')
+    vignette=styled_document();vignette.add_paragraph('Supplementary Figure S5',style='Title')
+    add_image(vignette,BASE/'figures/figS5_four_axis_candidates.png');formatted(vignette,captions['S5'])
+    save_document(vignette,BASE/'Aging_Proteomics_Supplementary_Figure_S5.docx')
+    print('Canonical manuscript, synchronized Word copies, S1-S4 supplement, and separate S5 exported.',flush=True)
 
 if __name__=='__main__':main()
