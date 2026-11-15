@@ -1,4 +1,2 @@
-comparison	value	p_val
-Proteome_vs_Program_pairwise_r	0.8324	0.0
-Mean_within_category_program_r	0.477	
-Mean_between_category_program_r	0.4661	
+comparison	value	n_pairs	inference
+descriptive correlation of pairwise drug similarities in protein and program spaces	0.839431192	12880	pairs share compounds; no independent-pair p value

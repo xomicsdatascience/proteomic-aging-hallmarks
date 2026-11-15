@@ -1,0 +1,3 @@
+# Fixed-position context
+
+All 160 primary library entries occupy one fixed well coordinate across their replicate plates. Binimetinib occupies Red-plate H3 and baicalein Red-plate H2, so their related response is also an adjacent-position observation. Vehicle wells occupy E1 and F1. Repeated plates do not independently vary compound and position. The vehicle differences motivate concern about position effects, but do not establish that a particular drug response is an artifact. These data cannot identify separate compound and well effects. No row/column residualization is presented as a correction. Randomized or repositioned treatment replication with distributed vehicle controls is required to resolve this limitation.

@@ -1,135 +1,126 @@
-import os
+"""Export one canonical manuscript and a readable supplementary figure document."""
 import re
+import sys
 import shutil
+from io import BytesIO
+from zipfile import ZipFile, ZIP_DEFLATED
+from pathlib import Path
+from PIL import Image
 from docx import Document
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from analysis_common import ROOT
 
-md_path = "reanalysis/A08/Aging_Proteomics_Manuscript_Revised.md"
-docx_path = "reanalysis/A08/Aging_Proteomics_Manuscript_Revised.docx"
-base_dir = os.path.dirname(md_path)
+BASE=ROOT/'reanalysis/A08'
 
-with open(md_path, "r", encoding="utf-8") as f:
-    raw_text = f.read()
 
-if "\u2014" in raw_text:
-    raw_text = raw_text.replace("\u2014", " - ")
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write(raw_text)
+def package_parts(data):
+    with ZipFile(BytesIO(data)) as package:
+        return {name:package.read(name) for name in package.namelist()}
 
-lines = raw_text.splitlines()
-assert "\u2014" not in "\n".join(lines), "Em dash found in manuscript markdown!"
 
-doc = Document()
-style = doc.styles["Normal"]
-style.font.name = "Calibri"
-style.font.size = Pt(11)
+def save_document(doc,path,compact_images=False):
+    """Preserve unchanged packages; compact main images at native pixel size."""
+    buffer=BytesIO();doc.save(buffer);data=buffer.getvalue()
+    if compact_images:
+        output=BytesIO()
+        with ZipFile(BytesIO(data)) as source,ZipFile(output,'w',compression=ZIP_DEFLATED,compresslevel=9) as target:
+            for entry in source.infolist():
+                part=source.read(entry.filename)
+                if entry.filename.startswith('word/media/') and entry.filename.endswith('.png'):
+                    with Image.open(BytesIO(part)) as image:
+                        indexed=image.convert('RGB').quantize(colors=128,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE)
+                    image_bytes=BytesIO();indexed.save(image_bytes,format='PNG',optimize=True);part=image_bytes.getvalue()
+                target.writestr(entry,part,compress_type=ZIP_DEFLATED,compresslevel=9)
+        data=output.getvalue()
+    if path.exists() and package_parts(path.read_bytes())==package_parts(data):
+        return
+    path.write_bytes(data)
 
-def add_formatted_paragraph(doc, text, style_name=None, italic_default=False):
-    p = doc.add_paragraph(style=style_name) if style_name else doc.add_paragraph()
-    # Clean backticks
-    text_clean = text.replace("`", "")
-    # Split by **bold**
-    parts = re.split(r"(\*\*.*?\*\*)", text_clean)
+
+def styled_document():
+    doc=Document();sec=doc.sections[0]
+    sec.page_width=Inches(8.5);sec.page_height=Inches(11)
+    sec.top_margin=sec.bottom_margin=sec.left_margin=sec.right_margin=Inches(.75)
+    normal=doc.styles['Normal'];normal.font.name='Calibri';normal.font.size=Pt(11)
+    normal.paragraph_format.space_after=Pt(7)
+    normal.paragraph_format.line_spacing=1.06
+    normal.paragraph_format.keep_together=True
+    for style in doc.styles:
+        for border in style.element.findall('.//'+qn('w:pBdr')):
+            border.getparent().remove(border)
+    for name,size in [('Title',17),('Heading 1',13),('Heading 2',11.5),('Heading 3',11)]:
+        st=doc.styles[name];st.font.name='Calibri';st.font.size=Pt(size);st.font.color.rgb=RGBColor(0,0,0)
+        st.font.underline=False
+        if name!='Title':st.font.bold=True
+    doc.core_properties.title='Proteomic profiling distinguishes drug responses across aging associated cellular programs'
+    doc.core_properties.author='Jesse G. Meyer'
+    return doc
+
+
+def formatted(doc,text,style=None):
+    p=doc.add_paragraph(style=style)
+    # Only alphabetic bold spans are formatting. Literal * and ** significance markers survive.
+    parts=re.split(r'(\*\*(?=[A-Za-z])[^*]+\*\*)',text)
     for part in parts:
-        if not part:
-            continue
-        if part.startswith("**") and part.endswith("**"):
-            run = p.add_run(part[2:-2])
-            run.bold = True
-            if italic_default:
-                run.italic = True
-        else:
-            # Handle *italic*
-            subparts = re.split(r"(\*[^\*]+?\*)", part)
-            for sp in subparts:
-                if not sp:
-                    continue
-                if sp.startswith("*") and sp.endswith("*") and len(sp) > 2:
-                    run = p.add_run(sp[1:-1])
-                    run.italic = True
-                else:
-                    run = p.add_run(sp)
-                    if italic_default:
-                        run.italic = True
+        if part.startswith('**') and part.endswith('**') and len(part)>4:
+            p.add_run(part[2:-2]).bold=True
+        else:p.add_run(part)
     return p
 
-i = 0
-while i < len(lines):
-    s = lines[i].strip()
-    if not s or s == "---":
-        i += 1
-        continue
 
-    # Inline Markdown image detection: ![alt](path)
-    img_match = re.match(r"^!\[(.*?)\]\((.*?)\)$", s)
-    if img_match:
-        alt_text, rel_img_path = img_match.groups()
-        img_full_path = os.path.join(base_dir, rel_img_path)
-        if not os.path.exists(img_full_path):
-            img_full_path = rel_img_path
-        if os.path.exists(img_full_path):
-            p_img = doc.add_paragraph()
-            p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            run_img = p_img.add_run()
-            run_img.add_picture(img_full_path, width=Inches(6.4))
-        i += 1
-        # Check if next non-empty line is the Figure Legend
-        while i < len(lines) and not lines[i].strip():
-            i += 1
-        if i < len(lines) and (lines[i].strip().startswith("**Figure") or lines[i].strip().startswith("**Supplementary Figure")):
-            leg_line = lines[i].strip()
-            p_leg = add_formatted_paragraph(doc, leg_line)
-            p_leg.paragraph_format.space_after = Pt(12)
-            i += 1
-        continue
+def add_image(doc,path,width=6.9):
+    p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.keep_with_next=True;p.paragraph_format.space_after=Pt(5)
+    p.add_run().add_picture(str(path),width=Inches(width))
+    return p
 
-    # Display math block $$ ... $$
-    if s.startswith("$$") and s.endswith("$$") and len(s) > 4:
-        p_math = doc.add_paragraph(s.strip("$").strip())
-        p_math.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        i += 1
-        continue
 
-    # Markdown table detection
-    if s.startswith("|") and i + 1 < len(lines) and lines[i + 1].strip().startswith("|"):
-        table_lines = []
-        while i < len(lines) and lines[i].strip().startswith("|"):
-            row_str = lines[i].strip()
-            if not re.match(r"^\|[\s:\-\|]+\|$", row_str):
-                cells = [c.strip() for c in row_str.strip("|").split("|")]
-                table_lines.append(cells)
-            i += 1
-        if table_lines:
-            tbl = doc.add_table(rows=len(table_lines), cols=len(table_lines[0]))
-            tbl.style = "Table Grid"
-            for r_idx, row_cells in enumerate(table_lines):
-                for c_idx, val in enumerate(row_cells):
-                    clean_val = re.sub(r"\*\*(.*?)\*\*", r"\1", val).replace("`", "")
-                    cell = tbl.cell(r_idx, c_idx)
-                    cell.text = clean_val
-                    for run in cell.paragraphs[0].runs:
-                        run.font.size = Pt(9.5)
-                        if r_idx == 0:
-                            run.bold = True
-        continue
+def main():
+    text=(BASE/'Aging_Proteomics_Manuscript_Revised.md').read_text()
+    if '$' in text or '\\frac' in text or '\u2014' in text:
+        raise ValueError('Unrendered math or prohibited punctuation in manuscript')
+    lines=text.splitlines();doc=styled_document();captions={};i=0
+    while i<len(lines):
+        line=lines[i].strip()
+        if not line:i+=1;continue
+        image=re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$',line)
+        if image:
+            # Keep each image with its legend and let Word fill the preceding page.
+            add_image(doc,BASE/image.group(2),width=6.5 if image.group(1)=='Figure 3' else 6.9);i+=1
+            while i<len(lines) and not lines[i].strip():i+=1
+            if i<len(lines) and lines[i].startswith('**Figure'):
+                formatted(doc,lines[i]);i+=1
+            continue
+        if line.startswith('# '):doc.add_paragraph(line[2:],style='Title')
+        elif line.startswith('## '):doc.add_paragraph(line[3:],style='Heading 1')
+        elif line.startswith('### '):doc.add_paragraph(line[4:],style='Heading 2')
+        elif line.startswith('- '):formatted(doc,line[2:],style='List Bullet')
+        else:formatted(doc,line)
+        if line.startswith('**Supplementary Figure'):
+            key=re.match(r'\*\*Supplementary Figure (S\d+)',line).group(1);captions[key]=line
+        i+=1
+    primary=BASE/'Aging_Proteomics_Manuscript_Revised.docx';save_document(doc,primary,compact_images=True)
+    for target in [ROOT/'Aging_Hallmarks_Proteomics_Report.docx',ROOT/'results/Aging_Hallmarks_Proteomics_Report.docx',BASE/'Aging_Proteomics_Manuscript_Final.docx']:
+        target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(primary,target)
+    supplement=styled_document();supplement.add_paragraph('Supplementary figures',style='Title')
+    add_image(supplement,BASE/'figures/figS1_qc_and_null_calibration.png');formatted(supplement,captions['S1'])
+    parts=sorted((BASE/'figures').glob('figS2_atlas_part_*.png'))
+    for j,path in enumerate(parts,1):
+        supplement.add_page_break()
+        supplement.add_paragraph(f'Supplementary Figure S2 part {j} of {len(parts)}',style='Heading 1')
+        add_image(supplement,path)
+        if j==1:formatted(supplement,captions['S2'])
+        else:formatted(supplement,'Continuation of the full alphabetical response atlas. Asterisks denote global BH q < 0.05 (*) and q < 0.01 (**); colors are clipped at +/-10.')
+    supplement.add_page_break();add_image(supplement,BASE/'figures/figS3_benchmarks_and_sensitivity.png');formatted(supplement,captions['S3'])
+    supplement.add_page_break();add_image(supplement,BASE/'figures/figS4_layout_context.png');formatted(supplement,captions['S4'])
+    save_document(supplement,BASE/'Aging_Proteomics_Supplementary_Figures.docx')
+    vignette=styled_document();vignette.add_paragraph('Supplementary Figure S5',style='Title')
+    add_image(vignette,BASE/'figures/figS5_four_axis_candidates.png');formatted(vignette,captions['S5'])
+    save_document(vignette,BASE/'Aging_Proteomics_Supplementary_Figure_S5.docx')
+    print('Canonical manuscript, synchronized Word copies, S1-S4 supplement, and separate S5 exported.',flush=True)
 
-    if s.startswith("# "):
-        p = doc.add_heading(s[2:], level=0)
-        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    elif s.startswith("## "):
-        doc.add_heading(s[3:], level=1)
-    elif s.startswith("### "):
-        doc.add_heading(s[4:], level=2)
-    elif s.startswith("- "):
-        add_formatted_paragraph(doc, s[2:], style_name="List Bullet")
-    else:
-        add_formatted_paragraph(doc, s)
-    i += 1
-
-for out_p in [docx_path, "Aging_Hallmarks_Proteomics_Report.docx", "results/Aging_Hallmarks_Proteomics_Report.docx", "reanalysis/A08/Aging_Proteomics_Manuscript_Final.docx"]:
-    try:
-        doc.save(out_p)
-        print(f"Saved {out_p} ({os.path.getsize(out_p)} bytes) with inline figures and immediate legends.")
-    except PermissionError:
-        print(f"Note: {out_p} is currently open in Word; saved to reanalysis/A08/Aging_Proteomics_Manuscript_Final.docx instead.")
+if __name__=='__main__':main()

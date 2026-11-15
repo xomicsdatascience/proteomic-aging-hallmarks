@@ -1,0 +1,162 @@
+compound_id	n_features	n_eligible_features	minimum_observed_treated	median_observed_treated	n_below_three_treated
+6-Mercaptopurine	7871	7760	0	6	111
+ATP (dimagnesium)	7871	7779	0	6	92
+Abemaciclib (methanesulfonate)	7871	7406	0	6	465
+Acetophenazine (dimaleate)	7871	7778	0	6	93
+Adiphenine (hydrochloride)	7871	7805	0	6	66
+Alcaftadine	7871	7786	0	6	85
+Alizapride (hydrochloride)	7871	7768	0	6	103
+Almonertinib (hydrochloride)	7871	5173	0	6	2698
+Almotriptan (malate)	7871	7795	0	6	76
+Amcinonide	7871	7817	0	6	54
+Amiodarone (hydrochloride)	7871	7781	0	6	90
+Amisulpride	7871	7833	0	6	38
+Amodiaquine (dihydrochloride)	7871	7793	0	6	78
+Anamorelin	7871	7826	1	6	45
+Andrographolide	7871	7773	0	6	98
+Aniracetam	7871	7813	0	6	58
+Antazoline (hydrochloride)	7871	7774	0	6	97
+Antipyrine	7871	7781	0	6	90
+Asciminib	7871	7816	0	6	55
+Atazanavir (sulfate)	7871	7796	0	6	75
+Atorvastatin (hemicalcium salt)	7871	7811	0	6	60
+Azatadine (dimaleate)	7871	7792	0	6	79
+Baicalein	7871	7766	0	6	105
+Balsalazide	7871	7819	0	6	52
+Belzutifan	7871	7766	0	6	105
+Benzamil (hydrochloride)	7871	7816	0	6	55
+Benztropine (mesylate)	7871	7813	0	6	58
+Bepotastine	7871	7802	0	6	69
+Betahistine	7871	7765	0	6	106
+Betamethasone dipropionate	7871	7792	0	6	79
+Betamethasone disodium phosphate	7871	7812	0	6	59
+Betamethasone valerate	7871	7797	0	6	74
+Betazole	7871	7764	0	6	107
+Bicyclol	7871	7768	0	6	103
+Binimetinib	7871	7650	0	6	221
+Bromhexine (hydrochloride)	7871	7808	1	6	63
+Budesonide	7871	7795	0	6	76
+Butylphthalide	7871	7801	0	6	70
+Camphor	7871	7832	0	6	39
+Carbenoxolone (disodium)	7871	7787	0	6	84
+Caroverine (hydrochloride)	7871	7823	0	6	48
+Cetirizine (dihydrochloride)	7871	7800	0	6	71
+Chloroprocaine (hydrochloride)	7871	7798	0	6	73
+Chloropyramine hydrochloride	7871	7785	0	6	86
+Chlorpheniramine (maleate)	7871	7805	0	6	66
+Chlorpropamide	7871	7686	0	6	185
+Ciclesonide	7871	7794	0	6	77
+Clobetasone butyrate	7871	7822	0	6	49
+Clomiphene (citrate)	7871	6908	0	6	963
+Cromolyn (sodium)	7871	7797	0	6	74
+Cyclothiazide	7871	7819	0	6	52
+Cytidine	7871	7784	0	6	87
+DFO	7871	7842	0	24	29
+Danthron	7871	7817	0	6	54
+Daprodustat	7871	7829	1	6	42
+Deflazacort	7871	7802	0	6	69
+Delavirdine (mesylate)	7871	7801	0	6	70
+Desloratadine	7871	7800	0	6	71
+Dexpramipexole (dihydrochloride)	7871	7810	0	6	61
+Diacerein	7871	7785	0	6	86
+Digitoxin	7871	7191	0	6	680
+Dimenhydrinate	7871	7784	0	6	87
+Dimethyl fumarate	7871	7797	0	6	74
+Diphenhydramine (hydrochloride)	7871	7826	0	6	45
+Diphenylpyraline (hydrochloride)	7871	7829	0	6	42
+Eicosapentaenoic Acid	7871	7750	0	5	121
+Emedastine	7871	7769	0	6	102
+Enclomiphene (citrate)	7871	7759	0	6	112
+Epinastine (hydrochloride)	7871	7778	0	6	93
+Eptifibatide	7871	7815	0	6	56
+Erlotinib (Hydrochloride)	7871	7745	0	6	126
+Etravirine	7871	7594	0	6	277
+Ferulic acid	7871	7814	0	6	57
+Fexofenadine (hydrochloride)	7871	7817	0	6	54
+Flumatinib	7871	7707	0	6	164
+Fluphenazine decanoate	7871	7803	0	6	68
+Flupirtine (Maleate)	7871	7796	0	6	75
+Fluticasone furoate	7871	7798	0	6	73
+Gliquidone	7871	7807	0	6	64
+Haloperidol	7871	7810	0	6	61
+Hydrocortisone cypionate	7871	7804	0	6	67
+Icotinib	7871	7796	0	6	75
+Idelalisib	7871	7821	0	6	50
+Ifenprodil (tartrate)	7871	7823	0	6	48
+Imiquimod (maleate)	7871	7839	0	6	32
+Ketotifen (fumarate)	7871	7811	1	6	60
+L-5-Hydroxytryptophan	7871	7807	0	6	64
+L-Tryptophan	7871	7810	0	6	61
+Lapatinib (ditosylate)	7871	7818	0	6	53
+Lazertinib	7871	7821	0	6	50
+Levocetirizine (dihydrochloride)	7871	7763	0	6	108
+Liarozole	7871	7801	0	6	70
+Linaclotide	7871	7752	0	6	119
+Lipoic acid	7871	7807	0	6	64
+Lobeline (hydrochloride)	7871	7808	0	6	63
+Lonafarnib	7871	7768	0	6	103
+Loratadine	7871	7794	0	6	77
+Masoprocol	7871	7812	0	6	59
+Mebhydrolin	7871	7796	0	6	75
+Mecamylamine (hydrochloride)	7871	7811	0	6	60
+Meclofenoxate (hydrochloride)	7871	7764	0	5	107
+Mefloquine (hydrochloride)	7871	6334	0	6	1537
+Mephenesin	7871	7818	1	6	53
+Methylene blue (trihydrate)	7871	7686	0	6	185
+Methylthiouracil	7871	7778	0	6	93
+Mifepristone	7871	7827	0	6	44
+Mobocertinib (succinate)	7871	6842	0	6	1029
+Mometasone	7871	7751	0	5	120
+Monomethyl fumarate	7871	7819	0	6	52
+Moxonidine	7871	7813	0	6	58
+Nateglinide	7871	7804	0	6	67
+Neratinib	7871	7757	0	6	114
+Nicotinamide	7871	7765	0	6	106
+Nitazoxanide	7871	7753	0	6	118
+Nitrendipine	7871	7809	0	6	62
+Nordihydroguaiaretic acid	7871	7794	0	6	77
+Olmutinib	7871	7545	0	6	326
+Olverembatinib (dimesylate)	7871	4341	0	3	3530
+Orelabrutinib	7871	7805	0	6	66
+Osimertinib	7871	4572	0	4	3299
+Oxybutynin (chloride)	7871	7782	0	6	89
+Pamapimod	7871	7783	0	6	88
+Peretinoin	7871	7811	0	6	60
+Pindolol	7871	7791	0	6	80
+Pipecuronium (bromide)	7871	7799	0	6	72
+Pirlindole	7871	7797	0	6	74
+Pranlukast (hemihydrate)	7871	7792	0	6	79
+Prednisolone Tebutate	7871	7797	0	6	74
+Prednisone acetate	7871	7822	1	6	49
+Prilocaine	7871	7791	0	6	80
+Procyclidine (hydrochloride)	7871	7785	0	6	86
+Prucalopride	7871	7787	0	6	84
+Rilpivirine	7871	7760	0	6	111
+Rocuronium (Bromide)	7871	7819	1	6	52
+Savolitinib	7871	7818	0	6	53
+Simotinib	7871	7819	0	6	52
+Simvastatin acid (ammonium)	7871	7818	0	6	53
+Stiripentol	7871	7831	0	6	40
+Teclozan	7871	7814	0	6	57
+Tenapanor (hydrochloride)	7871	7817	0	6	54
+Tinoridine (hydrochloride)	7871	7826	0	6	45
+Tirofiban (hydrochloride monohydrate)	7871	7778	0	6	93
+Tolbutamide	7871	7813	0	6	58
+Topiroxostat	7871	7819	0	6	52
+Tranylcypromine (hemisulfate)	7871	7758	0	6	113
+Tricaprilin	7871	7808	1	6	63
+Triclabendazole	7871	7811	0	6	60
+Trimethobenzamide (hydrochloride)	7871	7819	0	6	52
+Tripelennamine (hydrochloride)	7871	7776	0	6	95
+Tucatinib	7871	7827	0	6	44
+Tucidinostat	7871	7595	0	6	276
+Umbralisib	7871	7810	0	6	61
+Vadadustat	7871	7824	0	6	47
+Vardenafil	7871	7795	0	6	76
+Varenicline (Hydrochloride)	7871	7787	0	6	84
+Vasopressin	7871	7797	0	6	74
+Vecuronium (bromide)	7871	7828	0	6	43
+Vemurafenib	7871	7737	0	6	134
+Zanubrutinib	7871	7811	0	6	60
+alpha-Lipoic Acid	7871	7805	0	6	66
+Î³-Oryzanol	7871	7771	0	6	100

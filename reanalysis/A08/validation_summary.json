@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "primary_samples": 1004,
+  "retained_features": 7871,
+  "primary_program_tests": 2254,
+  "protein_rows": 1267231,
+  "protein_partitions": 41,
+  "synchronized_word_exports": 4,
+  "primary_plate_pairs_q05": 751,
+  "four_axis_sign_eligible_library_entries": 68,
+  "four_axis_all_global_q05_library_entries": 0,
+  "published_four_axis_candidate_effects": 20,
+  "figure3_primary_q_styles_checked": 2254,
+  "note": "Structural and numerical checks; Word layout is reviewed separately."
+}

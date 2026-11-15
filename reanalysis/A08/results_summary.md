@@ -1,19 +1,24 @@
-# Reanalysis Results Summary (A01-A08)
+# Current results
 
-- **Title**: Proteomic profiling maps pharmacological responses across aging associated cellular programs
-- **Primary Estimable Universe**: 161 contrasts (160 library compounds + `DFO`) across 12 balanced assay plates (`Blue1`-`Blue6`, `Red1`-`Red6`, `7,871` proteins retained at `<=50%` missingness); 12 `RedMix` compounds excluded from primary inference due to `0` within-plate `DMSO` controls.
-- **Recomputed Pathway Significance (Global BH FDR across 2,254 tests)**:
-  - Standard regularized correlation-aware `CAMERA` (`rho = 0.01`, Wu & Smyth 2012): **504 / 2,254** pairs (`159 / 161` contrasts) at `BH q < 0.05` (`736` at `q < 0.10`; `1,071` at `q < 0.20`).
-  - Pre-Ranked GSEA (`2,000` permutations): **826 / 2,254** pairs (`161 / 161` contrasts) at `BH q < 0.05`.
-  - Unregularized empirical-VIF `CAMERA` (`VIF` up to `24.63` on `PROG_OXPHOS`): **218 / 2,254** pairs at `BH q < 0.05`.
-- **14-Pathway Composite Geroprotective Score (`CGS`) Top Nominations (`reanalysis/A06/candidate_specificity.tsv`)**:
-  1. **Binimetinib** (MEK1/2 inhibitor): `CGS_unadj = +1.91`, `CGS_adj = +3.29` (#1 in screen), **`CGS_combined = +3.68` (`BH q = 0.0028`)**; `PROG_OXPHOS` `CAMERA t = +7.39` (`q = 6.1e-11`), `PROG_INFLAMMATORY` `CAMERA t = -4.02` (`q = 8.2e-4`).
-  2. **Cyclothiazide** (AMPA modulator / benzothiadiazine): `CGS_unadj = +2.58` (`q = 0.0273`, #1 unadjusted, 9/14 programs beneficial vs. `DMSO`), `CGS_adj = +1.53`, **`CGS_combined = +2.91` (`BH q = 0.0185`)**.
-  3. **Zanubrutinib** (covalent BTK inhibitor): `CGS_unadj = +2.02` (8/14 beneficial), `CGS_adj = +1.38` (10/14 beneficial), **`CGS_combined = +2.40` (`BH q = 0.0593`)** (concordant with second BTK inhibitor `Orelabrutinib`, 9/14 adjusted programs beneficial).
-  4. **Baicalein** (flavonoid): `CGS_unadj = +1.11`, `CGS_adj = +2.03`, **`CGS_combined = +2.22` (`BH q = 0.0836`)**.
-  5. **Almonertinib (hydrochloride)** (3rd-gen WT-sparing EGFR inhibitor): `CGS_unadj = +0.85`, `CGS_adj = +2.26` (9/14 beneficial), **`CGS_combined = +2.20` (`BH q = 0.0870`)** (concordant with `Osimertinib` `+0.85`, opposing 1st-gen WT-EGFR inhibitors `Icotinib` `-3.93`, `Lapatinib` `-2.65`, `Erlotinib` `-1.75`).
-  6. **Ferulic acid** (phenolic antioxidant): `CGS_unadj = +2.06` (10/14 beneficial), `CGS_adj = +0.95`, **`CGS_combined = +2.13` (`BH q = 0.0981`)**.
-  7. **alpha-Lipoic Acid** (mitochondrial cofactor): `CGS_unadj = +1.31` (8/14 beneficial), `CGS_adj = +1.53` (10/14 beneficial), **`CGS_combined = +2.01` (`BH q = 0.1207`)** (concordant with second library entry `Lipoic acid`).
-- **Pro-Aging / Stress Negative Controls Verified at Opposite Tail (`BH q <= 0.001`)**:
-  - `DFO` (`CGS_combined = -6.15`, `q = 1.3e-7`, #161/161), `Amiodarone (hydrochloride)` (`-5.53`, `q = 2.5e-6`, #160/161), and anticholinergic H1-antihistamines (`Desloratadine` `-4.94`, `Benztropine` `-4.76`, `Procyclidine` `-4.74`, `Chloropyramine` `-4.67`, `Antazoline` `-4.52`).
-- **Null Calibration Sanity Check (Methods/Supplement)**: `0 / 7,871` proteins and `0 / 14` aging programs significant at `BH q < 0.05` in within-plate `DMSO_A` vs `DMSO_B` split (`CGS_unadj = +0.016`, `p = 0.987`).
+Primary plate-level analysis: 751/2254 pairs at q < 0.05 across 143 contrasts.
+
+- Binimetinib Oxidative phosphorylation: competitive mean log2FC +0.294 (95% CI +0.255 to +0.334), q = 0.000515
+- Binimetinib Inflammatory response: competitive mean log2FC -0.231 (95% CI -0.300 to -0.163), q = 0.0042
+- Baicalein Oxidative phosphorylation: competitive mean log2FC +0.173 (95% CI +0.158 to +0.189), q = 0.000165
+- Baicalein Inflammatory response: competitive mean log2FC -0.215 (95% CI -0.310 to -0.119), q = 0.0138
+
+The mitochondrial-positive and inflammatory-negative directions were retained when the first listed vehicle well, second listed vehicle well, or their mean was used on the same paired-control plates.
+
+The exploratory 14-program combined response index ranked binimetinib first (+0.141) and baicalein second (+0.117) among the 160 library entries (Figure 2B; Supplementary Table S3). They followed only 6 and 7 of the 14 target signs, respectively. Their large changes on some axes outweighed opposing changes on others. This ranking therefore does not mean coordinated improvement of all programs. The raw index and E2F/G2M residual are displayed separately, with no index-level significance or rank-certainty claim. Different target signs, scales, weights or program redundancy can change this ordering.
+
+### A four-axis profile for cellular follow-up
+
+Restricting the target to higher OXPHOS, macroautophagy machinery and ubiquitination/proteasome responses with lower senescence-associated machinery produced a different shortlist (Supplementary Figure S5; Supplementary Table S2). Of 160 library entries, 68 had primary point estimates in all four requested directions. Among those entries, the equal-weight four-axis index ranked Meclofenoxate (1.270), Topiroxostat (1.096), Fexofenadine (1.090), Haloperidol (1.086), Asciminib (1.048). These are descriptive candidates for the specified abundance profile, not validated functional responses. The unrestricted mean and the sign-filtered rank are both exported, because a strong response on one axis can otherwise conceal an opposite response on another.
+
+For the leading entry, Meclofenoxate, the component effects were Oxidative phosphorylation +0.092 log2 units, q = 0.0213002; Macroautophagy machinery +0.077 log2 units, q = 0.00898605; Ubiquitination / proteasome +0.054 log2 units, q = 0.00828143; Senescence-associated machinery -0.041 log2 units, q = 0.0500405. The senescence estimate's unadjusted 95% interval excluded zero, but its global q value remained above 0.05. Across the screen, 0 library entries met q < 0.05 on all four axes in the requested directions. Thus the 68-compound sign filter is not evidence for a jointly significant four-axis response. The per-axis intervals, q values, effective plate counts, weakest signed components and complete rankings are provided rather than treating a rank as confidence in superiority.
+
+The first three filtered candidates also share a potentially consequential layout feature: Meclofenoxate at Blue F12, Topiroxostat at Blue G12, Fexofenadine at Blue B12. All occupy column 12 of the Blue plates. Compound and coordinate effects cannot be separated in this design, so repositioned randomized replication is needed before attributing this pattern to treatment. Binimetinib and baicalein did not pass the four-axis sign filter because their primary proteasome-associated responses were negative. Their mitochondrial/inflammatory profile addresses a different hypothesis from the four-axis assay profile.
+
+Cellular follow-up should test respiration, autophagic flux, proteasome activity and senescence phenotypes alongside cell counts and viability, using dose and time series with distributed vehicle wells. The present measurements concern relative protein abundance and do not establish improved function on any of these axes.
+
+No index-level significance, age reduction, clinical survival, or independent aging validation is claimed.

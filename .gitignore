@@ -5,3 +5,7 @@ Thumbs.db
 ~$*.docx
 
 reanalysis/A02/protein_effects.tsv
+reanalysis/_cache/
+reanalysis/A08/rendered/
+reanalysis/A02/protein_effects.tsv.gz
+.venv/

@@ -1,174 +1,174 @@
-contrast_id	compound_id	condition_role	n_treated	n_plates	plates	n_within_plate_dmso_plates	eligibility_status	eligibility_reason
-6-Mercaptopurine_vs_DMSO	6-Mercaptopurine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-ATP (dimagnesium)_vs_DMSO	ATP (dimagnesium)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Abemaciclib (methanesulfonate)_vs_DMSO	Abemaciclib (methanesulfonate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Acetophenazine (dimaleate)_vs_DMSO	Acetophenazine (dimaleate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Adiphenine (hydrochloride)_vs_DMSO	Adiphenine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Alcaftadine_vs_DMSO	Alcaftadine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Alizapride (hydrochloride)_vs_DMSO	Alizapride (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Almonertinib (hydrochloride)_vs_DMSO	Almonertinib (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Almotriptan (malate)_vs_DMSO	Almotriptan (malate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Ambroxol_vs_DMSO	Ambroxol	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Amcinonide_vs_DMSO	Amcinonide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Amiodarone (hydrochloride)_vs_DMSO	Amiodarone (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Amisulpride_vs_DMSO	Amisulpride	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Amodiaquine (dihydrochloride)_vs_DMSO	Amodiaquine (dihydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Anamorelin_vs_DMSO	Anamorelin	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Andrographolide_vs_DMSO	Andrographolide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Aniracetam_vs_DMSO	Aniracetam	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Antazoline (hydrochloride)_vs_DMSO	Antazoline (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Antipyrine_vs_DMSO	Antipyrine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Asciminib_vs_DMSO	Asciminib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Atazanavir (sulfate)_vs_DMSO	Atazanavir (sulfate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Atorvastatin (hemicalcium salt)_vs_DMSO	Atorvastatin (hemicalcium salt)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Azatadine (dimaleate)_vs_DMSO	Azatadine (dimaleate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Azelastine (hydrochloride)_vs_DMSO	Azelastine (hydrochloride)	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Baicalein_vs_DMSO	Baicalein	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Balsalazide_vs_DMSO	Balsalazide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Belzutifan_vs_DMSO	Belzutifan	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Benzamil (hydrochloride)_vs_DMSO	Benzamil (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Benztropine (mesylate)_vs_DMSO	Benztropine (mesylate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Bepotastine_vs_DMSO	Bepotastine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Betahistine_vs_DMSO	Betahistine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Betamethasone dipropionate_vs_DMSO	Betamethasone dipropionate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Betamethasone disodium phosphate_vs_DMSO	Betamethasone disodium phosphate	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Betamethasone valerate_vs_DMSO	Betamethasone valerate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Betazole_vs_DMSO	Betazole	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Bicyclol_vs_DMSO	Bicyclol	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Binimetinib_vs_DMSO	Binimetinib	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Bromhexine (hydrochloride)_vs_DMSO	Bromhexine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Budesonide_vs_DMSO	Budesonide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Butylphthalide_vs_DMSO	Butylphthalide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Cabazitaxel_vs_DMSO	Cabazitaxel	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Camphor_vs_DMSO	Camphor	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Carbenoxolone (disodium)_vs_DMSO	Carbenoxolone (disodium)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Caroverine (hydrochloride)_vs_DMSO	Caroverine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Cetirizine (dihydrochloride)_vs_DMSO	Cetirizine (dihydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Chloroprocaine (hydrochloride)_vs_DMSO	Chloroprocaine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Chloropyramine hydrochloride_vs_DMSO	Chloropyramine hydrochloride	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Chlorpheniramine (maleate)_vs_DMSO	Chlorpheniramine (maleate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Chlorpropamide_vs_DMSO	Chlorpropamide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Ciclesonide_vs_DMSO	Ciclesonide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Clobetasone butyrate_vs_DMSO	Clobetasone butyrate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Clomiphene (citrate)_vs_DMSO	Clomiphene (citrate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Cobicistat_vs_DMSO	Cobicistat	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Cromolyn (sodium)_vs_DMSO	Cromolyn (sodium)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Cyclothiazide_vs_DMSO	Cyclothiazide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Cytidine_vs_DMSO	Cytidine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-DFO_vs_DMSO	DFO	positive_assay_control	24	12	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6,Red1,Red2,Red3,Red4,Red5,Red6	12	directly_estimable	Replicated across 12 plates, all with within-plate DMSO controls
-Danthron_vs_DMSO	Danthron	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Daprodustat_vs_DMSO	Daprodustat	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Deflazacort_vs_DMSO	Deflazacort	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Delavirdine (mesylate)_vs_DMSO	Delavirdine (mesylate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Desloratadine_vs_DMSO	Desloratadine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Dexpramipexole (dihydrochloride)_vs_DMSO	Dexpramipexole (dihydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Diacerein_vs_DMSO	Diacerein	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Digitoxin_vs_DMSO	Digitoxin	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Dimenhydrinate_vs_DMSO	Dimenhydrinate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Dimethyl fumarate_vs_DMSO	Dimethyl fumarate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Diphenhydramine (hydrochloride)_vs_DMSO	Diphenhydramine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Diphenylpyraline (hydrochloride)_vs_DMSO	Diphenylpyraline (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Efavirenz_vs_DMSO	Efavirenz	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Eicosapentaenoic Acid_vs_DMSO	Eicosapentaenoic Acid	library_compound	5	5	Blue1,Blue2,Blue4,Blue5,Blue6	5	directly_estimable	Replicated across 5 plates, all with within-plate DMSO controls
-Emedastine_vs_DMSO	Emedastine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Enclomiphene (citrate)_vs_DMSO	Enclomiphene (citrate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Epinastine (hydrochloride)_vs_DMSO	Epinastine (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Eptifibatide_vs_DMSO	Eptifibatide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Erlotinib (Hydrochloride)_vs_DMSO	Erlotinib (Hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Etravirine_vs_DMSO	Etravirine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Ferulic acid_vs_DMSO	Ferulic acid	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Fexofenadine (hydrochloride)_vs_DMSO	Fexofenadine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Flumatinib_vs_DMSO	Flumatinib	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Fluphenazine decanoate_vs_DMSO	Fluphenazine decanoate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Flupirtine (Maleate)_vs_DMSO	Flupirtine (Maleate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Fluticasone furoate_vs_DMSO	Fluticasone furoate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Gliquidone_vs_DMSO	Gliquidone	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Haloperidol_vs_DMSO	Haloperidol	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Hydrocortisone cypionate_vs_DMSO	Hydrocortisone cypionate	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Icotinib_vs_DMSO	Icotinib	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Idelalisib_vs_DMSO	Idelalisib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Ifenprodil (tartrate)_vs_DMSO	Ifenprodil (tartrate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Imiquimod (maleate)_vs_DMSO	Imiquimod (maleate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Ketotifen (fumarate)_vs_DMSO	Ketotifen (fumarate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-L-5-Hydroxytryptophan_vs_DMSO	L-5-Hydroxytryptophan	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-L-Tryptophan_vs_DMSO	L-Tryptophan	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Lapatinib (ditosylate)_vs_DMSO	Lapatinib (ditosylate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Latrepirdine (dihydrochloride)_vs_DMSO	Latrepirdine (dihydrochloride)	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Lazertinib_vs_DMSO	Lazertinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Levocetirizine (dihydrochloride)_vs_DMSO	Levocetirizine (dihydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Liarozole_vs_DMSO	Liarozole	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Linaclotide_vs_DMSO	Linaclotide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Lipoic acid_vs_DMSO	Lipoic acid	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Liranaftate_vs_DMSO	Liranaftate	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Lobeline (hydrochloride)_vs_DMSO	Lobeline (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Lonafarnib_vs_DMSO	Lonafarnib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Loratadine_vs_DMSO	Loratadine	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Masoprocol_vs_DMSO	Masoprocol	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mebhydrolin_vs_DMSO	Mebhydrolin	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mecamylamine (hydrochloride)_vs_DMSO	Mecamylamine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Meclofenoxate (hydrochloride)_vs_DMSO	Meclofenoxate (hydrochloride)	library_compound	5	5	Blue1,Blue2,Blue3,Blue4,Blue6	5	directly_estimable	Replicated across 5 plates, all with within-plate DMSO controls
-Mefloquine (hydrochloride)_vs_DMSO	Mefloquine (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mephenesin_vs_DMSO	Mephenesin	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Methylene blue (trihydrate)_vs_DMSO	Methylene blue (trihydrate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Methylthiouracil_vs_DMSO	Methylthiouracil	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mifepristone_vs_DMSO	Mifepristone	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mobocertinib (succinate)_vs_DMSO	Mobocertinib (succinate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Mometasone_vs_DMSO	Mometasone	library_compound	5	5	Blue2,Blue3,Blue4,Blue5,Blue6	5	directly_estimable	Replicated across 5 plates, all with within-plate DMSO controls
-Monomethyl fumarate_vs_DMSO	Monomethyl fumarate	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Moxonidine_vs_DMSO	Moxonidine	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Nateglinide_vs_DMSO	Nateglinide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Neratinib_vs_DMSO	Neratinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Nicotinamide_vs_DMSO	Nicotinamide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Nitazoxanide_vs_DMSO	Nitazoxanide	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Nitrendipine_vs_DMSO	Nitrendipine	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Nordihydroguaiaretic acid_vs_DMSO	Nordihydroguaiaretic acid	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Olmutinib_vs_DMSO	Olmutinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Olverembatinib (dimesylate)_vs_DMSO	Olverembatinib (dimesylate)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Orelabrutinib_vs_DMSO	Orelabrutinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Osimertinib_vs_DMSO	Osimertinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Oteseconazole_vs_DMSO	Oteseconazole	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Oxybutynin (chloride)_vs_DMSO	Oxybutynin (chloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Pamapimod_vs_DMSO	Pamapimod	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Paritaprevir_vs_DMSO	Paritaprevir	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Peretinoin_vs_DMSO	Peretinoin	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Pergolide (mesylate)_vs_DMSO	Pergolide (mesylate)	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Pindolol_vs_DMSO	Pindolol	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Pipecuronium (bromide)_vs_DMSO	Pipecuronium (bromide)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Pirlindole_vs_DMSO	Pirlindole	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Pranlukast (hemihydrate)_vs_DMSO	Pranlukast (hemihydrate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Prednisolone Tebutate_vs_DMSO	Prednisolone Tebutate	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Prednisone acetate_vs_DMSO	Prednisone acetate	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Prilocaine_vs_DMSO	Prilocaine	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Procyclidine (hydrochloride)_vs_DMSO	Procyclidine (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Prucalopride_vs_DMSO	Prucalopride	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Remdesivir_vs_DMSO	Remdesivir	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Rilpivirine_vs_DMSO	Rilpivirine	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Rocuronium (Bromide)_vs_DMSO	Rocuronium (Bromide)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Saquinavir (mesylate)_vs_DMSO	Saquinavir (mesylate)	library_compound	6	1	RedMix	0	reference_anchored_only	Confined to RedMix with 0 within-plate DMSO controls; requires QC anchoring
-Savolitinib_vs_DMSO	Savolitinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Simotinib_vs_DMSO	Simotinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Simvastatin acid (ammonium)_vs_DMSO	Simvastatin acid (ammonium)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Stiripentol_vs_DMSO	Stiripentol	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Teclozan_vs_DMSO	Teclozan	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tenapanor (hydrochloride)_vs_DMSO	Tenapanor (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tinoridine (hydrochloride)_vs_DMSO	Tinoridine (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tirofiban (hydrochloride monohydrate)_vs_DMSO	Tirofiban (hydrochloride monohydrate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tolbutamide_vs_DMSO	Tolbutamide	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Topiroxostat_vs_DMSO	Topiroxostat	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tranylcypromine (hemisulfate)_vs_DMSO	Tranylcypromine (hemisulfate)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tricaprilin_vs_DMSO	Tricaprilin	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Triclabendazole_vs_DMSO	Triclabendazole	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Trimethobenzamide (hydrochloride)_vs_DMSO	Trimethobenzamide (hydrochloride)	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tripelennamine (hydrochloride)_vs_DMSO	Tripelennamine (hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tucatinib_vs_DMSO	Tucatinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Tucidinostat_vs_DMSO	Tucidinostat	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Umbralisib_vs_DMSO	Umbralisib	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Vadadustat_vs_DMSO	Vadadustat	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Vardenafil_vs_DMSO	Vardenafil	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Varenicline (Hydrochloride)_vs_DMSO	Varenicline (Hydrochloride)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Vasopressin_vs_DMSO	Vasopressin	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Vecuronium (bromide)_vs_DMSO	Vecuronium (bromide)	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Vemurafenib_vs_DMSO	Vemurafenib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Zanubrutinib_vs_DMSO	Zanubrutinib	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Î±-Lipoic Acid_vs_DMSO	Î±-Lipoic Acid	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
-Î³-Oryzanol_vs_DMSO	Î³-Oryzanol	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	6	directly_estimable	Replicated across 6 plates, all with within-plate DMSO controls
+compound_id	contrast_id	condition_role	n_treated	n_plates	plates	eligibility_status	eligibility_reason
+6-Mercaptopurine	6-Mercaptopurine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+ATP (dimagnesium)	ATP (dimagnesium)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Abemaciclib (methanesulfonate)	Abemaciclib (methanesulfonate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Acetophenazine (dimaleate)	Acetophenazine (dimaleate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Adiphenine (hydrochloride)	Adiphenine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Alcaftadine	Alcaftadine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Alizapride (hydrochloride)	Alizapride (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Almonertinib (hydrochloride)	Almonertinib (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Almotriptan (malate)	Almotriptan (malate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Ambroxol	Ambroxol_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Amcinonide	Amcinonide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Amiodarone (hydrochloride)	Amiodarone (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Amisulpride	Amisulpride_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Amodiaquine (dihydrochloride)	Amodiaquine (dihydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Anamorelin	Anamorelin_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Andrographolide	Andrographolide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Aniracetam	Aniracetam_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Antazoline (hydrochloride)	Antazoline (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Antipyrine	Antipyrine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Asciminib	Asciminib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Atazanavir (sulfate)	Atazanavir (sulfate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Atorvastatin (hemicalcium salt)	Atorvastatin (hemicalcium salt)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Azatadine (dimaleate)	Azatadine (dimaleate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Azelastine (hydrochloride)	Azelastine (hydrochloride)_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Baicalein	Baicalein_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Balsalazide	Balsalazide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Belzutifan	Belzutifan_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Benzamil (hydrochloride)	Benzamil (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Benztropine (mesylate)	Benztropine (mesylate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Bepotastine	Bepotastine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Betahistine	Betahistine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Betamethasone dipropionate	Betamethasone dipropionate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Betamethasone disodium phosphate	Betamethasone disodium phosphate_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Betamethasone valerate	Betamethasone valerate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Betazole	Betazole_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Bicyclol	Bicyclol_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Binimetinib	Binimetinib_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Bromhexine (hydrochloride)	Bromhexine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Budesonide	Budesonide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Butylphthalide	Butylphthalide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Cabazitaxel	Cabazitaxel_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Camphor	Camphor_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Carbenoxolone (disodium)	Carbenoxolone (disodium)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Caroverine (hydrochloride)	Caroverine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Cetirizine (dihydrochloride)	Cetirizine (dihydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Chloroprocaine (hydrochloride)	Chloroprocaine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Chloropyramine hydrochloride	Chloropyramine hydrochloride_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Chlorpheniramine (maleate)	Chlorpheniramine (maleate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Chlorpropamide	Chlorpropamide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Ciclesonide	Ciclesonide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Clobetasone butyrate	Clobetasone butyrate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Clomiphene (citrate)	Clomiphene (citrate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Cobicistat	Cobicistat_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Cromolyn (sodium)	Cromolyn (sodium)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Cyclothiazide	Cyclothiazide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Cytidine	Cytidine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+DFO	DFO_vs_DMSO	positive_assay_control	24	12	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6,Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Danthron	Danthron_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Daprodustat	Daprodustat_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Deflazacort	Deflazacort_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Delavirdine (mesylate)	Delavirdine (mesylate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Desloratadine	Desloratadine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Dexpramipexole (dihydrochloride)	Dexpramipexole (dihydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Diacerein	Diacerein_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Digitoxin	Digitoxin_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Dimenhydrinate	Dimenhydrinate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Dimethyl fumarate	Dimethyl fumarate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Diphenhydramine (hydrochloride)	Diphenhydramine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Diphenylpyraline (hydrochloride)	Diphenylpyraline (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Efavirenz	Efavirenz_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Eicosapentaenoic Acid	Eicosapentaenoic Acid_vs_DMSO	library_compound	5	5	Blue1,Blue2,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Emedastine	Emedastine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Enclomiphene (citrate)	Enclomiphene (citrate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Epinastine (hydrochloride)	Epinastine (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Eptifibatide	Eptifibatide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Erlotinib (Hydrochloride)	Erlotinib (Hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Etravirine	Etravirine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Ferulic acid	Ferulic acid_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Fexofenadine (hydrochloride)	Fexofenadine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Flumatinib	Flumatinib_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Fluphenazine decanoate	Fluphenazine decanoate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Flupirtine (Maleate)	Flupirtine (Maleate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Fluticasone furoate	Fluticasone furoate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Gliquidone	Gliquidone_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Haloperidol	Haloperidol_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Hydrocortisone cypionate	Hydrocortisone cypionate_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Icotinib	Icotinib_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Idelalisib	Idelalisib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Ifenprodil (tartrate)	Ifenprodil (tartrate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Imiquimod (maleate)	Imiquimod (maleate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Ketotifen (fumarate)	Ketotifen (fumarate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+L-5-Hydroxytryptophan	L-5-Hydroxytryptophan_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+L-Tryptophan	L-Tryptophan_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Lapatinib (ditosylate)	Lapatinib (ditosylate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Latrepirdine (dihydrochloride)	Latrepirdine (dihydrochloride)_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Lazertinib	Lazertinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Levocetirizine (dihydrochloride)	Levocetirizine (dihydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Liarozole	Liarozole_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Linaclotide	Linaclotide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Lipoic acid	Lipoic acid_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Liranaftate	Liranaftate_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Lobeline (hydrochloride)	Lobeline (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Lonafarnib	Lonafarnib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Loratadine	Loratadine_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Masoprocol	Masoprocol_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mebhydrolin	Mebhydrolin_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mecamylamine (hydrochloride)	Mecamylamine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Meclofenoxate (hydrochloride)	Meclofenoxate (hydrochloride)_vs_DMSO	library_compound	5	5	Blue1,Blue2,Blue3,Blue4,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mefloquine (hydrochloride)	Mefloquine (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mephenesin	Mephenesin_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Methylene blue (trihydrate)	Methylene blue (trihydrate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Methylthiouracil	Methylthiouracil_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mifepristone	Mifepristone_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mobocertinib (succinate)	Mobocertinib (succinate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Mometasone	Mometasone_vs_DMSO	library_compound	5	5	Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Monomethyl fumarate	Monomethyl fumarate_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Moxonidine	Moxonidine_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Nateglinide	Nateglinide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Neratinib	Neratinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Nicotinamide	Nicotinamide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Nitazoxanide	Nitazoxanide_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Nitrendipine	Nitrendipine_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Nordihydroguaiaretic acid	Nordihydroguaiaretic acid_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Olmutinib	Olmutinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Olverembatinib (dimesylate)	Olverembatinib (dimesylate)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Orelabrutinib	Orelabrutinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Osimertinib	Osimertinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Oteseconazole	Oteseconazole_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Oxybutynin (chloride)	Oxybutynin (chloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Pamapimod	Pamapimod_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Paritaprevir	Paritaprevir_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Peretinoin	Peretinoin_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Pergolide (mesylate)	Pergolide (mesylate)_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Pindolol	Pindolol_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Pipecuronium (bromide)	Pipecuronium (bromide)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Pirlindole	Pirlindole_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Pranlukast (hemihydrate)	Pranlukast (hemihydrate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Prednisolone Tebutate	Prednisolone Tebutate_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Prednisone acetate	Prednisone acetate_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Prilocaine	Prilocaine_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Procyclidine (hydrochloride)	Procyclidine (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Prucalopride	Prucalopride_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Remdesivir	Remdesivir_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Rilpivirine	Rilpivirine_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Rocuronium (Bromide)	Rocuronium (Bromide)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Saquinavir (mesylate)	Saquinavir (mesylate)_vs_DMSO	library_compound	6	1	RedMix	excluded_no_within_plate_vehicle	No matched within-plate vehicle in deposited data
+Savolitinib	Savolitinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Simotinib	Simotinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Simvastatin acid (ammonium)	Simvastatin acid (ammonium)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Stiripentol	Stiripentol_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Teclozan	Teclozan_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tenapanor (hydrochloride)	Tenapanor (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tinoridine (hydrochloride)	Tinoridine (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tirofiban (hydrochloride monohydrate)	Tirofiban (hydrochloride monohydrate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tolbutamide	Tolbutamide_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Topiroxostat	Topiroxostat_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tranylcypromine (hemisulfate)	Tranylcypromine (hemisulfate)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tricaprilin	Tricaprilin_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Triclabendazole	Triclabendazole_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Trimethobenzamide (hydrochloride)	Trimethobenzamide (hydrochloride)_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tripelennamine (hydrochloride)	Tripelennamine (hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tucatinib	Tucatinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Tucidinostat	Tucidinostat_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Umbralisib	Umbralisib_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Vadadustat	Vadadustat_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Vardenafil	Vardenafil_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Varenicline (Hydrochloride)	Varenicline (Hydrochloride)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Vasopressin	Vasopressin_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Vecuronium (bromide)	Vecuronium (bromide)_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Vemurafenib	Vemurafenib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Zanubrutinib	Zanubrutinib_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+alpha-Lipoic Acid	alpha-Lipoic Acid_vs_DMSO	library_compound	6	6	Blue1,Blue2,Blue3,Blue4,Blue5,Blue6	directly_estimable	Repeated treated wells on plates containing vehicle controls
+Î³-Oryzanol	Î³-Oryzanol_vs_DMSO	library_compound	6	6	Red1,Red2,Red3,Red4,Red5,Red6	directly_estimable	Repeated treated wells on plates containing vehicle controls
