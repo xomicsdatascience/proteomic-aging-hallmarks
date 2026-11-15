@@ -1,8 +1,27 @@
-primary_model: plate_blocked_observed_OLS_empirical_Bayes
-normalization: sample_median_log2_relative_composition
-missingness_handling: observed_data_only_no_imputation
-d0_prior: 2.88933007910852
-s0_2_prior: 0.02040816026159191
+primary_model: observed-data OLS with additive compound and plate effects; parametric
+  empirical Bayes variance moderation
+primary_pathway_method: one-sample t test of competitive mean log2 fold changes across
+  independent matched plates
+secondary_pathway_method: Python implementation of the non-rank CAMERA-PR formula
+  on precomputed moderated t statistics
+inter_protein_correlation_fixed: 0.01
+empirical_correlation: mean pairwise residual Pearson correlation; min 20 pair observations;
+  estimates unavailable below 80% finite pairs
+n_primary_samples: 1004
+n_features: 7871
+design_rank: 173
+n_primary_compounds: 161
+n_primary_program_tests: 2254
+d0_prior: 2.890005423265162
+s0_2_prior: 0.0204079495718329
+strict20_d0_prior: 3.4502620539019917
+strict20_s0_2_prior: 0.01898090765227997
+normalization: log2 sample-median normalization, relative composition
+minimum_treated_observations: 3
+minimum_reference_observations: 3
 gsea_permutations: 2000
-gsea_nonzero_floor: 0.0004997501249375312
-primary_bh_family_size: 2254
+gsea_seed: 42
+gsea_inference: NES and leading edge are descriptive only; no nominal or FDR significance
+  claims from gene-set permutations
+composite_geroprotection_score: removed; no universal beneficial program directions
+low_observation_protein_contrasts_excluded: 26459

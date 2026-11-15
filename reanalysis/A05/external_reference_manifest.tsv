@@ -1,7 +1,7 @@
-reference_id	citation	doi_or_accession	species	cell_type	compartment	reference_class	local_availability	relevance_to_HepG2	status
-REF_TSITSIPATIS_2022	Tsitsipatis et al. 2022, Aging Cell	10.1111/acel.13609 / PXD029785 / MSV000088401	Homo sapiens	Primary dermal fibroblasts (GESTALT, n=82 donors, 22-89y)	Whole-cell lysate	Donor_age_proteomics	not_downloaded_locally	High (intracellular human proteome), though primary fibroblast vs transformed hepatoma	excluded_pending_local_download
-REF_WALDERA_LUPA_2014	Waldera-Lupa et al. 2014, Aging	10.18632/aging.100698 / PMC4291244	Homo sapiens	Primary dermal fibroblasts (young/middle/old donors)	Whole-cell lysate	Donor_age_proteomics	not_downloaded_locally	Moderate (43 age-associated proteins in fibroblasts)	excluded_pending_local_download
-REF_BASISTY_2020	Basisty et al. 2020, PLoS Biology	10.1371/journal.pbio.3000599	Homo sapiens	Induced senescent fibroblasts & epithelial cells	Conditioned media / Secretome (SASP)	Induced_senescence_secretome	incompatible_compartment_secretome_vs_lysate	Low for whole-cell lysate (different biological compartment)	excluded_compartment_mismatch
-REF_MITCHELL_2024	Mitchell et al. 2024, eLife	10.7554/eLife.90579	Homo sapiens / Mus musculus	Chemically reprogrammed fibroblasts	Whole-cell lysate (proteome + phosphoproteome)	Chemical_reprogramming_intervention	not_downloaded_locally	Intervention response benchmark, not generic aging ground truth	excluded_pending_local_download
-REF_DEMAGALHAES_RNA_PRIOR	de Magalhaes et al. 2009, Bioinformatics (MSigDB C2:CGP)	PMID:19189975 / M2144, M2145	Homo sapiens (ortholog-mapped meta-analysis)	Multi-tissue mammalian aging	Transcriptome (RNA-derived prior)	Transcript_derived_aging_prior	available_locally	Supportive RNA-derived prior (26 UP + 8 DN proteins quantified); not a proteomic clock	evaluated
-REF_REACTOME_OX_SENESCENCE	Reactome Oxidative Stress Induced Senescence (2024)	Reactome_Pathways_2024	Homo sapiens	Canonical senescence pathway	Intracellular	Induced_senescence_pathway	available_via_gseapy	Cell-autonomous oxidative senescence machinery	evaluated
+reference	doi	compartment	status
+de Magalhaes 2009	10.1093/bioinformatics/btp073	RNA-derived mammalian aging annotation	included in primary panel; contextual only
+Tsitsipatis 2022	10.1111/acel.13609	Human donor fibroblast whole-cell proteome	prospective independent reference; not evaluated
+Waldera-Lupa 2014	10.18632/aging.100698	Human donor fibroblast whole-cell proteome; PMC4247387	prospective independent reference; not evaluated
+Mitchell 2024	10.7554/eLife.90579	Chemical reprogramming proteome	prospective intervention reference; not evaluated
+Ding 2025	10.1016/j.cell.2025.06.047	Human tissue proteome aging atlas, including liver	prospective liver-relevant signed reference; not evaluated
+Basisty 2020	10.1371/journal.pbio.3000599	Secretome; different from the current whole-cell lysate	contextual literature; not evaluated as matching validation

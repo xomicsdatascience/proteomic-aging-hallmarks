@@ -1,26 +1,295 @@
-compound_id	program_id	boot_mean_camera_t	boot_ci95_lo	boot_ci95_hi	sign_consistency_pct
-DFO	PROG_OXPHOS	-1.877	-2.053	-1.471	100.0
-DFO	PROG_INFLAMMATORY	2.294	1.77	2.731	100.0
-DFO	PROG_MTORC1_SIGNALING	0.752	0.439	1.078	100.0
-DFO	PROG_MACROAUTOPHAGY	0.317	0.081	0.552	100.0
-DFO	PRIOR_DEMAGALHAES_DN	-0.522	-0.89	-0.149	100.0
-Binimetinib	PROG_OXPHOS	1.303	0.244	2.102	100.0
-Binimetinib	PROG_INFLAMMATORY	-1.038	-1.887	-0.044	98.5
-Binimetinib	PROG_MTORC1_SIGNALING	0.057	-0.109	0.146	85.0
-Binimetinib	PROG_MACROAUTOPHAGY	-0.096	-0.545	0.133	72.0
-Binimetinib	PRIOR_DEMAGALHAES_DN	1.262	0.132	2.396	100.0
-Baicalein	PROG_OXPHOS	1.336	0.415	1.885	99.5
-Baicalein	PROG_INFLAMMATORY	-1.588	-2.388	-0.453	99.5
-Baicalein	PROG_MTORC1_SIGNALING	-0.048	-0.436	1.254	87.5
-Baicalein	PROG_MACROAUTOPHAGY	0.117	-0.386	2.297	79.0
-Baicalein	PRIOR_DEMAGALHAES_DN	1.722	0.47	2.754	99.5
-Nordihydroguaiaretic acid	PROG_OXPHOS	0.668	0.123	1.061	100.0
-Nordihydroguaiaretic acid	PROG_INFLAMMATORY	0.617	-0.06	1.487	95.5
-Nordihydroguaiaretic acid	PROG_MTORC1_SIGNALING	1.332	0.18	2.18	100.0
-Nordihydroguaiaretic acid	PROG_MACROAUTOPHAGY	-0.486	-1.311	0.009	96.5
-Nordihydroguaiaretic acid	PRIOR_DEMAGALHAES_DN	0.691	0.058	1.267	98.5
-Lonafarnib	PROG_OXPHOS	0.443	0.083	0.734	99.0
-Lonafarnib	PROG_INFLAMMATORY	0.713	0.028	1.157	98.0
-Lonafarnib	PROG_MTORC1_SIGNALING	0.564	0.029	0.949	98.5
-Lonafarnib	PROG_MACROAUTOPHAGY	-0.197	-1.093	0.08	86.5
-Lonafarnib	PRIOR_DEMAGALHAES_DN	-0.995	-1.888	-0.206	99.0
+compound_id	program_id	statistic	n_plates	n_features	mean_plate_log2fc	boot_ci95_low	boot_ci95_high	sign_consistency_pct
+Binimetinib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.132119895	-0.147944443	-0.116588675	100
+Binimetinib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	44	-0.282207352	-0.327197869	-0.247361928	100
+Binimetinib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	170	-0.146475425	-0.204950222	-0.100798631	100
+Binimetinib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	-0.099460791	-0.146933787	-0.0553792813	100
+Binimetinib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	180	-0.154588161	-0.170457903	-0.137492964	100
+Binimetinib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	-0.0739200625	-0.0923844038	-0.0582096964	100
+Binimetinib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	162	-0.0779352357	-0.102337373	-0.0515100257	100
+Binimetinib	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.202900959	0.185376663	0.220570884	100
+Binimetinib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.199232922	-0.234195673	-0.162176579	100
+Binimetinib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	62	-0.0973074013	-0.116716836	-0.0765193815	100
+Binimetinib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	43	-0.314289863	-0.35042536	-0.277018057	100
+Binimetinib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	96	-0.0841087956	-0.115512987	-0.0599164362	100
+Binimetinib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.0602167485	0.0336776821	0.0876332798	100
+Binimetinib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.257917637	0.211396463	0.311083173	100
+Baicalein	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0531885062	-0.074866276	-0.0319160932	100
+Baicalein	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	44	-0.163059651	-0.188402309	-0.139610281	100
+Baicalein	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	172	-0.0505667783	-0.0881490256	-0.0129925942	99.9
+Baicalein	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	-0.0721515042	-0.105647434	-0.0376224731	100
+Baicalein	PROG_PROTEASOME	mean within-plate program log2 fold change	6	183	-0.056600824	-0.0930701595	-0.0233324996	100
+Baicalein	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	-0.021132164	-0.0635273311	0.0100798614	86.9
+Baicalein	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	163	-0.0312938123	-0.0423082543	-0.0216739611	100
+Baicalein	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.142999721	0.123975219	0.157782966	100
+Baicalein	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	99	-0.0957863786	-0.135604852	-0.0566127411	100
+Baicalein	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	-0.0568026098	-0.0826469555	-0.0361861312	100
+Baicalein	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	45	-0.23981029	-0.308024139	-0.179948338	100
+Baicalein	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	-0.0123031694	-0.0280311586	0.00853913341	90.4
+Baicalein	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.14687496	0.124408282	0.164287135	100
+Baicalein	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.260922113	0.220821512	0.304594275	100
+Cyclothiazide	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	126	0.00658499102	-0.00867895224	0.0233288534	77.6
+Cyclothiazide	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	0.0143625596	-0.0174470898	0.0427600564	80.2
+Cyclothiazide	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	173	0.0627389393	0.0195484305	0.109443493	100
+Cyclothiazide	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.0497030383	0.0194077023	0.0797085222	100
+Cyclothiazide	PROG_PROTEASOME	mean within-plate program log2 fold change	6	187	-0.00103115868	-0.00894126237	0.0090391693	59.3
+Cyclothiazide	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	108	0.00952683897	-0.00888338852	0.0243310829	85.4
+Cyclothiazide	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.014535837	0.00365467777	0.0264333953	100
+Cyclothiazide	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	-0.0061912638	-0.0303400787	0.00961863811	68.8
+Cyclothiazide	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	0.0127512106	-0.0136313622	0.0365861646	83.9
+Cyclothiazide	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	63	0.0194623945	0.0070191741	0.0327861427	100
+Cyclothiazide	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	-0.0347447301	-0.0866394132	0.0126754284	91.1
+Cyclothiazide	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.017390308	0.00213532752	0.0389804507	99.3
+Cyclothiazide	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	-0.0170378217	-0.0435221316	0.00944648825	88
+Cyclothiazide	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	-0.00713254512	-0.0906426816	0.0447334153	56
+Zanubrutinib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	0.0222003794	0.00779986771	0.0348573482	100
+Zanubrutinib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	0.0483015184	0.00704050388	0.101771929	99.3
+Zanubrutinib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	171	-0.0317181349	-0.0892592515	0.0266916434	85.9
+Zanubrutinib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	-0.0794440551	-0.116273421	-0.0514496942	100
+Zanubrutinib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	187	0.0254156066	-0.000779228205	0.0511849911	94.9
+Zanubrutinib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	0.0146858547	-0.0120905063	0.0439489715	85.2
+Zanubrutinib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0569373464	0.0404235761	0.0734511168	100
+Zanubrutinib	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0459537419	0.0140445238	0.0720255362	99.7
+Zanubrutinib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	0.00288596037	-0.0350557754	0.0414061578	56.4
+Zanubrutinib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	-0.0227322165	-0.0471257193	0.00154854685	96.7
+Zanubrutinib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	49	-0.0713166343	-0.103342855	-0.0420301549	100
+Zanubrutinib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	99	0.0215964082	-0.00151736013	0.0617509082	92.5
+Zanubrutinib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.0121371984	-0.0294955175	0.0468258393	73.8
+Zanubrutinib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0775324843	0.0202183044	0.128691975	99.7
+Orelabrutinib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.00574569571	-0.0205697858	0.0091360112	79.1
+Orelabrutinib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.0317949008	-0.0561186587	-0.00144521793	98.4
+Orelabrutinib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	172	-0.0777080065	-0.111114286	-0.0437806746	100
+Orelabrutinib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	-0.037956139	-0.047031501	-0.0287514138	100
+Orelabrutinib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	186	0.030266153	0.00168828289	0.0593089365	98.5
+Orelabrutinib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	0.0476566091	0.0230870182	0.0736313987	100
+Orelabrutinib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0518878648	0.0293791868	0.0715840655	100
+Orelabrutinib	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0444594123	0.00217241549	0.0787670466	98.3
+Orelabrutinib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0294528918	-0.0504208043	-0.00640846833	99.5
+Orelabrutinib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	63	0.0163327354	-0.0069213796	0.0390716545	92
+Orelabrutinib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.130098065	0.0749559038	0.184361371	100
+Orelabrutinib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	99	0.0269819395	-0.00505893934	0.0613535652	94.9
+Orelabrutinib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.00610271918	-0.0409666177	0.0477972646	64.4
+Orelabrutinib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0670096633	-0.0171601047	0.130883996	95.6
+Almonertinib (hydrochloride)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	97	-1.48374865	-1.60870762	-1.38595409	100
+Almonertinib (hydrochloride)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	29	-1.54147454	-1.68215167	-1.43336672	100
+Almonertinib (hydrochloride)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	95	-1.56207098	-1.66773876	-1.47406668	100
+Almonertinib (hydrochloride)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	89	-1.01709622	-1.14006988	-0.8897554	100
+Almonertinib (hydrochloride)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	110	-1.43957992	-1.61643992	-1.29527245	100
+Almonertinib (hydrochloride)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	84	-1.13925289	-1.29156772	-1.00264139	100
+Almonertinib (hydrochloride)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	154	-0.972633666	-1.12446394	-0.838967088	100
+Almonertinib (hydrochloride)	PROG_OXPHOS	mean within-plate program log2 fold change	6	171	-0.203685007	-0.267502791	-0.134604928	100
+Almonertinib (hydrochloride)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	62	-1.57077537	-1.69193898	-1.45942539	100
+Almonertinib (hydrochloride)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	50	-1.18096811	-1.33326861	-1.0424659	100
+Almonertinib (hydrochloride)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	32	-0.760388314	-0.899867037	-0.619980335	100
+Almonertinib (hydrochloride)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	64	-1.37146339	-1.46741397	-1.27926483	100
+Almonertinib (hydrochloride)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	23	-0.553201055	-0.772181691	-0.336968994	100
+Almonertinib (hydrochloride)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	-0.130032237	-0.270736623	0.0140010487	97
+Osimertinib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	90	-1.77973754	-1.97100315	-1.62677418	100
+Osimertinib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	27	-1.84849504	-1.99960412	-1.74094171	100
+Osimertinib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	77	-1.81026908	-1.91372566	-1.72237567	100
+Osimertinib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	80	-1.26321205	-1.44693898	-1.12248343	100
+Osimertinib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	95	-1.73743064	-1.91952827	-1.58069385	100
+Osimertinib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	75	-1.3965768	-1.54829427	-1.263005	100
+Osimertinib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	148	-1.2736742	-1.45095329	-1.12541621	100
+Osimertinib	PROG_OXPHOS	mean within-plate program log2 fold change	6	166	-0.592190177	-0.738620475	-0.445883292	100
+Osimertinib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	51	-1.76292466	-1.84715661	-1.68123208	100
+Osimertinib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	46	-1.31988254	-1.47637667	-1.16833409	100
+Osimertinib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	30	-0.928168267	-1.07558952	-0.797562041	100
+Osimertinib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	57	-1.62256948	-1.76779965	-1.4935227	100
+Osimertinib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	23	-0.787938499	-1.04997152	-0.529510051	100
+Osimertinib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	7	-0.167148713	-0.56291778	0.168491217	78.9
+Erlotinib (Hydrochloride)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.121951774	-0.143135625	-0.0994595796	100
+Erlotinib (Hydrochloride)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.318317369	-0.341417489	-0.283055582	100
+Erlotinib (Hydrochloride)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	173	-0.16314661	-0.232812824	-0.105237411	100
+Erlotinib (Hydrochloride)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.131623258	0.0751604267	0.177282188	100
+Erlotinib (Hydrochloride)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	182	-0.0598045838	-0.0757449152	-0.0424828051	100
+Erlotinib (Hydrochloride)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	0.0528631834	0.0162180432	0.0840132238	99.9
+Erlotinib (Hydrochloride)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0770336613	0.0643153693	0.0933004007	100
+Erlotinib (Hydrochloride)	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.118224582	0.105848721	0.133965067	100
+Erlotinib (Hydrochloride)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	99	-0.0822406894	-0.151185953	-0.0213308078	99.6
+Erlotinib (Hydrochloride)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	0.0728050173	0.032490136	0.114873464	100
+Erlotinib (Hydrochloride)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.41076614	0.351527957	0.482368664	100
+Erlotinib (Hydrochloride)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	96	-0.0383260598	-0.0613994333	-0.0140884889	99.9
+Erlotinib (Hydrochloride)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.0142054254	-0.0284689146	0.0621453724	68.6
+Erlotinib (Hydrochloride)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.150270043	0.119974893	0.187938954	100
+Mobocertinib (succinate)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	121	-0.723408111	-0.965628662	-0.516343762	100
+Mobocertinib (succinate)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	38	-0.948256452	-1.11014561	-0.807772994	100
+Mobocertinib (succinate)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	150	-0.813343693	-1.07675699	-0.597716882	100
+Mobocertinib (succinate)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	94	-0.259166682	-0.45655717	-0.104318598	100
+Mobocertinib (succinate)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	155	-0.686030896	-0.959906733	-0.427405376	100
+Mobocertinib (succinate)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	102	-0.382898656	-0.65597976	-0.135887796	100
+Mobocertinib (succinate)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	159	-0.222445195	-0.412763468	-0.0512293126	99.9
+Mobocertinib (succinate)	PROG_OXPHOS	mean within-plate program log2 fold change	6	178	0.0964786637	0.0289143056	0.192510329	100
+Mobocertinib (succinate)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	92	-0.745200235	-0.988553176	-0.538094279	100
+Mobocertinib (succinate)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	61	-0.371216653	-0.594937983	-0.18107781	100
+Mobocertinib (succinate)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	49	0.0278865728	-0.211611783	0.24489062	58.1
+Mobocertinib (succinate)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	87	-0.63821372	-0.906015053	-0.400691053	100
+Mobocertinib (succinate)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	24	0.197961827	0.0404176114	0.334512005	98.9
+Mobocertinib (succinate)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.286506668	0.21445172	0.36531118	100
+Lapatinib (ditosylate)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0770899039	-0.0993021528	-0.0549660249	100
+Lapatinib (ditosylate)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	43	-0.201980686	-0.234686826	-0.170315741	100
+Lapatinib (ditosylate)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	173	-0.142409116	-0.208224671	-0.0888355833	100
+Lapatinib (ditosylate)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.0455902341	0.00170123891	0.0854404586	97.9
+Lapatinib (ditosylate)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	184	-0.0351074311	-0.0516133039	-0.0143038786	100
+Lapatinib (ditosylate)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	0.045331743	0.0177638903	0.0762584194	100
+Lapatinib (ditosylate)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.138425728	0.114005318	0.163529605	100
+Lapatinib (ditosylate)	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0841620325	0.0577178433	0.108069558	100
+Lapatinib (ditosylate)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.115879099	-0.157970665	-0.0740201828	100
+Lapatinib (ditosylate)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	-0.0118054208	-0.0431876375	0.0191148112	77
+Lapatinib (ditosylate)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	0.244802967	0.181031254	0.311513659	100
+Lapatinib (ditosylate)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.00187168053	-0.0223157651	0.0261400939	55.8
+Lapatinib (ditosylate)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.110601442	0.0628091249	0.146289232	100
+Lapatinib (ditosylate)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.269041809	0.207477077	0.342406714	100
+Icotinib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0480065127	-0.0664333731	-0.0279226589	100
+Icotinib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.0696659701	-0.102837314	-0.0359450626	100
+Icotinib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	171	-0.106269652	-0.190430258	-0.0470329231	100
+Icotinib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.0187453306	-0.0325851129	0.0587229607	81
+Icotinib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	183	0.0137532398	-0.0220759593	0.0457641715	77.3
+Icotinib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	0.0681241362	0.0337769119	0.103950653	100
+Icotinib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0388128644	0.0132242248	0.0591170949	99.6
+Icotinib	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0254502346	-0.00131560411	0.0533581075	97.1
+Icotinib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0385915579	-0.110824784	0.0348534722	83.9
+Icotinib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	0.0953699688	0.055402104	0.12579041	100
+Icotinib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.327066504	0.290823179	0.367825385	100
+Icotinib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.0554154442	0.0222353288	0.0898157177	100
+Icotinib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.0254751869	-0.0165448374	0.0640643338	88.9
+Icotinib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0160346048	-0.0353582531	0.0613186515	73.8
+Ferulic acid	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	126	0.0076679935	-0.00384727611	0.0191847063	91
+Ferulic acid	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	0.0365962979	0.00923869652	0.0676679022	99.4
+Ferulic acid	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	173	0.0250520531	-0.0136537657	0.0665484676	86.8
+Ferulic acid	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	0.0152985172	-0.0116913359	0.0435113037	84.7
+Ferulic acid	PROG_PROTEASOME	mean within-plate program log2 fold change	6	187	0.0195598344	0.00318248311	0.0326300964	99.2
+Ferulic acid	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	108	0.00731106708	-0.0156884567	0.0267075062	75.7
+Ferulic acid	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0106101106	-0.00498435725	0.0223421254	92
+Ferulic acid	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	-0.018180653	-0.0351358141	0.00120800931	97.3
+Ferulic acid	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	0.02412037	-0.00242936881	0.0501297821	96.2
+Ferulic acid	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	62	0.0199117824	-0.0119606069	0.0512510593	88.6
+Ferulic acid	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	-0.0251246363	-0.0579309352	0.00416309364	94.1
+Ferulic acid	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	99	0.0171994955	-0.00126745248	0.0467758326	94.1
+Ferulic acid	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	-0.0384452829	-0.0656401899	-0.00533276374	98.6
+Ferulic acid	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	-0.00514624575	-0.0372243672	0.0246827695	62.6
+alpha-Lipoic Acid	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	126	0.0162155758	0.0025782522	0.029984086	99.5
+alpha-Lipoic Acid	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.00483994684	-0.0256206163	0.0156287369	68.6
+alpha-Lipoic Acid	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	171	-0.0560427968	-0.0907647001	-0.017863712	99.7
+alpha-Lipoic Acid	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	95	-0.016173298	-0.0322556652	-0.000685304193	98.1
+alpha-Lipoic Acid	PROG_PROTEASOME	mean within-plate program log2 fold change	6	186	0.00526385079	-0.0168884146	0.0273766182	67.2
+alpha-Lipoic Acid	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	0.00598822648	-0.0155076267	0.0272620982	67.7
+alpha-Lipoic Acid	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.033440341	0.00941261644	0.0517460284	99.8
+alpha-Lipoic Acid	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0718452514	0.0404601235	0.100548982	100
+alpha-Lipoic Acid	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0256649972	-0.0567498364	0.00735850154	92.9
+alpha-Lipoic Acid	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	62	-0.0326816611	-0.0546116297	-0.0134361997	100
+alpha-Lipoic Acid	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	0.0629692528	0.01497608	0.107758009	99.4
+alpha-Lipoic Acid	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.0305306159	0.00545855897	0.0556684689	99.3
+alpha-Lipoic Acid	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.00807648211	-0.0316337313	0.0417023263	67.1
+alpha-Lipoic Acid	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0616988383	0.00961508095	0.118622163	98.8
+Lipoic acid	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	0.022782732	0.0133521354	0.0340048966	100
+Lipoic acid	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	0.0181467537	-0.00275180335	0.03963811	94.6
+Lipoic acid	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	172	-0.0983500808	-0.139463028	-0.0527435669	100
+Lipoic acid	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	-0.0768587274	-0.110214848	-0.0505717969	100
+Lipoic acid	PROG_PROTEASOME	mean within-plate program log2 fold change	6	184	0.0275483655	-0.000692975163	0.0579742984	97.3
+Lipoic acid	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	108	0.045404702	0.033311484	0.0602661932	100
+Lipoic acid	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0363670934	0.0119534152	0.0540951165	99.8
+Lipoic acid	PROG_OXPHOS	mean within-plate program log2 fold change	6	179	0.0514444522	0.0250900652	0.077170673	100
+Lipoic acid	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0365247845	-0.0759444139	0.0010545343	96.9
+Lipoic acid	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	-0.0145734222	-0.0419635566	0.0131203534	86.1
+Lipoic acid	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	0.0789265077	0.0297555529	0.117828156	99.9
+Lipoic acid	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.0297312516	-0.00530070047	0.0645365534	93.6
+Lipoic acid	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.0329047478	0.0135829843	0.0506481893	100
+Lipoic acid	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0712972007	0.0213678512	0.11108266	99.5
+Nordihydroguaiaretic acid	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0352824335	-0.047942323	-0.0226225439	100
+Nordihydroguaiaretic acid	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.0884627454	-0.105231212	-0.0665725436	100
+Nordihydroguaiaretic acid	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	170	-0.0546538299	-0.126572968	0.0116021316	93.7
+Nordihydroguaiaretic acid	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	0.030811783	-0.0171257924	0.0702790616	90.6
+Nordihydroguaiaretic acid	PROG_PROTEASOME	mean within-plate program log2 fold change	6	186	-0.0122143262	-0.0314883194	0.0059438335	89.1
+Nordihydroguaiaretic acid	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	-0.0314393052	-0.0654085715	0.0017550365	96.1
+Nordihydroguaiaretic acid	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0629561704	0.0493156714	0.0769215144	100
+Nordihydroguaiaretic acid	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0494865546	0.023216019	0.0751423066	100
+Nordihydroguaiaretic acid	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	99	-0.0173482104	-0.0837581452	0.035727868	67.6
+Nordihydroguaiaretic acid	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	62	-0.0231598548	-0.0555281748	-0.000838841517	98.6
+Nordihydroguaiaretic acid	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.0547805559	0.00112214123	0.104463204	97.5
+Nordihydroguaiaretic acid	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	-0.0150445484	-0.0457850112	0.0106088537	85.9
+Nordihydroguaiaretic acid	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.0839898516	0.0718722619	0.0977148529	100
+Nordihydroguaiaretic acid	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.0500223704	0.00482379884	0.0968047788	98.8
+Lonafarnib	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.153779032	-0.167373287	-0.138747054	100
+Lonafarnib	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	44	-0.314827116	-0.336579405	-0.291026738	100
+Lonafarnib	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	172	-0.0705849766	-0.114765051	-0.0184705142	99.7
+Lonafarnib	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.116806058	0.0971259803	0.136921904	100
+Lonafarnib	PROG_PROTEASOME	mean within-plate program log2 fold change	6	186	-0.169571036	-0.19341816	-0.148505719	100
+Lonafarnib	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	-0.0351269574	-0.0531478575	-0.0160090937	100
+Lonafarnib	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.00340643869	-0.0141838135	0.0206680685	65.5
+Lonafarnib	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.00134062936	-0.0154995252	0.0180260526	62.7
+Lonafarnib	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	98	-0.0885847866	-0.107158246	-0.0687070626	100
+Lonafarnib	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	63	0.00580720847	-0.0186250442	0.0296735415	68
+Lonafarnib	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	0.00825385001	-0.025151939	0.0382275756	71.4
+Lonafarnib	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	97	-0.0613756812	-0.0887617719	-0.0328162058	100
+Lonafarnib	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.209788844	0.184917008	0.238089485	100
+Lonafarnib	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	-0.122112388	-0.171940264	-0.0865764553	100
+Atorvastatin (hemicalcium salt)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.00451035494	-0.0188490221	0.00888825986	70.9
+Atorvastatin (hemicalcium salt)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.012664018	-0.0351346197	0.0137820759	84.6
+Atorvastatin (hemicalcium salt)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	170	-0.0613752489	-0.0900671457	-0.0336807952	100
+Atorvastatin (hemicalcium salt)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	-0.0518633893	-0.075520827	-0.0348939067	100
+Atorvastatin (hemicalcium salt)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	188	-0.0144635134	-0.0382891864	0.0227543844	79.4
+Atorvastatin (hemicalcium salt)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	110	0.0475619747	0.0278888533	0.0698935469	100
+Atorvastatin (hemicalcium salt)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.0943558038	0.0797858782	0.112996152	100
+Atorvastatin (hemicalcium salt)	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0337282882	0.0157789018	0.0549866714	100
+Atorvastatin (hemicalcium salt)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0204539318	-0.0628641444	0.0209878875	83.5
+Atorvastatin (hemicalcium salt)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	63	0.0282398918	0.0129881137	0.0449854316	100
+Atorvastatin (hemicalcium salt)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	51	0.0924838383	0.0602975289	0.132783025	100
+Atorvastatin (hemicalcium salt)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	97	0.0116881022	-0.0166114872	0.0480291203	76.2
+Atorvastatin (hemicalcium salt)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.0669078325	0.0483543699	0.0851641432	100
+Atorvastatin (hemicalcium salt)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.167536888	0.108627471	0.216522143	100
+Simvastatin acid (ammonium)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0588652347	-0.0720935346	-0.0392831343	100
+Simvastatin acid (ammonium)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.168859867	-0.186632274	-0.152847311	100
+Simvastatin acid (ammonium)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	172	-0.0404956007	-0.158336487	0.0724325366	75.2
+Simvastatin acid (ammonium)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	97	0.00470179419	-0.0665082387	0.0704420541	54.4
+Simvastatin acid (ammonium)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	187	-0.0395476882	-0.0616075307	-0.0205848927	100
+Simvastatin acid (ammonium)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	0.0478630869	0.0215628534	0.0826490304	100
+Simvastatin acid (ammonium)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	163	0.0705590176	0.0439202452	0.0999966043	100
+Simvastatin acid (ammonium)	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	0.0529518057	0.0119485112	0.0976842054	98.2
+Simvastatin acid (ammonium)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0715207247	-0.149381498	0.0116201318	94.4
+Simvastatin acid (ammonium)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	63	-0.0250582394	-0.0572608126	-0.00105430657	98.1
+Simvastatin acid (ammonium)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	-0.0145274983	-0.0802687514	0.0555251276	64.7
+Simvastatin acid (ammonium)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	97	0.0153670338	-0.00557595812	0.0403328621	92.3
+Simvastatin acid (ammonium)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.00684851195	-0.0303635913	0.0492522771	63
+Simvastatin acid (ammonium)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.161203682	0.0454405786	0.264077845	99.9
+Desloratadine	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0965166713	-0.113753036	-0.0802859018	100
+Desloratadine	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.156353609	-0.191830712	-0.12458511	100
+Desloratadine	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	171	-0.155351604	-0.22608032	-0.0954406232	100
+Desloratadine	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	0.0172653913	-0.0241988386	0.0541064998	83.1
+Desloratadine	PROG_PROTEASOME	mean within-plate program log2 fold change	6	183	-0.0320960869	-0.0521967827	-0.00865486467	99.6
+Desloratadine	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	0.075165707	0.0518334027	0.0997179855	100
+Desloratadine	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.111864724	0.101555718	0.123484962	100
+Desloratadine	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	-0.0188933486	-0.0401722686	1.51221859e-06	97.1
+Desloratadine	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.084961167	-0.135612374	-0.0265579851	99.6
+Desloratadine	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	0.0755587005	0.0586825937	0.0942544971	100
+Desloratadine	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.415147351	0.373452555	0.466279059	100
+Desloratadine	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	98	0.01525348	-0.00511238677	0.0315729142	94.1
+Desloratadine	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	26	0.100137931	0.0751023528	0.131054416	100
+Desloratadine	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.391032594	0.358595683	0.42349365	100
+Amiodarone (hydrochloride)	PROG_DNA_REPAIR	mean within-plate program log2 fold change	6	127	-0.0862356107	-0.0986736804	-0.0721598779	100
+Amiodarone (hydrochloride)	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	6	45	-0.113203014	-0.159134358	-0.0659000142	100
+Amiodarone (hydrochloride)	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	6	171	-0.123011476	-0.195917131	-0.0448019552	100
+Amiodarone (hydrochloride)	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	6	96	-0.0258631683	-0.0853272357	0.0133829339	80
+Amiodarone (hydrochloride)	PROG_PROTEASOME	mean within-plate program log2 fold change	6	185	-0.0474645244	-0.0654332768	-0.0277586239	100
+Amiodarone (hydrochloride)	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	6	109	0.0413703333	0.0228189872	0.0690129505	100
+Amiodarone (hydrochloride)	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	6	164	0.11822259	0.0906476389	0.14034148	100
+Amiodarone (hydrochloride)	PROG_OXPHOS	mean within-plate program log2 fold change	6	180	-0.0315194061	-0.0602498469	-0.00094026467	97.8
+Amiodarone (hydrochloride)	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	6	100	-0.0738152607	-0.15845746	0.0135074699	94.1
+Amiodarone (hydrochloride)	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	6	64	0.0407043771	0.00985316878	0.0763550677	99.7
+Amiodarone (hydrochloride)	PROG_INFLAMMATORY	mean within-plate program log2 fold change	6	52	0.361497717	0.328132912	0.396049493	100
+Amiodarone (hydrochloride)	PROG_INNATE_TLR	mean within-plate program log2 fold change	6	99	-0.00482935676	-0.0318681162	0.0201041116	64.9
+Amiodarone (hydrochloride)	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	6	25	0.0828396287	0.0584415929	0.108041739	100
+Amiodarone (hydrochloride)	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	6	8	0.383671269	0.3330127	0.423299927	100
+DFO	PROG_DNA_REPAIR	mean within-plate program log2 fold change	12	127	-0.112701702	-0.145269835	-0.080317395	100
+DFO	PROG_TELOMERE_MAINT	mean within-plate program log2 fold change	12	44	-0.408706463	-0.45113555	-0.368291375	100
+DFO	PROG_CHROMATIN_ORG	mean within-plate program log2 fold change	12	172	0.00987013046	-0.0225011835	0.0419894969	71
+DFO	PROG_PROTEOSTASIS_UPR	mean within-plate program log2 fold change	12	97	0.118246107	0.10907603	0.127547577	100
+DFO	PROG_PROTEASOME	mean within-plate program log2 fold change	12	188	-0.122145554	-0.151709582	-0.0935259792	100
+DFO	PROG_MACROAUTOPHAGY	mean within-plate program log2 fold change	12	110	-0.00589765499	-0.0277263752	0.0154148185	70.2
+DFO	PROG_MTORC1_SIGNALING	mean within-plate program log2 fold change	12	163	0.0286887046	0.00129675538	0.0572004046	98
+DFO	PROG_OXPHOS	mean within-plate program log2 fold change	12	180	-0.327747322	-0.362626505	-0.290400674	100
+DFO	PROG_SENESCENCE_CORE	mean within-plate program log2 fold change	12	100	0.0221924167	0.00124980653	0.0416665068	98
+DFO	PROG_CELL_CELL_COMM	mean within-plate program log2 fold change	12	63	0.123945801	0.106104254	0.140186543	100
+DFO	PROG_INFLAMMATORY	mean within-plate program log2 fold change	12	52	0.30336139	0.262288275	0.347012902	100
+DFO	PROG_INNATE_TLR	mean within-plate program log2 fold change	12	99	0.00975598203	-0.0125825338	0.0309548807	81.6
+DFO	PRIOR_DEMAGALHAES_UP	mean within-plate program log2 fold change	12	26	0.0519187479	0.00815348715	0.0997192611	99.2
+DFO	PRIOR_DEMAGALHAES_DN	mean within-plate program log2 fold change	12	8	-0.305474128	-0.388646151	-0.216485407	100

@@ -1,17 +1,7 @@
-eligibility: directly_estimable (within-plate DMSO controls across 5-6 plates)
-primary_pathway_threshold: q_BH_global_camera < 0.05
-specificity_criterion: abs(resid_z) >= 1.5 after adjusting for NUIS_E2F_PROLIF and
-  mean_abs_t
-exploratory_candidates:
-- Binimetinib
-- Baicalein
-literature_comparators:
-- Nordihydroguaiaretic acid
-- Lonafarnib
-- "\u03B1-Lipoic Acid"
-- Simvastatin acid (ammonium)
-- Atorvastatin (hemicalcium salt)
-- DFO
-kinase_comparators:
-- Erlotinib (Hydrochloride)
-- Mobocertinib (succinate)
+scope: retrospective illustrative comparison, not prospective candidate validation
+primary_pathway_threshold: fixed-correlation CAMERA-PR-style global BH q < 0.05
+compound_universe: 160 library entries plus DFO assay response control
+primary_examples: [Binimetinib, Baicalein]
+selection_rationale: response combination of mitochondrial and inflammatory annotations, alongside growth sensitivity and contradictory programs
+composite_geroprotection_score: not used
+functional_or_organ_age_validation: not performed

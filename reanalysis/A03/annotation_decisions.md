@@ -1,9 +1,3 @@
-# A03 Program Annotation & Evidence Decisions
+# Annotation scope
 
-1. **No 1:1 Hallmark Claims**: Programs are named by what they actually measure in HepG2 whole-cell lysates (e.g. `PROG_DNA_REPAIR`, `PROG_OXPHOS`, `PROG_INNATE_TLR`), not as direct readouts of the 12 organismal hallmarks.
-2. **Unmeasurable Hallmarks in HepG2 Monoculture**:
-   - **Dysbiosis** cannot be measured in cultured HepG2 cells; `PROG_INNATE_TLR` is explicitly labeled as host innate TLR sensing.
-   - **Stem cell exhaustion** cannot be assessed in transformed HepG2 hepatoma cells and was removed from the primary aging-program panel.
-   - **Secreted SASP / Intercellular communication** are only weakly proxied in whole-cell lysates (`PROG_INFLAMMATORY`, `PROG_CELL_CELL_COMM`).
-3. **Transcript-Derived Priors**: `DEMAGALHAES_AGING_UP` and `DEMAGALHAES_AGING_DN` are retained as RNA-derived aging priors (`PRIOR_DEMAGALHAES_UP`, `PRIOR_DEMAGALHAES_DN`), not proteomic aging clocks.
-4. **Nuisance/Shared-Response Modules**: `NUIS_E2F_PROLIF`, `NUIS_G2M_PROLIF`, and `NUIS_APOPTOSIS` are frozen in A03 for A06 specificity/growth sensitivity analyses.
+The committed GMT defines 14 selected aging-associated programs and three growth/stress response modules. Membership is fixed for reproducibility; it was not prospectively registered. Whole-cell protein abundance does not directly measure DNA damage, telomere length, chromatin state, autophagic flux, irreversible senescence, secreted SASP, stem-cell exhaustion, or microbiome dysbiosis. TLR proteins describe host innate sensing. Context-dependent directions remain context dependent; no universal anti-aging signs or composite geroprotection score are assigned. The RNA-derived aging priors are part of this panel and are not independent validation.

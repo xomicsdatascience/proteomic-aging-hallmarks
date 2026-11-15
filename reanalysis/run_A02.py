@@ -1,379 +1,164 @@
-import os
-import json
-import yaml
-import time
+"""Observed-data protein model and CAMERA-PR-style pathway comparisons."""
+from __future__ import annotations
+import importlib.metadata
 import platform
-import warnings
-warnings.filterwarnings("ignore")
-
+import time
 import numpy as np
 import pandas as pd
-import anndata as ad
-import scanpy as sc
 from scipy import stats
-from statsmodels.stats.multitest import multipletests
 import gseapy as gp
+from analysis_common import (ROOT, PRIMARY_IDS, PRIMARY_RHO, MIN_TREATED_OBS, MIN_CONTROL_OBS,
+    KINASE_PANEL, bh, write_table, read_table, json_write, normalized_data, load_gmt,
+    make_design, fit_observed_model, moderate_variances, competitive_test,
+    residual_correlations, empirical_rho, primary_mask, plate_program_comparisons, write_protein_partitions)
 
-os.makedirs("reanalysis/A02", exist_ok=True)
-print("=== Running A02: Batch-Aware Moderated Linear Model & Pathway Inference ===")
 
-# Load frozen A01 & A03 manifests
-sample_manifest = pd.read_csv("reanalysis/A01/sample_manifest.tsv", sep="\t")
-elig_df = pd.read_csv("reanalysis/A01/contrast_eligibility.tsv", sep="\t")
-prot_map = pd.read_csv("reanalysis/A01/protein_mapping.tsv", sep="\t")
-prog_manifest = pd.read_csv("reanalysis/A03/program_manifest.tsv", sep="\t")
+def pathway_results(T, B, features, labels, gene_sets, correlations, pipeline, with_nes=False):
+    rows=[]
+    for ci,label in enumerate(labels):
+        values=T[:,ci]
+        available=np.isfinite(values)
+        nes={}
+        if with_nes:
+            ranking=pd.Series(values[available],index=features[available]).sort_values(ascending=False,kind='stable')
+            result=gp.prerank(rnk=ranking,gene_sets={k:sorted(v) for k,v in gene_sets.items()},min_size=5,max_size=500,permutation_num=2000,seed=42,threads=1,outdir=None,verbose=False)
+            nes=result.results
+        for pid,genes in gene_sets.items():
+            member=np.isin(features,list(genes))
+            tc,pc,m,vif=competitive_test(values,member,PRIMARY_RHO)
+            idx,corr=correlations[pid]
+            rho,pair_fraction=empirical_rho(corr,available[idx])
+            te,pe,_,vife=competitive_test(values,member,rho)
+            in_genes=member & available
+            rec={'pipeline':pipeline,'compound_id':label,'contrast_id':label+'_vs_DMSO' if pipeline=='primary_plate_blocked_eb' else label,
+                 'program_id':pid,'program_family':'nuisance_control' if pid.startswith('NUIS_') else 'primary_aging',
+                 'n_genes_measured':m,'n_background_proteins':int(available.sum()),'rho_camera_fixed':PRIMARY_RHO,'vif_camera_fixed':vif,
+                 'camera_t':tc,'p_camera':pc,'rho_inter_protein':rho,'vif_emp':vife,'empirical_pair_fraction':pair_fraction,
+                 'camera_t_emp':te,'p_camera_emp':pe,'mean_log2fc':float(np.nanmean(B[in_genes,ci])) if m else np.nan,
+                 'test_status':'estimable' if np.isfinite(pc) else 'insufficient_observed_features'}
+            rec['nes_gsea']=nes.get(pid,{}).get('nes',np.nan)
+            rec['lead_genes']=nes.get(pid,{}).get('lead_genes','')
+            rows.append(rec)
+        if with_nes and ((ci+1)%20==0 or ci+1==len(labels)):
+            print(f'NES {ci+1}/{len(labels)}',flush=True)
+    frame=pd.DataFrame(rows)
+    for family in frame.program_family.unique():
+        mask=frame.program_family.eq(family)
+        for pcol,qcol in [('p_camera','q_BH_global_camera'),('p_camera_emp','q_BH_global_camera_emp')]:
+            frame.loc[mask,qcol]=bh(frame.loc[mask,pcol])
+    return frame
 
-# Load GMT
-gene_sets = {}
-with open("reanalysis/A03/programs.gmt", "r", encoding="utf-8") as f:
-    for line in f:
-        parts = line.strip().split("\t")
-        gene_sets[parts[0]] = parts[2:]
 
-aging_progs = [p for p in prog_manifest["program_id"] if not p.startswith("NUIS_")]
-nuis_progs = [p for p in prog_manifest["program_id"] if p.startswith("NUIS_")]
-all_progs = aging_progs + nuis_progs
+def write_inference_report(primary, config):
+    p=primary[primary.program_id.isin(PRIMARY_IDS)]
+    report=f"""# Protein and pathway inference
 
-# Load raw data & filter to retained 7,871 proteins
-adata = ad.read_h5ad("data/raw (1).h5ad")
-retained_prots = prot_map.loc[prot_map["retained_50pct_filter"], "feature_id"].tolist()
-adata = adata[:, retained_prots].copy()
+The model uses {config['n_primary_samples']:,} primary assay observations and {config['n_features']:,} retained features, with design rank {config['design_rank']}. Empirical Bayes prior: d0={config['d0_prior']:.6g}, s0 squared={config['s0_2_prior']:.6g}. Protein tests require at least three observed values in each contrasted group.
 
-X_raw = adata.X.toarray() if hasattr(adata.X, "toarray") else adata.X.copy()
-with np.errstate(divide="ignore"):
-    X_log = np.where(X_raw > 0, np.log2(X_raw), np.nan)
+At BH q < 0.05 across {len(p):,} compound-program hypotheses, the primary matched-plate mean-response analysis identifies {int((p.q_BH_global_plate<.05).sum())} pairs. The secondary fixed-correlation CAMERA-PR-style analysis identifies {int((p.q_BH_global_camera<.05).sum())} pairs, and the pairwise empirical-correlation sensitivity identifies {int((p.q_BH_global_camera_emp<.05).sum())} pairs. These analyses have different assumptions and weights. NES is descriptive. Direct kinase comparisons have their own testing family.
 
-# Sample-wise median normalization (relative proteome composition)
-meds = np.nanmedian(X_log, axis=1, keepdims=True)
-X_norm = X_log - meds + np.nanmedian(meds)
-
-# ==============================================================================
-# 1. PRIMARY MODEL: Plate-blocked observed-data OLS + Empirical Bayes (161 contrasts)
-# ==============================================================================
-direct_compounds = elig_df.loc[elig_df["eligibility_status"] == "directly_estimable", "compound_id"].tolist()
-prim_mask = (
-    (~sample_manifest["excluded"].values)
-    & (sample_manifest["plate"].values != "RedMix")
-    & (sample_manifest["condition_role"].values != "analytical_qc")
-)
-sm_prim = sample_manifest.loc[prim_mask].reset_index(drop=True)
-Y_prim = X_norm[prim_mask, :]  # (n_samples, n_prots)
-
-# Design matrix: DMSO is reference level; sum-to-zero or Blue1 reference for plate
-# Use pandas get_dummies with drop_first=False for compound, and plate effects (Blue2..6, Red1..6)
-# Note: Blue1..6 and Red1..6 are disjoint sets of compounds!
-# Within Blue plates: Blue1..6; within Red plates: Red1..6.
-# Fitting ~ 1 + C(compound, Treatment('DMSO')) + C(plate)
-# Wait: since DMSO is on ALL 12 plates, DMSO connects Blue and Red plates!
-# So the full design matrix [Intercept, compound_dummies (161), plate_dummies (11)] is FULL RANK!
-plates_sorted = sorted(sm_prim["plate"].unique())
-comp_cols = direct_compounds  # 161 contrasts vs DMSO
-plate_cols = plates_sorted[1:]  # 11 plate dummies (Blue1 is ref)
-
-n_samp = len(sm_prim)
-p_design = 1 + len(comp_cols) + len(plate_cols)
-D = np.zeros((n_samp, p_design), dtype=float)
-D[:, 0] = 1.0  # Intercept = DMSO on Blue1
-comp_idx = {c: i + 1 for i, c in enumerate(comp_cols)}
-plate_idx = {pl: 1 + len(comp_cols) + i for i, pl in enumerate(plate_cols)}
-
-for row_i, r in sm_prim.iterrows():
-    if r["compound_id"] in comp_idx:
-        D[row_i, comp_idx[r["compound_id"]]] = 1.0
-    if r["plate"] in plate_idx:
-        D[row_i, plate_idx[r["plate"]]] = 1.0
-
-rank_D = np.linalg.matrix_rank(D)
-print(f"Primary design matrix D: shape={D.shape}, rank={rank_D} (full rank={rank_D == p_design})")
-
-# Fit observed-data OLS per protein
-n_prots = Y_prim.shape[1]
-betas = np.full((n_prots, len(comp_cols)), np.nan)
-se_unmod = np.full((n_prots, len(comp_cols)), np.nan)
-df_resid = np.zeros(n_prots)
-s2_resid = np.full(n_prots, np.nan)
-resid_mat = np.full_like(Y_prim, np.nan)
-
-# Fast vectorized path for proteins with 0 missingness in primary samples, fallback for proteins with NaNs
-no_nan_mask = ~np.isnan(Y_prim).any(axis=0)
-print(f"Proteins with complete observations in primary set: {no_nan_mask.sum()} / {n_prots}")
-
-# Complete-case vectorized OLS
-DtD_inv = np.linalg.inv(D.T @ D)
-P_proj = DtD_inv @ D.T
-Y_cc = Y_prim[:, no_nan_mask]
-coef_cc = P_proj @ Y_cc  # (p_design, n_cc)
-res_cc = Y_cc - D @ coef_cc
-df_cc = n_samp - p_design
-s2_cc = (res_cc ** 2).sum(axis=0) / df_cc
-diag_inv_cc = np.diag(DtD_inv)[1:1 + len(comp_cols)]
-
-betas[no_nan_mask, :] = coef_cc[1:1 + len(comp_cols), :].T
-se_unmod[no_nan_mask, :] = np.sqrt(np.outer(s2_cc, diag_inv_cc))
-df_resid[no_nan_mask] = df_cc
-s2_resid[no_nan_mask] = s2_cc
-resid_mat[:, no_nan_mask] = res_cc
-
-# Per-protein OLS for proteins with some missing values
-nan_indices = np.where(~no_nan_mask)[0]
-for j in nan_indices:
-    y = Y_prim[:, j]
-    obs_m = ~np.isnan(y)
-    if obs_m.sum() <= p_design + 5:
-        continue
-    Dj = D[obs_m, :]
-    yj = y[obs_m]
-    # Drop any columns with all zeros (if a compound had 0 obs for this protein)
-    col_ok = (Dj != 0).any(axis=0)
-    Dj_sub = Dj[:, col_ok]
-    if np.linalg.matrix_rank(Dj_sub) < Dj_sub.shape[1]:
-        continue
-    DtD_j_inv = np.linalg.inv(Dj_sub.T @ Dj_sub)
-    coef_j = DtD_j_inv @ (Dj_sub.T @ yj)
-    res_j = yj - Dj_sub @ coef_j
-    df_j = len(yj) - Dj_sub.shape[1]
-    s2_j = (res_j ** 2).sum() / df_j
-    df_resid[j] = df_j
-    s2_resid[j] = s2_j
-    resid_mat[obs_m, j] = res_j
-    # Map back to comp_cols
-    sub_col_map = np.where(col_ok)[0]
-    diag_j = np.diag(DtD_j_inv)
-    for k_sub, k_full in enumerate(sub_col_map):
-        if 1 <= k_full <= len(comp_cols):
-            c_i = k_full - 1
-            betas[j, c_i] = coef_j[k_sub]
-            se_unmod[j, c_i] = np.sqrt(s2_j * diag_j[k_sub])
-
-# Empirical Bayes variance moderation (Smyth 2004 method of moments on log(s2))
-valid_s2 = (~np.isnan(s2_resid)) & (s2_resid > 0) & (df_resid > 5)
-z = np.log(s2_resid[valid_s2])
-df_v = df_resid[valid_s2]
-from scipy.special import digamma, polygamma
-e_z = z - digamma(df_v / 2.0) + np.log(df_v / 2.0)
-var_e = np.var(e_z, ddof=1)
-mean_trigamma = np.mean(polygamma(1, df_v / 2.0))
-target_trigamma = max(var_e - mean_trigamma, 1e-4)
-
-# Solve polygamma(1, d0/2) = target_trigamma via grid + binary search
-lo, hi = 0.1, 200.0
-for _ in range(50):
-    mid = 0.5 * (lo + hi)
-    if polygamma(1, mid / 2.0) > target_trigamma:
-        lo = mid
-    else:
-        hi = mid
-d0 = 0.5 * (lo + hi)
-s0_2 = np.exp(np.mean(e_z) + digamma(d0 / 2.0) - np.log(d0 / 2.0))
-print(f"Empirical Bayes prior: d0 = {d0:.2f}, s0^2 = {s0_2:.4f}")
-
-# Moderated variance & t-statistics
-s2_post = (df_resid[:, None] * s2_resid[:, None] + d0 * s0_2) / (df_resid[:, None] + d0)
-# Scale unmoderated SE by sqrt(s2_post / s2_resid)
-se_mod = se_unmod * np.sqrt(s2_post / s2_resid[:, None])
-t_mod = betas / se_mod
-df_tot = df_resid[:, None] + d0
-p_mod = 2.0 * stats.t.sf(np.abs(t_mod), df=df_tot)
-
-# Estimate inter-protein correlation per gene set for CAMERA-style competitive test
-# Use complete-case residual matrix or pairwise correlation of residuals
-res_df = pd.DataFrame(resid_mat, columns=retained_prots)
-vif_map = {}
-for pid in all_progs:
-    gs = [g for g in gene_sets[pid] if g in retained_prots]
-    if len(gs) >= 5:
-        sub_r = res_df[gs].dropna(axis=0)
-        if len(sub_r) > 20:
-            corr_m = np.corrcoef(sub_r.values, rowvar=False)
-            m_g = corr_m.shape[0]
-            rho_bar = (corr_m.sum() - m_g) / (m_g * (m_g - 1))
-            vif = max(1.0 + (m_g - 1) * rho_bar, 1.0)
-        else:
-            rho_bar, vif = 0.0, 1.0
-    else:
-        rho_bar, vif = 0.0, 1.0
-    vif_map[pid] = (len(gs), rho_bar, vif)
-print("CAMERA VIF estimates computed for all 17 programs.")
-
-# Save protein-level effects (compact summary + full table for primary contrasts)
-# Also compute global protein-level BH FDR and per-contrast BH FDR
-dmso_mask = (sm_prim["compound_id"] == "DMSO").values
-prot_eff_rows = []
-prog_eff_rows = []
-
-t0 = time.time()
-for c_i, comp in enumerate(comp_cols):
-    c_mask = (sm_prim["compound_id"] == comp).values
-    n_c = int(c_mask.sum())
-    t_vec = t_mod[:, c_i]
-    b_vec = betas[:, c_i]
-    se_vec = se_mod[:, c_i]
-    p_vec = p_mod[:, c_i]
-    valid_p = ~np.isnan(p_vec)
-    q_per_contrast = np.full(n_prots, np.nan)
-    if valid_p.any():
-        _, q_per_contrast[valid_p], _, _ = multipletests(p_vec[valid_p], method="fdr_bh")
-
-    # Save protein effects for significant or all? 161 * 7871 = 1.26M rows (~100 MB TSV) — totally fine to save!
-    df_c = pd.DataFrame({
-        "pipeline": "primary_plate_blocked_eb",
-        "compound_id": comp,
-        "contrast_id": f"{comp}_vs_DMSO",
-        "feature_id": retained_prots,
-        "n_treated_obs": (~np.isnan(Y_prim[c_mask, :])).sum(axis=0),
-        "n_dmso_obs": (~np.isnan(Y_prim[dmso_mask, :])).sum(axis=0),
-        "log2fc": np.round(b_vec, 5),
-        "se_mod": np.round(se_vec, 5),
-        "t_mod": np.round(t_vec, 4),
-        "p_nominal": p_vec,
-        "q_BH_contrast": q_per_contrast,
-    })
-    prot_eff_rows.append(df_c)
-
-    # CAMERA-style competitive test on t_vec (using non-NaN proteins)
-    t_valid = t_vec[valid_p]
-    prots_valid = np.array(retained_prots)[valid_p]
-    t_ser = pd.Series(t_valid, index=prots_valid)
-
-    for pid in all_progs:
-        gs_in = [g for g in gene_sets[pid] if g in t_ser.index]
-        m_in = len(gs_in)
-        if m_in < 5:
-            continue
-        t_in = t_ser.loc[gs_in].values
-        t_out = t_ser.drop(gs_in).values
-        m_out = len(t_out)
-        n_tot = m_in + m_out
-        delta = t_in.mean() - t_out.mean()
-        # Pooled variance of t-stats
-        s_pool2 = ((m_in - 1) * t_in.var(ddof=1) + (m_out - 1) * t_out.var(ddof=1)) / (n_tot - 2)
-        _, rho_bar, vif = vif_map[pid]
-        se_cam_emp = np.sqrt(s_pool2 * (vif / m_in + 1.0 / m_out))
-        t_cam_emp = delta / se_cam_emp if se_cam_emp > 0 else 0.0
-        p_cam_emp = 2.0 * stats.t.sf(np.abs(t_cam_emp), df=n_tot - 2)
-
-        # Standard regularized limma::camera (Wu & Smyth 2012, inter.gene.cor = 0.01)
-        rho_std = 0.01
-        vif_std = 1.0 + rho_std * (m_in - 1.0)
-        se_cam = np.sqrt(s_pool2 * (vif_std / m_in + 1.0 / m_out))
-        t_cam = delta / se_cam if se_cam > 0 else 0.0
-        p_cam = 2.0 * stats.t.sf(np.abs(t_cam), df=n_tot - 2)
-
-        prog_eff_rows.append({
-            "pipeline": "primary_plate_blocked_eb",
-            "compound_id": comp,
-            "contrast_id": f"{comp}_vs_DMSO",
-            "program_id": pid,
-            "program_family": "nuisance_control" if pid.startswith("NUIS_") else "primary_aging",
-            "n_genes_measured": m_in,
-            "rho_inter_protein": round(rho_bar, 4),
-            "vif": round(vif, 3),
-            "vif_emp": round(vif, 3),
-            "camera_t_emp": round(t_cam_emp, 4),
-            "p_camera_emp": p_cam_emp,
-            "rho_camera_std": rho_std,
-            "vif_camera_std": round(vif_std, 3),
-            "camera_t": round(t_cam, 4),
-            "p_camera": p_cam,
-            "direction": "up" if t_cam > 0 else "down",
-        })
-
-    # Pre-ranked GSEA (2000 permutations for better resolution)
-    rnk = t_ser.sort_values(ascending=False)
-    pre_res = gp.prerank(
-        rnk=rnk,
-        gene_sets={k: gene_sets[k] for k in all_progs},
-        min_size=5,
-        max_size=500,
-        permutation_num=2000,
-        seed=42,
-        threads=4,
-        verbose=False,
-    )
-    res_g = pre_res.res2d.set_index("Term")
-    for row in prog_eff_rows[-len(all_progs):]:
-        pid = row["program_id"]
-        if pid in res_g.index:
-            row["nes_gsea"] = float(res_g.loc[pid, "NES"])
-            # Finite-sampling nonzero convention: max(p, 1/(2000+1))
-            p_nom_g = float(res_g.loc[pid, "NOM p-val"])
-            row["p_gsea_nominal"] = max(p_nom_g, 1.0 / 2001.0)
-            row["q_gsea_native"] = float(res_g.loc[pid, "FDR q-val"])
-            row["lead_genes"] = str(res_g.loc[pid, "Lead_genes"])
-        else:
-            row["nes_gsea"] = np.nan
-            row["p_gsea_nominal"] = np.nan
-            row["q_gsea_native"] = np.nan
-            row["lead_genes"] = ""
-
-    if (c_i + 1) % 25 == 0 or (c_i + 1) == len(comp_cols):
-        print(f"   Primary A02: {c_i + 1}/{len(comp_cols)} contrasts ({time.time() - t0:.1f}s)")
-
-df_prot_all = pd.concat(prot_eff_rows, ignore_index=True)
-df_prot_all.to_csv("reanalysis/A02/protein_effects.tsv", sep="\t", index=False)
-
-df_prog = pd.DataFrame(prog_eff_rows)
-
-# Compute global BH FDR across the PRIMARY family (161 contrasts x 14 aging programs)
-prim_fam_mask = df_prog["program_family"] == "primary_aging"
-df_prog["q_BH_global_camera"] = np.nan
-df_prog["q_BH_global_gsea"] = np.nan
-_, df_prog.loc[prim_fam_mask, "q_BH_global_camera"], _, _ = multipletests(
-    df_prog.loc[prim_fam_mask, "p_camera"], method="fdr_bh"
-)
-_, df_prog.loc[prim_fam_mask, "q_BH_global_gsea"], _, _ = multipletests(
-    df_prog.loc[prim_fam_mask, "p_gsea_nominal"], method="fdr_bh"
-)
-
-# Also compute BH FDR for the secondary nuisance family
-nuis_mask = df_prog["program_family"] == "nuisance_control"
-_, df_prog.loc[nuis_mask, "q_BH_global_camera"], _, _ = multipletests(
-    df_prog.loc[nuis_mask, "p_camera"], method="fdr_bh"
-)
-_, df_prog.loc[nuis_mask, "q_BH_global_gsea"], _, _ = multipletests(
-    df_prog.loc[nuis_mask, "p_gsea_nominal"], method="fdr_bh"
-)
-
-df_prog.to_csv("reanalysis/A02/program_effects.tsv", sep="\t", index=False)
-
-# Save config & session info
-with open("reanalysis/A02/contrast_definitions.json", "w") as f:
-    json.dump({"primary_contrasts": [f"{c}_vs_DMSO" for c in comp_cols], "reference": "DMSO (n=23 across 12 plates)"}, f, indent=2)
-
-config = {
-    "primary_model": "plate_blocked_observed_OLS_empirical_Bayes",
-    "normalization": "sample_median_log2_relative_composition",
-    "missingness_handling": "observed_data_only_no_imputation",
-    "d0_prior": float(d0),
-    "s0_2_prior": float(s0_2),
-    "gsea_permutations": 2000,
-    "gsea_nonzero_floor": 1.0 / 2001.0,
-    "primary_bh_family_size": int(prim_fam_mask.sum()),
-}
-with open("reanalysis/A02/analysis_config.yaml", "w") as f:
-    yaml.dump(config, f, sort_keys=False)
-
-with open("reanalysis/A02/session_info.txt", "w") as f:
-    f.write(f"Python: {platform.python_version()}\nOS: {platform.platform()}\n")
-    for mod in [np, pd, ad, sc, gp]:
-        f.write(f"{mod.__name__}: {getattr(mod, '__version__', 'unknown')}\n")
-
-# Summary stats
-n_sig_cam = (df_prog.loc[prim_fam_mask, "q_BH_global_camera"] < 0.05).sum()
-n_sig_gsea = (df_prog.loc[prim_fam_mask, "q_BH_global_gsea"] < 0.05).sum()
-n_drugs_cam = df_prog.loc[prim_fam_mask & (df_prog["q_BH_global_camera"] < 0.05), "compound_id"].nunique()
-n_drugs_gsea = df_prog.loc[prim_fam_mask & (df_prog["q_BH_global_gsea"] < 0.05), "compound_id"].nunique()
-
-rep_md = f"""# A02 Inference Report
-
-- **Primary Family**: `{prim_fam_mask.sum()}` hypotheses (`{len(comp_cols)}` directly estimable contrasts x `14` primary aging programs). `12` `RedMix` contrasts were excluded from primary inference due to `0` within-plate `DMSO` controls.
-- **Model**: Plate-blocked observed-data OLS (`~ 1 + compound + plate`) with empirical Bayes variance moderation (`d0 = {d0:.2f}`, `s0^2 = {s0_2:.4f}`). Normalization is sample-median $\\log_2$, measuring **relative proteome composition** rather than absolute per-cell protein mass.
-- **Recomputed Significance Counts (Global BH FDR $q < 0.05$)**:
-  - **Correlation-aware competitive test (CAMERA)**: `{n_sig_cam}` / `{prim_fam_mask.sum()}` pairs across `{n_drugs_cam}` / `{len(comp_cols)}` compounds.
-  - **Pre-Ranked GSEA (`q_BH_global_gsea < 0.05`)**: `{n_sig_gsea}` / `{prim_fam_mask.sum()}` pairs across `{n_drugs_gsea}` / `{len(comp_cols)}` compounds.
-  - *(Compare to preliminary unblocked ComBat + native-q report of 165/173 drugs and 999 pairs.)*
+Plate-response inference assumes independent plates. Fixed treatment coordinates, incomplete culture provenance, and observed vehicle-position differences limit interpretation; see A04 and A06. Neither discovery counts nor correlation sensitivity establish calibrated whole-screen error control or beneficial aging effects.
 """
-with open("reanalysis/A02/inference_report.md", "w", encoding="utf-8") as f:
-    f.write(rep_md)
+    (ROOT/'reanalysis/A02/inference_report.md').write_text(report)
+    return report
 
-print(rep_md)
+
+def main():
+    start=time.monotonic()
+    sm=read_table('reanalysis/A01/sample_manifest.tsv')
+    eligibility=read_table('reanalysis/A01/contrast_eligibility.tsv')
+    mapping=read_table('reanalysis/A01/protein_mapping.tsv')
+    Y,obs,features=normalized_data()
+    if not np.array_equal(obs.sample_id,sm.sample_id): raise ValueError('Sample order mismatch')
+    mask=primary_mask(sm).to_numpy(); samples=sm.loc[mask].reset_index(drop=True); A=Y[mask]
+    compounds=eligibility.loc[eligibility.eligibility_status.eq('directly_estimable'),'compound_id'].tolist()
+    D,columns=make_design(samples,compounds)
+    direct_pairs=[('Binimetinib',d) for d in KINASE_PANEL if d!='Binimetinib']
+    C=np.zeros((len(columns),len(compounds)+len(direct_pairs)))
+    for i,c in enumerate(compounds): C[columns.index(c),i]=1
+    for i,(a,b) in enumerate(direct_pairs,start=len(compounds)):
+        C[columns.index(a),i]=1; C[columns.index(b),i]=-1
+    print(f'Fitting {len(samples)} samples, {len(features)} proteins, design rank {len(columns)}',flush=True)
+    B,U,V,df,resid=fit_observed_model(A,D,C)
+    post,d0,s0=moderate_variances(V,df)
+    SE=np.sqrt(U*post[:,None]); T=B/SE
+    labels=compounds+[a+'_vs_'+b for a,b in direct_pairs]
+    treated_n=np.column_stack([np.isfinite(A[samples.compound_id.eq(c).to_numpy()]).sum(axis=0) for c in compounds])
+    dmso_n=np.isfinite(A[samples.compound_id.eq('DMSO').to_numpy()]).sum(axis=0)
+    valid=np.column_stack([(treated_n[:,i]>=MIN_TREATED_OBS)&(dmso_n>=MIN_CONTROL_OBS) for i in range(len(compounds))]+[
+        (treated_n[:,compounds.index(a)]>=MIN_TREATED_OBS)&(treated_n[:,compounds.index(b)]>=MIN_TREATED_OBS) for a,b in direct_pairs])
+    T=np.where(valid,T,np.nan)
+    P=2*stats.t.sf(np.abs(T),df=df[:,None]+d0)
+    protein_frames=[]
+    for ci,label in enumerate(labels):
+        if ci<len(compounds): nt=treated_n[:,ci]; nr=dmso_n; ref='DMSO'
+        else:
+            a,b=direct_pairs[ci-len(compounds)];nt=treated_n[:,compounds.index(a)];nr=treated_n[:,compounds.index(b)];ref=b
+        critical=stats.t.ppf(.975,df+d0)
+        protein_frames.append(pd.DataFrame({'compound_id':label,'feature_id':features,'reference':ref,
+            'n_treated_obs':nt,'n_reference_obs':nr,'eligible_for_testing':valid[:,ci],
+            'log2fc':B[:,ci],'se_mod':SE[:,ci],'ci95_low':B[:,ci]-critical*SE[:,ci],
+            'ci95_high':B[:,ci]+critical*SE[:,ci],'t_mod':T[:,ci],'p_nominal':P[:,ci],
+            'q_BH_contrast':bh(P[:,ci])}))
+    protein=pd.concat(protein_frames[:len(compounds)],ignore_index=True)
+    direct=pd.concat(protein_frames[len(compounds):],ignore_index=True)
+    write_table(protein,ROOT/'reanalysis/A02/protein_effects.tsv.gz')
+    write_protein_partitions(protein)
+    write_table(direct,ROOT/'reanalysis/A02/direct_comparator_protein_effects.tsv.gz')
+    gmt=load_gmt();correlations=residual_correlations(resid,features,gmt)
+    primary=pathway_results(T[:,:len(compounds)],B[:,:len(compounds)],features,compounds,gmt,correlations,'primary_plate_blocked_eb',True)
+    plate,units=plate_program_comparisons(A,samples,features,{c:np.isfinite(T[:,i]) for i,c in enumerate(compounds)},
+        [(c,c,'DMSO') for c in compounds],gmt)
+    primary=primary.merge(plate,on=['compound_id','program_id'],validate='one_to_one')
+    write_table(units,ROOT/'reanalysis/A02/plate_program_observations.tsv')
+    write_table(primary,ROOT/'reanalysis/A02/program_effects.tsv')
+    pair_table=pathway_results(T[:,len(compounds):],B[:,len(compounds):],features,labels[len(compounds):],gmt,correlations,'direct_kinase_comparators',False)
+    pair_plate,pair_units=plate_program_comparisons(A,samples,features,
+        {labels[len(compounds)+j]:np.isfinite(T[:,len(compounds)+j]) for j in range(len(direct_pairs))},
+        [(labels[len(compounds)+j],a,b) for j,(a,b) in enumerate(direct_pairs)],gmt)
+    pair_table=pair_table.merge(pair_plate,on=['compound_id','program_id'],validate='one_to_one')
+    write_table(pair_units,ROOT/'reanalysis/A02/direct_plate_program_observations.tsv')
+    write_table(pair_table,ROOT/'reanalysis/A02/direct_comparator_program_effects.tsv')
+    # Re-estimate the prior on the stricter feature universe; no new imputations.
+    strict=mapping.loc[mapping.retained_50pct_filter,'retained_20pct_filter'].to_numpy(bool)
+    post20,d020,s020=moderate_variances(V,df,strict)
+    T20=np.where(valid,(B/np.sqrt(U*post20[:,None])),np.nan)[strict,:len(compounds)]
+    corr20=residual_correlations(resid[:,strict],features[strict],gmt)
+    sensitivity=pathway_results(T20,B[strict,:len(compounds)],features[strict],compounds,gmt,corr20,'max20pct_missing_min3',False)
+    strict_plate,_=plate_program_comparisons(A[:,strict],samples,features[strict],
+        {c:np.isfinite(T20[:,i]) for i,c in enumerate(compounds)},[(c,c,'DMSO') for c in compounds],gmt)
+    sensitivity=sensitivity.merge(strict_plate,on=['compound_id','program_id'],validate='one_to_one')
+    write_table(sensitivity,ROOT/'reanalysis/A04/sensitivity_effects.tsv')
+    # Cache only intermediates. The tracked outputs and raw matrix suffice to rebuild.
+    cache=ROOT/'reanalysis/_cache';cache.mkdir(exist_ok=True)
+    np.savez_compressed(cache/'model.npz',effects=B,unscaled=U,variances=V,df_residual=df,residuals=resid,features=features.astype(str),contrast_names=np.array(labels),eligible=valid)
+    diagnostics=[]
+    for pid,(idx,corr) in correlations.items():
+        rho,fraction=empirical_rho(corr,np.ones(len(idx),bool))
+        diagnostics.append({'program_id':pid,'n_program_features':len(idx),'rho_pairwise_residual':rho,'finite_pair_fraction':fraction,
+            'complete_residual_rows':int(np.isfinite(resid[:,idx]).all(axis=1).sum()),'min_pair_observations':20})
+    write_table(pd.DataFrame(diagnostics),ROOT/'reanalysis/A02/correlation_diagnostics.tsv')
+    config={'primary_model':'observed-data OLS with additive compound and plate effects; parametric empirical Bayes variance moderation',
+        'primary_pathway_method':'one-sample t test of competitive mean log2 fold changes across independent matched plates',
+        'secondary_pathway_method':'Python implementation of the non-rank CAMERA-PR formula on precomputed moderated t statistics',
+        'inter_protein_correlation_fixed':PRIMARY_RHO,'empirical_correlation':'mean pairwise residual Pearson correlation; min 20 pair observations; estimates unavailable below 80% finite pairs',
+        'n_primary_samples':len(samples),'n_features':len(features),'design_rank':int(np.linalg.matrix_rank(D)),
+        'n_primary_compounds':len(compounds),'n_primary_program_tests':int(primary.program_family.eq('primary_aging').sum()),
+        'd0_prior':d0,'s0_2_prior':s0,'strict20_d0_prior':d020,'strict20_s0_2_prior':s020,
+        'normalization':'log2 sample-median normalization, relative composition','minimum_treated_observations':MIN_TREATED_OBS,'minimum_reference_observations':MIN_CONTROL_OBS,
+        'gsea_permutations':2000,'gsea_seed':42,'gsea_inference':'NES and leading edge are descriptive only; no nominal or FDR significance claims from gene-set permutations',
+        'composite_geroprotection_score':'removed; no universal beneficial program directions',
+        'low_observation_protein_contrasts_excluded':int((~valid[:,:len(compounds)]).sum())}
+    json_write(config,ROOT/'reanalysis/A02/analysis_config.json')
+    import yaml
+    (ROOT/'reanalysis/A02/analysis_config.yaml').write_text(yaml.safe_dump(config,sort_keys=False))
+    json_write({'primary_contrasts':[c+'_vs_DMSO' for c in compounds],'direct_comparators':[{'treated':a,'reference':b} for a,b in direct_pairs]},ROOT/'reanalysis/A02/contrast_definitions.json')
+    versions={'Python':platform.python_version()}
+    for name in ['numpy','pandas','scipy','h5py','gseapy','seaborn','matplotlib','openpyxl','python-docx']:
+        versions[name]=importlib.metadata.version(name)
+    (ROOT/'reanalysis/A02/session_info.txt').write_text('\n'.join(f'{k}: {v}' for k,v in versions.items())+'\n')
+    report=write_inference_report(primary,config)
+    print(report,flush=True);print(f'A02 complete in {time.monotonic()-start:.1f} s',flush=True)
+
+
+if __name__=='__main__': main()

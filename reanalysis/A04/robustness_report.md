@@ -1,10 +1,7 @@
-# A04 Reproducibility & Sensitivity Report
+# Robustness and diagnostic scope
 
-- **Sensitivity (Primary Observed Plate-Blocked vs. ComBat+Imputation)**:
-  - Correlation between primary `camera_t` and ComBat+imputation `NES`: $r = 0.816$ (`84.9%` direction agreement).
-  - Correlation between primary `nes_gsea` and ComBat+imputation `NES`: $r = 0.836$.
-- **Null Calibration (`DMSO_A` vs `DMSO_B` across 11 plates)**:
-  - `0` / `7872` proteins significant at BH FDR $q < 0.05$.
-  - `0` / `14` aging programs significant at BH FDR $q < 0.05$ (`0` at nominal $p < 0.05$).
-- **Cross-Plate Replication (Leave-One-Plate-Out Pearson $r$ of $\log_2$FC)**:
-  - Computed for `DFO` and key candidates (`replication_metrics.tsv`).
+The freshly reconstructed vehicle split has 1 significant plate-level pathways, 1 fixed-rho competitive pathways, and 52 significant proteins at BH q < 0.05. The controls therefore show position-associated differences and do not establish strict calibration. Across all 2,048 paired sign assignments, 7.03% have at least one significant plate-level program. This small paired-control design is diagnostic, not full-screen FDR validation.
+
+The stricter <=20% missingness universe gives secondary CAMERA-PR-style pathway-statistic r=0.999 and 98.8% sign agreement with the primary universe. Per-compound observed counts are reported separately.
+
+Bootstrap intervals describe mean within-plate protein-program log2 fold changes after resampling independent plates (1,000 draws). They do not establish function, causal specificity, a geroprotection rank, or a second independent validation dataset.

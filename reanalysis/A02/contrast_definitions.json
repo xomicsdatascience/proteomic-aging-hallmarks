@@ -1,4 +1,26 @@
 {
+  "direct_comparators": [
+    {
+      "reference": "Zanubrutinib",
+      "treated": "Binimetinib"
+    },
+    {
+      "reference": "Almonertinib (hydrochloride)",
+      "treated": "Binimetinib"
+    },
+    {
+      "reference": "Erlotinib (Hydrochloride)",
+      "treated": "Binimetinib"
+    },
+    {
+      "reference": "Mobocertinib (succinate)",
+      "treated": "Binimetinib"
+    },
+    {
+      "reference": "Lapatinib (ditosylate)",
+      "treated": "Binimetinib"
+    }
+  ],
   "primary_contrasts": [
     "6-Mercaptopurine_vs_DMSO",
     "ATP (dimagnesium)_vs_DMSO",
@@ -159,8 +181,7 @@
     "Vecuronium (bromide)_vs_DMSO",
     "Vemurafenib_vs_DMSO",
     "Zanubrutinib_vs_DMSO",
-    "\u00ce\u00b1-Lipoic Acid_vs_DMSO",
+    "alpha-Lipoic Acid_vs_DMSO",
     "\u00ce\u00b3-Oryzanol_vs_DMSO"
-  ],
-  "reference": "DMSO (n=23 across 12 plates)"
+  ]
 }

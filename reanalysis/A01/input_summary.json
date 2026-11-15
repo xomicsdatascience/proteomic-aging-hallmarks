@@ -1,0 +1,12 @@
+{
+  "drug_metadata_sha256": "099e5d6b3df7cf73b1bf193363b290bcc33ae7c2a6bb38f0567ce78a811fc5cb",
+  "filter_order": "exclude unlabeled well, then compute feature missingness across the remaining observations",
+  "gmt_sha256": "6eba9fd02ff5b13aa4c3d50a46d8f08802cfcf8525d502b99cc9e8e40e09faea",
+  "normalization_samples": 1231,
+  "raw_features": 8630,
+  "raw_h5ad_sha256": "ff3a156ab342488a60a248613e7dfdf8fd53689e0b5996df5af5f1aa30c8ad05",
+  "raw_samples": 1232,
+  "retained_features_20pct": 7296,
+  "retained_features_50pct": 7871,
+  "unlabeled_excluded": 1
+}

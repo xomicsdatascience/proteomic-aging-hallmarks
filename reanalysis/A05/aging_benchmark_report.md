@@ -1,9 +1,3 @@
-# A05 Independent Aging Benchmarks Report
+# Aging reference scope
 
-- **Transparent Reference Status**:
-  - Donor-age proteomic tables from Tsitsipatis et al. (2022) and Waldera-Lupa et al. (2014) and chemical reprogramming tables from Mitchell et al. (2024) are not locally present and are documented in `external_reference_manifest.tsv` as `excluded_pending_local_download`.
-  - Basisty et al. (2020) SASP Atlas is excluded as a compartment mismatch (secretome vs. HepG2 whole-cell lysate).
-- **Evaluated References (Retrospective Benchmarking, 161 Directly Estimable Contrasts)**:
-  - `PRIOR_DEMAGALHAES_UP` (26/54 measured, RNA-derived prior): `22` / `161` compounds significant at global BH FDR $q < 0.05$ under correlation-aware CAMERA.
-  - `PRIOR_DEMAGALHAES_DN` (8/16 measured, RNA-derived prior): `25` / `161` compounds significant at global BH FDR $q < 0.05$.
-  - `REF_REACTOME_OX_SENESCENCE` (47/94 measured): `0` / `161` compounds significant at BH FDR $q < 0.05$.
+No independent proteomic aging dataset has been analyzed in this build. The two de Magalhaes RNA-derived priors are already members of the primary panel and must not be described as independent validation. No hard-coded variance inflation is used for an additional canonical senescence pathway. The reference inventory distinguishes evaluated panel context from proposed external comparisons. A signed human liver aging proteome comparison is a proposed next analysis, not a completed result or an estimate of years rejuvenated.

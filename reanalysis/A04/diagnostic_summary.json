@@ -1,0 +1,15 @@
+{
+  "bootstrap_repetitions": 1000,
+  "bootstrap_unit": "plate; descriptive program mean log2 fold changes, not a refit of the moderated model",
+  "calibration_scope": "Diagnostic paired vehicle experiment; not a full-screen type I error or FDR estimate",
+  "plate_signflip_fraction_any_program_q05": 0.0703125,
+  "signflip_assignments": 2048,
+  "signflip_fraction_any_program_q05": 0.3466796875,
+  "strict_missingness_camera_pearson_r": 0.9985308171267857,
+  "strict_missingness_sign_agreement": 0.9884649511978705,
+  "vehicle_pair_count": 11,
+  "vehicle_split_fixed_rho_significant_programs": 1,
+  "vehicle_split_max_abs_t": 4.697797683029012,
+  "vehicle_split_significant_programs": 1,
+  "vehicle_split_significant_proteins": 52
+}

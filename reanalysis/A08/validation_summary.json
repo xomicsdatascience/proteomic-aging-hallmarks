@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "primary_samples": 1004,
+  "retained_features": 7871,
+  "primary_program_tests": 2254,
+  "protein_rows": 1267231,
+  "protein_partitions": 41,
+  "synchronized_word_exports": 4,
+  "primary_plate_pairs_q05": 751,
+  "note": "Structural and numerical checks; Word layout is reviewed separately."
+}
